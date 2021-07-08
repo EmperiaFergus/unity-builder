@@ -315,7 +315,7 @@ class RemoteBuilder {
       [
         '-c',
         `
-            aws s3 cp ${buildUid}/build-${buildUid}.zip s3://game-ci-storage/
+            aws s3 cp ${buildUid}/build-${buildUid}.zip s3://game-ci-storage-apollo/
             # no need to upload Library cache for now
             # aws s3 cp /${efsDirectoryName}/${cacheDirectoryName}/${branchName}/lib-${buildUid}.zip s3://game-ci-storage/
             ${this.SteamDeploy ? '#' : ''} rm -r ${buildUid}
