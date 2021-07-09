@@ -250,7 +250,7 @@ Resources:
                 - 'logs:CreateLogStream'
                 - 'logs:PutLogEvents'
               Resource: '*'
-  
+
   DeleteCFNLambdaExecutionRole:
     Type: "AWS::IAM::Role"
     Properties:
@@ -388,7 +388,7 @@ Outputs:
     Value: !GetAtt 'ECSTaskExecutionRole.Arn'
     Export:
       Name: !Sub ${EnvironmentName}:ECSTaskExecutionRole
-  
+
   DeleteCFNLambdaExecutionRole:
     Description: Lambda execution role for cleaning up cloud formations
     Value: !GetAtt 'DeleteCFNLambdaExecutionRole.Arn'
