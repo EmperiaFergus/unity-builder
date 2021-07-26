@@ -123,6 +123,31 @@ inputs:
       Note that it is generally bad practice to modify your branch
       in a CI Pipeline. However there are exceptions where this might
       be needed. (use with care).
+  s3InstallerAccessKey:
+    required: true
+    description: key used to upload files to the AWS storage
+  s3InstallerSecretKey:
+    required: true
+    description: secret key used to upload files to the AWS storage
+  s3InstallerRegion:
+    required: true
+    description: the region the S3 bucket is stored in
+  s3InstallerBucketName:
+    required: true
+    description: the name of the S3 bucket the uploads are stored in
+  serverDevelopmentAddress:
+    required: true
+    description: the address of Apollos development server
+  serverProductionAddress:
+    required: true
+    description: the address of Apollos production server
+  serverTimeout:
+    required: false
+    default: '10'
+    description: the timeout of connection attempts within Apollo
+
+
+
 outputs:
   volume:
     description: 'The Persistent Volume (PV) where the build artifacts have been stored by Kubernetes'

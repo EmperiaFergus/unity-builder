@@ -27,6 +27,19 @@ echo "Using build path \"$BUILD_PATH\" to save file \"$BUILD_FILE\"."
 BUILD_PATH_FULL="$GITHUB_WORKSPACE/$BUILD_PATH"
 CUSTOM_BUILD_PATH="$BUILD_PATH_FULL/$BUILD_FILE"
 
+
+#INSTALLER_PATH="$S3_INSTALLER_PATH"
+INSTALLER_ACCESS_KEY="$S3_INSTALLER_ACCESS_KEY"
+S3_INSTALLER_SECRET_KEY="$S3_INSTALLER_SECRET_KEY"\
+S3_INSTALLER_REGION="$S3_INSTALLER_REGION"\
+S3_INSTALLER_BUCKET_NAME="$S3_INSTALLER_BUCKET_NAME"\
+
+#SERVER_INSTALLER_PATH="$SERVER_INSTALLER_PATH"\
+SERVER_DEVELOPMENT_ADDRESS="$SERVER_DEVELOPMENT_ADDRESS"\
+SERVER_PRODUCTION_ADDRESS="$SERVER_PRODUCTION_ADDRESS"\
+SERVER_TIMEOUT="$SERVER_TIMEOUT"\
+
+
 #
 # Set the build method, must reference one of:
 #
@@ -102,6 +115,26 @@ echo "###########################"
 echo ""
 
 ls -alh "$UNITY_PROJECT_PATH"
+
+echo "###########################"
+echo "#        Installers       #"
+echo "###########################"
+S3_INSTALLER_PATH = C:/Repositories/unity-builder/builder/default-build-script/ProjectSettings/S3Installer.asset
+SERVER_INSTALLER_PATH = C:/Repositories/unity-builder/builder/default-build-script/ProjectSettings/ServerInstaller.asset
+
+# /Assets/GameAssets/Resources/Installers
+
+sed -i "s/ServerDevelopmentAddress/$SERVER_DEVELOPMENT_ADDRESS/g" $SERVER_INSTALLER_PATH > $SERVER_INSTALLER_FINAL_PATH
+sed -i "s/ServerProductionAddress/$SERVER_PRODUCTION_ADDRESS/g" $SERVER_INSTALLER_FINAL_PATH
+sed -i "s/ServerTimeout/$SERVER_TIMEOUT/g" $SERVER_INSTALLER_FINAL_PATH
+
+#S3
+sed -i "s/S3SecretKey/$S3_INSTALLER_SECRET_KEY/g" $S3_INSTALLER_PATH > $S3_INSTALLER_FINAL_PATH
+sed -i "s/S3AccessKey/$S3_INSTALLER_SECRET_KEY/g" $S3_INSTALLER_FINAL_PATH
+
+
+
+
 
 #
 # Build
