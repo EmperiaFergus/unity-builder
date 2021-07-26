@@ -119,8 +119,8 @@ ls -alh "$UNITY_PROJECT_PATH"
 echo "###########################"
 echo "#        Installers       #"
 echo "###########################"
-S3_INSTALLER_PATH = C:/Repositories/unity-builder/builder/default-build-script/ProjectSettings/S3Installer.asset
-SERVER_INSTALLER_PATH = C:/Repositories/unity-builder/builder/default-build-script/ProjectSettings/ServerInstaller.asset
+var S3_INSTALLER_PATH=C:/Repositories/unity-builder/builder/default-build-script/ProjectSettings/S3Installer.asset
+var SERVER_INSTALLER_PATH=C:/Repositories/unity-builder/builder/default-build-script/ProjectSettings/ServerInstaller.asset
 
 # /Assets/GameAssets/Resources/Installers
 
