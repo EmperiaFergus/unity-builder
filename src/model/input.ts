@@ -124,6 +124,34 @@ class Input {
   static get kubeVolume() {
     return core.getInput('kubeVolume') || '';
   }
+
+  static get s3InstallerAccessKey() {
+    return core.getInput('s3InstallerAccessKey') || '';
+  }
+
+  static get s3InstallerSecretKey() {
+    return core.getInput('s3InstallerSecretKey') || '';
+  }
+
+  static get s3InstallerRegion() {
+    return core.getInput('s3InstallerRegion') || '';
+  }
+
+  static get S3InstallerBucketName() {
+    return core.getInput('S3InstallerBucketName') || '';
+  }
+
+  static get serverDevelopmentAddress() {
+    return core.getInput('serverDevelopmentAddress') || '';
+  }
+
+  static get serverProductionAddress() {
+    return core.getInput('serverProductionAddress') || '';
+  }
+
+  static get serverTimeout() {
+    return core.getInput('serverTimeout') || '';
+  }
 }
 
 export default Input;

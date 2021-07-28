@@ -32,6 +32,13 @@ class BuildParameters {
   public kubeVolumeSize!: string;
   public kubeVolume!: string;
   public chownFilesTo!: string;
+  public s3InstallerAccessKey!: string;
+  public s3InstallerSecretKey!: string;
+  public s3InstallerRegion!: string;
+  public S3InstallerBucketName!: string;
+  public serverDevelopmentAddress!: string;
+  public serverProductionAddress!: string;
+  public serverTimeout!: string;
 
   static async create(): Promise<BuildParameters> {
     const buildFile = this.parseBuildFile(Input.buildName, Input.targetPlatform, Input.androidAppBundle);
@@ -71,6 +78,13 @@ class BuildParameters {
       remoteBuildCpu: Input.remoteBuildCpu,
       kubeVolumeSize: Input.kubeVolumeSize,
       kubeVolume: Input.kubeVolume,
+      s3InstallerAccessKey: Input.s3InstallerAccessKey,
+      s3InstallerSecretKey: Input.s3InstallerSecretKey,
+      s3InstallerRegion: Input.s3InstallerRegion,
+      S3InstallerBucketName: Input.S3InstallerBucketName,
+      serverDevelopmentAddress: Input.serverDevelopmentAddress,
+      serverProductionAddress: Input.serverProductionAddress,
+      serverTimeout: Input.serverTimeout,
     };
   }
 
