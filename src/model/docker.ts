@@ -46,7 +46,21 @@ class Docker {
       serverProductionAddress,
       serverTimeout
     } = parameters;
-
+    console.log("#");
+    console.log(s3InstallerAccessKey);
+    console.log("#");
+    console.log(s3InstallerSecretKey);
+    console.log("#");
+    console.log(s3InstallerRegion);
+    console.log("#");
+    console.log(S3InstallerBucketName);
+    console.log("#");
+    console.log(serverDevelopmentAddress);
+    console.log("#");
+    console.log(serverProductionAddress);
+    console.log("#");
+    console.log(serverTimeout);
+    console.log("#");
     const command = `docker run \
         --workdir /github/workspace \
         --rm \
