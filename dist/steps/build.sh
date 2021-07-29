@@ -126,23 +126,23 @@ $SERVER_INSTALLER_PATH=C:/Repositories/unity-builder/builder/default-build-scrip
 
 echo "VARIABLES:"
 echo "1"
-echo $SERVER_INSTALLER_PATH
+echo "$SERVER_INSTALLER_PATH"
 echo "2"
-echo $s3InstallerAccessKey
+echo "$s3InstallerAccessKey"
 echo "3"
-echo $s3InstallerSecretKey
+echo "$s3InstallerSecretKey"
 echo "4"
-echo $s3InstallerRegion
+echo "$s3InstallerRegion"
 echo "5"
-echo $S3InstallerBucketName
+echo "$S3InstallerBucketName"
 echo "6"
-echo $S3_INSTALLER_PATH
+echo "$S3_INSTALLER_PATH"
 echo "7"
-echo $serverDevelopmentAddress
+echo "$serverDevelopmentAddress"
 echo "8"
-echo $serverProductionAddress
+echo "$serverProductionAddress"
 echo "9"
-echo $serverTimeout
+echo "$serverTimeout
 echo "###"
 echo ""
 sed -i "s/ServerDevelopmentAddress/\"$SERVER_DEVELOPMENT_ADDRESS\"/g" $SERVER_INSTALLER_PATH > $SERVER_INSTALLER_FINAL_PATH
