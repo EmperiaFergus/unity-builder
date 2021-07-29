@@ -268,4 +268,100 @@ describe('Input', () => {
       expect(spy).toHaveBeenCalledTimes(1);
     });
   });
+  describe('s3InstallerAccessKey', () => {
+    it('returns the default value', () => {
+      expect(Input.s3InstallerAccessKey).toStrictEqual('');
+    });
+
+    it('takes input from the users workflow', () => {
+      const mockValue = '-imAFlag';
+      const spy = jest.spyOn(core, 'getInput').mockReturnValue(mockValue);
+      expect(Input.s3InstallerAccessKey).toStrictEqual(mockValue);
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+  });
+  describe('s3InstallerAccessKey', () => {
+    it('returns the default value', () => {
+      expect(Input.s3InstallerAccessKey).toStrictEqual('');
+    });
+
+    it('takes input from the users workflow', () => {
+      const mockValue = '-imAFlag';
+      const spy = jest.spyOn(core, 'getInput').mockReturnValue(mockValue);
+      expect(Input.s3InstallerAccessKey).toStrictEqual(mockValue);
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+  });
+  describe('s3InstallerSecretKey', () => {
+    it('returns the default value', () => {
+      expect(Input.s3InstallerSecretKey).toStrictEqual('');
+    });
+
+    it('takes input from the users workflow', () => {
+      const mockValue = '-imAFlag';
+      const spy = jest.spyOn(core, 'getInput').mockReturnValue(mockValue);
+      expect(Input.s3InstallerSecretKey).toStrictEqual(mockValue);
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+  });
+  describe('s3InstallerRegion', () => {
+    it('returns the default value', () => {
+      expect(Input.s3InstallerRegion).toStrictEqual('');
+    });
+
+    it('takes input from the users workflow', () => {
+      const mockValue = '-imAFlag';
+      const spy = jest.spyOn(core, 'getInput').mockReturnValue(mockValue);
+      expect(Input.s3InstallerRegion).toStrictEqual(mockValue);
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+  });
+  describe('S3InstallerBucketName', () => {
+    it('returns the default value', () => {
+      expect(Input.S3InstallerBucketName).toStrictEqual('');
+    });
+
+    it('takes input from the users workflow', () => {
+      const mockValue = '-imAFlag';
+      const spy = jest.spyOn(core, 'getInput').mockReturnValue(mockValue);
+      expect(Input.S3InstallerBucketName).toStrictEqual(mockValue);
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+  });
+  describe('serverDevelopmentAddress', () => {
+    it('returns the default value', () => {
+      expect(Input.serverDevelopmentAddress).toStrictEqual('');
+    });
+
+    it('takes input from the users workflow', () => {
+      const mockValue = '-imAFlag';
+      const spy = jest.spyOn(core, 'getInput').mockReturnValue(mockValue);
+      expect(Input.serverDevelopmentAddress).toStrictEqual(mockValue);
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+  });
+  describe('serverProductionAddress', () => {
+    it('returns the default value', () => {
+      expect(Input.serverProductionAddress).toStrictEqual('');
+    });
+
+    it('takes input from the users workflow', () => {
+      const mockValue = '-imAFlag';
+      const spy = jest.spyOn(core, 'getInput').mockReturnValue(mockValue);
+      expect(Input.serverProductionAddress).toStrictEqual(mockValue);
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+  });
+  describe('serverTimeout', () => {
+    it('returns the default value', () => {
+      expect(Input.serverTimeout).toStrictEqual('');
+    });
+
+    it('takes input from the users workflow', () => {
+      const mockValue = '-imAFlag';
+      const spy = jest.spyOn(core, 'getInput').mockReturnValue(mockValue);
+      expect(Input.serverTimeout).toStrictEqual(mockValue);
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+  });
 });
