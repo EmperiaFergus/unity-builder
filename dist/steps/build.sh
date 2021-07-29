@@ -128,19 +128,21 @@ echo "VARIABLES:"
 echo "1"
 echo $SERVER_INSTALLER_PATH
 echo "2"
-echo $SERVER_DEVELOPMENT_ADDRESS
+echo $s3InstallerAccessKey
 echo "3"
-echo $SERVER_PRODUCTION_ADDRESS
+echo $s3InstallerSecretKey
 echo "4"
-echo $SERVER_INSTALLER_FINAL_PATH
+echo $s3InstallerRegion
 echo "5"
-echo $S3_INSTALLER_SECRET_KEY
+echo $S3InstallerBucketName
 echo "6"
 echo $S3_INSTALLER_PATH
 echo "7"
-echo $S3_INSTALLER_FINAL_PATH
+echo $serverDevelopmentAddress
 echo "8"
-echo $S3_INSTALLER_ACCESS_KEYS
+echo $serverProductionAddress
+echo "9"
+echo $serverTimeout
 echo "###"
 echo ""
 sed -i "s/ServerDevelopmentAddress/\"$SERVER_DEVELOPMENT_ADDRESS\"/g" $SERVER_INSTALLER_PATH > $SERVER_INSTALLER_FINAL_PATH
