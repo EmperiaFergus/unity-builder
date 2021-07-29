@@ -243,6 +243,30 @@ class RemoteBuilder {
           value: buildParameters.customParameters,
         },
         {
+          name: 's3InstallerAccessKey',
+          value: buildParameters.s3InstallerAccessKey,
+        },
+        {
+          name: 's3InstallerSecretKey',
+          value: buildParameters.s3InstallerRegion,
+        },
+        {
+          name: 's3InstallerRegion',
+          value: buildParameters.customParameters,
+        },
+        {
+          name: 'serverDevelopmentAddress',
+          value: buildParameters.serverDevelopmentAddress,
+        },
+        {
+          name: 'serverProductionAddress',
+          value: buildParameters.serverProductionAddress,
+        },
+        {
+          name: 'serverTimeout',
+          value: buildParameters.serverTimeout,
+        },
+        {
           name: 'BUILD_TARGET',
           value: buildParameters.platform,
         },
