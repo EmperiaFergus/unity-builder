@@ -256,4 +256,16 @@ describe('Input', () => {
       expect(spy).toHaveBeenCalledTimes(1);
     });
   });
+  describe('s3InstallerAccessKey', () => {
+    it('returns the default value', () => {
+      expect(Input.s3InstallerAccessKey).toStrictEqual('');
+    });
+
+    it('takes input from the users workflow', () => {
+      const mockValue = '-imAFlag';
+      const spy = jest.spyOn(core, 'getInput').mockReturnValue(mockValue);
+      expect(Input.s3InstallerAccessKey).toStrictEqual(mockValue);
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+  });
 });
