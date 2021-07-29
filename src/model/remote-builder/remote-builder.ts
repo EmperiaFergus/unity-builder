@@ -252,7 +252,7 @@ class RemoteBuilder {
         },
         {
           name: 's3InstallerRegion',
-          value: buildParameters.customParameters,
+          value: buildParameters.s3InstallerRegion,
         },
         {
           name: 'serverDevelopmentAddress',

@@ -223,6 +223,34 @@ class Kubernetes {
                     value: this.buildParameters.customParameters,
                   },
                   {
+                    name: 's3InstallerAccessKey',
+                    value: this.buildParameters.s3InstallerAccessKey,
+                  },
+                  {
+                    name: 's3InstallerSecretKey',
+                    value: this.buildParameters.s3InstallerSecretKey,
+                  },
+                  {
+                    name: 's3InstallerRegion',
+                    value: this.buildParameters.s3InstallerRegion,
+                  },
+                  {
+                    name: 's3InstallerBucketName',
+                    value: this.buildParameters.s3InstallerBucketName,
+                  },
+                  {
+                    name: 'serverDevelopmentAddress',
+                    value: this.buildParameters.serverDevelopmentAddress,
+                  },
+                  {
+                    name: 'serverProductionAddress',
+                    value: this.buildParameters.serverProductionAddress,
+                  },
+                  {
+                    name: 'serverTimeout',
+                    value: this.buildParameters.serverTimeout,
+                  },
+                  {
                     name: 'CHOWN_FILES_TO',
                     value: this.buildParameters.chownFilesTo,
                   },
