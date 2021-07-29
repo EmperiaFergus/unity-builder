@@ -28,15 +28,15 @@ BUILD_PATH_FULL="$GITHUB_WORKSPACE/$BUILD_PATH"
 CUSTOM_BUILD_PATH="$BUILD_PATH_FULL/$BUILD_FILE"
 
 INSTALLER_PATH="$S3_INSTALLER_PATH"
-INSTALLER_ACCESS_KEY="$s3InstallerAccessKey"
-S3_INSTALLER_SECRET_KEY="$s3InstallerSecretKey"\
-S3_INSTALLER_REGION="s3InstallerRegion"\
-S3_INSTALLER_BUCKET_NAME="$S3InstallerBucketName"\
+s3InstallerAccessKey="$s3InstallerAccessKey"
+s3InstallerSecretKey="$s3InstallerSecretKey"\
+s3InstallerRegion="s3InstallerRegion"\
+S3InstallerBucketName="$S3InstallerBucketName"\
 
 SERVER_INSTALLER_PATH="$SERVER_INSTALLER_PATH"\
-SERVER_DEVELOPMENT_ADDRESS="$serverDevelopmentAddress"\
-SERVER_PRODUCTION_ADDRESS="$serverProductionAddress"\
-SERVER_TIMEOUT="$serverTimeout"\
+serverDevelopmentAddress="$serverDevelopmentAddress"\
+serverProductionAddress="$serverProductionAddress"\
+serverTimeout="$serverTimeout"\
 
 
 
@@ -142,7 +142,7 @@ echo "$serverDevelopmentAddress"
 echo "8"
 echo "$serverProductionAddress"
 echo "9"
-echo "$serverTimeout
+echo "$serverTimeout"
 echo "###"
 echo ""
 sed -i "s/ServerDevelopmentAddress/\"$SERVER_DEVELOPMENT_ADDRESS\"/g" $SERVER_INSTALLER_PATH > $SERVER_INSTALLER_FINAL_PATH
