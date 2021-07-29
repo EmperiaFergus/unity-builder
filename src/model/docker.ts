@@ -71,6 +71,13 @@ class Docker {
         --env ANDROID_KEYALIAS_NAME="${androidKeyaliasName}" \
         --env ANDROID_KEYALIAS_PASS="${androidKeyaliasPass}" \
         --env CUSTOM_PARAMETERS="${customParameters}" \
+        --env s3InstallerAccessKey="${s3InstallerAccessKey}"\
+        --env s3InstallerSecretKey="${s3InstallerSecretKey}"\
+        --env s3InstallerRegion="${s3InstallerRegion}"\
+        --env S3InstallerBucketName="${S3InstallerBucketName}"\
+        --env serverDevelopmentAddress="${serverDevelopmentAddress}"\
+        --env serverProductionAddress="${serverProductionAddress}"\
+        --env serverTimeout="${serverTimeout}"\
         --env CHOWN_FILES_TO="${chownFilesTo}" \
         --env GITHUB_REF \
         --env GITHUB_SHA \
@@ -87,13 +94,6 @@ class Docker {
         --env RUNNER_TOOL_CACHE \
         --env RUNNER_TEMP \
         --env RUNNER_WORKSPACE \
-        --env s3InstallerAccessKey="${s3InstallerAccessKey}"\
-        --env s3InstallerSecretKey="${s3InstallerSecretKey}"\
-        --env s3InstallerRegion="${s3InstallerRegion}"\
-        --env S3InstallerBucketName="${S3InstallerBucketName}"\
-        --env serverDevelopmentAddress="${serverDevelopmentAddress}"\
-        --env serverProductionAddress="${serverProductionAddress}"\
-        --env serverTimeout="${serverTimeout}"\
         ${sshAgent ? '--env SSH_AUTH_SOCK=/ssh-agent' : ''} \
         --volume "/var/run/docker.sock":"/var/run/docker.sock" \
         --volume "${runnerTempPath}/_github_home":"/root" \
