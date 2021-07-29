@@ -125,21 +125,21 @@ $SERVER_INSTALLER_PATH=C:/Repositories/unity-builder/builder/default-build-scrip
 # /Assets/GameAssets/Resources/Installers
 
 echo "VARIABLES:"
-echo ""
+echo "1"
 echo $SERVER_INSTALLER_PATH
-echo ""
+echo "2"
 echo $SERVER_DEVELOPMENT_ADDRESS
-echo ""
+echo "3"
 echo $SERVER_PRODUCTION_ADDRESS
-echo ""
+echo "4"
 echo $SERVER_INSTALLER_FINAL_PATH
-echo ""
+echo "5"
 echo $S3_INSTALLER_SECRET_KEY
-echo ""
+echo "6"
 echo $S3_INSTALLER_PATH
-echo ""
+echo "7"
 echo $S3_INSTALLER_FINAL_PATH
-echo ""
+echo "8"
 echo "###"
 echo ""
 sed -i "s/ServerDevelopmentAddress/\"$SERVER_DEVELOPMENT_ADDRESS\"/g" $SERVER_INSTALLER_PATH > $SERVER_INSTALLER_FINAL_PATH
