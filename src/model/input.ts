@@ -137,8 +137,8 @@ class Input {
     return core.getInput('s3InstallerRegion') || '';
   }
 
-  static get S3InstallerBucketName() {
-    return core.getInput('S3InstallerBucketName') || '';
+  static get s3InstallerBucketName() {
+    return core.getInput('s3InstallerBucketName') || '';
   }
 
   static get serverDevelopmentAddress() {

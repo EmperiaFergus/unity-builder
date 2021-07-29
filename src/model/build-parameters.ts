@@ -35,7 +35,7 @@ class BuildParameters {
   public s3InstallerAccessKey!: string;
   public s3InstallerSecretKey!: string;
   public s3InstallerRegion!: string;
-  public S3InstallerBucketName!: string;
+  public s3InstallerBucketName!: string;
   public serverDevelopmentAddress!: string;
   public serverProductionAddress!: string;
   public serverTimeout!: string;
@@ -81,7 +81,7 @@ class BuildParameters {
       s3InstallerAccessKey: Input.s3InstallerAccessKey,
       s3InstallerSecretKey: Input.s3InstallerSecretKey,
       s3InstallerRegion: Input.s3InstallerRegion,
-      S3InstallerBucketName: Input.S3InstallerBucketName,
+      s3InstallerBucketName: Input.s3InstallerBucketName,
       serverDevelopmentAddress: Input.serverDevelopmentAddress,
       serverProductionAddress: Input.serverProductionAddress,
       serverTimeout: Input.serverTimeout,

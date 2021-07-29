@@ -41,7 +41,7 @@ class Docker {
       s3InstallerAccessKey,
       s3InstallerSecretKey,
       s3InstallerRegion,
-      S3InstallerBucketName,
+      s3InstallerBucketName,
       serverDevelopmentAddress,
       serverProductionAddress,
       serverTimeout
@@ -74,7 +74,7 @@ class Docker {
         --env s3InstallerAccessKey="${s3InstallerAccessKey}"\
         --env s3InstallerSecretKey="${s3InstallerSecretKey}"\
         --env s3InstallerRegion="${s3InstallerRegion}"\
-        --env S3InstallerBucketName="${S3InstallerBucketName}"\
+        --env s3InstallerBucketName="${s3InstallerBucketName}"\
         --env serverDevelopmentAddress="${serverDevelopmentAddress}"\
         --env serverProductionAddress="${serverProductionAddress}"\
         --env serverTimeout="${serverTimeout}"\

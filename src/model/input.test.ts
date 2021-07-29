@@ -318,13 +318,13 @@ describe('Input', () => {
   });
   describe('S3InstallerBucketName', () => {
     it('returns the default value', () => {
-      expect(Input.S3InstallerBucketName).toStrictEqual('');
+      expect(Input.s3InstallerBucketName).toStrictEqual('');
     });
 
     it('takes input from the users workflow', () => {
       const mockValue = '-imAFlag';
       const spy = jest.spyOn(core, 'getInput').mockReturnValue(mockValue);
-      expect(Input.S3InstallerBucketName).toStrictEqual(mockValue);
+      expect(Input.s3InstallerBucketName).toStrictEqual(mockValue);
       expect(spy).toHaveBeenCalledTimes(1);
     });
   });

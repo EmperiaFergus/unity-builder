@@ -169,10 +169,10 @@ describe('BuildParameters', () => {
       jest.spyOn(Input, 's3InstallerSecretKey', 'get').mockReturnValue(mockValue);
       await expect(BuildParameters.create()).resolves.toEqual(expect.objectContaining({ s3InstallerSecretKey: mockValue }));
     });
-    it('returns the S3InstallerBucketName', async () => {
-      const mockValue = 'S3InstallerBucketName';
-      jest.spyOn(Input, 'S3InstallerBucketName', 'get').mockReturnValue(mockValue);
-      await expect(BuildParameters.create()).resolves.toEqual(expect.objectContaining({ S3InstallerBucketName: mockValue }));
+    it('returns the s3InstallerBucketName', async () => {
+      const mockValue = 's3InstallerBucketName';
+      jest.spyOn(Input, 's3InstallerBucketName', 'get').mockReturnValue(mockValue);
+      await expect(BuildParameters.create()).resolves.toEqual(expect.objectContaining({ s3InstallerBucketName: mockValue }));
     });
     it('returns the serverDevelopmentAddress', async () => {
       const mockValue = 'serverDevelopmentAddress';
