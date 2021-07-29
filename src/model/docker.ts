@@ -87,13 +87,13 @@ class Docker {
         --env RUNNER_TOOL_CACHE \
         --env RUNNER_TEMP \
         --env RUNNER_WORKSPACE \
-        --env INSTALLER_ACCESS_KEY="${s3InstallerAccessKey}"\
-        --env S3_INSTALLER_SECRET_KEY="${s3InstallerSecretKey}"\
-        --env S3_INSTALLER_REGION="${s3InstallerRegion}"\
-        --env S3_INSTALLER_BUCKET_NAME="${S3InstallerBucketName}"\
-        --env SERVER_DEVELOPMENT_ADDRESS="${serverDevelopmentAddress}"\
-        --env SERVER_PRODUCTION_ADDRESS="${serverProductionAddress}"\
-        --env SERVER_TIMEOUT="${serverTimeout}"\
+        --env s3InstallerAccessKey="${s3InstallerAccessKey}"\
+        --env s3InstallerSecretKey="${s3InstallerSecretKey}"\
+        --env s3InstallerRegion="${s3InstallerRegion}"\
+        --env S3InstallerBucketName="${S3InstallerBucketName}"\
+        --env serverDevelopmentAddress="${serverDevelopmentAddress}"\
+        --env serverProductionAddress="${serverProductionAddress}"\
+        --env serverTimeout="${serverTimeout}"\
         ${sshAgent ? '--env SSH_AUTH_SOCK=/ssh-agent' : ''} \
         --volume "/var/run/docker.sock":"/var/run/docker.sock" \
         --volume "${runnerTempPath}/_github_home":"/root" \
