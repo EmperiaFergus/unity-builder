@@ -140,7 +140,6 @@ echo "$serverProductionAddress"
 echo "7"
 echo "$serverTimeout"
 echo "###"
-
 echo ""
 #sed -i "s/ServerDevelopmentAddress/\"$SERVER_DEVELOPMENT_ADDRESS\"/g" $SERVER_INSTALLER_PATH > $SERVER_INSTALLER_FINAL_PATH
 #sed -i "s/ServerProductionAddress/\"$SERVER_PRODUCTION_ADDRESS\"/g" $SERVER_INSTALLER_FINAL_PATH
