@@ -121,7 +121,7 @@ echo "#        Installers       #"
 echo "###########################"
 $s3InstallerPath=C:/Repositories/unity-builder/builder/default-build-script/ProjectSettings/S3Installer.asset
 $s3InstallerFinalPath=C:/S3Installer.asset
-$serverInstallerPath=$UNITY_PROJECT_PATH/dist/default-build-script/ProjectSettings/ServerInstaller.asset
+$serverInstallerPath=$'UNITY_PROJECT_PATH'/dist/default-build-script/ProjectSettings/ServerInstaller.asset
 $serverInstallerFinalPath=C:/ServerInstaller.asset
 
 # /Assets/GameAssets/Resources/Installers
@@ -151,7 +151,8 @@ echo ""
 echo "copy from $serverInstallerPath to $BUILD_PATH_FULL"
 
 if test -f "$serverInstallerPath"; then
-    echo "$FILE exists."
+    echo "ServerInstallerPath exists."
+fi
 sed -i "s/ServerDevelopmentAddress/\"$SERVER_DEVELOPMENT_ADDRESS\"/g" $serverInstallerPath > $serverInstallerFinalPath
 sed -i "s/ServerProductionAddress/\"$SERVER_PRODUCTION_ADDRESS\"/g" $serverInstallerFinalPath
 sed -i "s/ServerTimeout/\"$SERVER_TIMEOUT\"/g" $serverInstallerFinalPath
