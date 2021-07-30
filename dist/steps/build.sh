@@ -27,16 +27,16 @@ echo "Using build path \"$BUILD_PATH\" to save file \"$BUILD_FILE\"."
 BUILD_PATH_FULL="$GITHUB_WORKSPACE/$BUILD_PATH"
 CUSTOM_BUILD_PATH="$BUILD_PATH_FULL/$BUILD_FILE"
 
-s3InstallerPath="s3InstallerPath"
-s3InstallerAccessKey="$s3InstallerAccessKey"
-s3InstallerSecretKey="$s3InstallerSecretKey"\
-s3InstallerRegion="s3InstallerRegion"\
-s3InstallerBucketName="$s3InstallerBucketName"\
-
-SERVER_INSTALLER_PATH="$SERVER_INSTALLER_PATH"\
-serverDevelopmentAddress="$serverDevelopmentAddress"\
-serverProductionAddress="$serverProductionAddress"\
-serverTimeout="$serverTimeout"\
+#s3InstallerPath="s3InstallerPath"
+#s3InstallerAccessKey="$s3InstallerAccessKey"
+#s3InstallerSecretKey="$s3InstallerSecretKey"
+#s3InstallerRegion="s3InstallerRegion"
+#s3InstallerBucketName="$s3InstallerBucketName"
+#
+#SERVER_INSTALLER_PATH="$SERVER_INSTALLER_PATH"
+#serverDevelopmentAddress="$serverDevelopmentAddress"
+#serverProductionAddress="$serverProductionAddress"
+#serverTimeout="$serverTimeout"
 
 
 
