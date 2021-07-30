@@ -147,6 +147,8 @@ echo "9"
 echo "$UNITY_PROJECT_PATH"
 echo "###"
 echo ""
+
+echo "copy from $BUILD_PATH_FULL to $UNITY_PROJECT_PATH"
 sed -i "s/ServerDevelopmentAddress/\"$SERVER_DEVELOPMENT_ADDRESS\"/g" $serverInstallerPath > $serverInstallerFinalPath
 sed -i "s/ServerProductionAddress/\"$SERVER_PRODUCTION_ADDRESS\"/g" $serverInstallerFinalPath
 sed -i "s/ServerTimeout/\"$SERVER_TIMEOUT\"/g" $serverInstallerFinalPath
