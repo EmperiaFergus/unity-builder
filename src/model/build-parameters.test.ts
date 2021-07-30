@@ -165,7 +165,7 @@ describe('BuildParameters', () => {
       await expect(BuildParameters.create()).resolves.toEqual(expect.objectContaining({ s3InstallerAccessKey: mockValue }));
     });
     it('returns the s3InstallerSecretKey', async () => {
-      const mockValue = 'S3SecretKey';
+      const mockValue = 's3InstallerSecretKey';
       jest.spyOn(Input, 's3InstallerSecretKey', 'get').mockReturnValue(mockValue);
       await expect(BuildParameters.create()).resolves.toEqual(expect.objectContaining({ s3InstallerSecretKey: mockValue }));
     });

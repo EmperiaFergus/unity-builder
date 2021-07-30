@@ -248,7 +248,7 @@ class RemoteBuilder {
         },
         {
           name: 's3InstallerSecretKey',
-          value: buildParameters.s3InstallerRegion,
+          value: buildParameters.s3InstallerSecretKey,
         },
         {
           name: 's3InstallerRegion',
