@@ -141,13 +141,13 @@ echo "7"
 echo "$serverTimeout"
 echo "###"
 echo ""
-#sed -i "s/ServerDevelopmentAddress/\"$SERVER_DEVELOPMENT_ADDRESS\"/g" $SERVER_INSTALLER_PATH > $SERVER_INSTALLER_FINAL_PATH
-#sed -i "s/ServerProductionAddress/\"$SERVER_PRODUCTION_ADDRESS\"/g" $SERVER_INSTALLER_FINAL_PATH
-#sed -i "s/ServerTimeout/\"$SERVER_TIMEOUT\"/g" $SERVER_INSTALLER_FINAL_PATH
+sed -i "s/ServerDevelopmentAddress/\"$SERVER_DEVELOPMENT_ADDRESS\"/g" $SERVER_INSTALLER_PATH > $SERVER_INSTALLER_FINAL_PATH
+sed -i "s/ServerProductionAddress/\"$SERVER_PRODUCTION_ADDRESS\"/g" $SERVER_INSTALLER_FINAL_PATH
+sed -i "s/ServerTimeout/\"$SERVER_TIMEOUT\"/g" $SERVER_INSTALLER_FINAL_PATH
 
 #S3
-#sed -i "s/S3SecretKey/\"$s3InstallerSecretKey\"/g" $S3_INSTALLER_PATH > $S3_INSTALLER_FINAL_PATH
-#sed -i "s/S3AccessKey/\"$s3InstallerSecretKey\"/g" $S3_INSTALLER_FINAL_PATH
+sed -i "s/S3SecretKey/\"$s3InstallerSecretKey\"/g" $S3_INSTALLER_PATH > $S3_INSTALLER_FINAL_PATH
+sed -i "s/S3AccessKey/\"$s3InstallerSecretKey\"/g" $S3_INSTALLER_FINAL_PATH
 
 
 
