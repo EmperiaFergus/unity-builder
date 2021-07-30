@@ -62,20 +62,13 @@ jobs:
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
           customParameters: -profile SomeProfile -someBoolean -someValue exampleValue
-          s3InstallerAccessKey: 's3key'
-          #${{secrets.S3_ACCESS_KEY}}
-          s3InstallerSecretKey: 'installersecret'
-          #${{secrets.S3_SECRET_KEY}}
-          s3InstallerRegion: 'installerregion'
-          #${{secrets.S3_REGION}}
-          s3InstallerBucketName: 'bucketname'
-          #${{secrets.S3_BUCKET_NAME}}
-          serverDevelopmentAddress: 'developmentaddress'
-          #${{secrets.DEVELOPER_ADDRESS}}
-          serverProductionAddress: 'productionaddress'
-          #${{secrets.PRODUCTION_ADDRESS}}
-          serverTimeout: 'timeout'
-          #${{secrets.SERVER_TIMEOUT}}
+          s3InstallerAccessKey: ${{secrets.S3_ACCESS_KEY}}
+          s3InstallerSecretKey: ${{secrets.S3_SECRET_KEY}}
+          s3InstallerRegion: ${{secrets.S3_REGION}}
+          s3InstallerBucketName: ${{secrets.S3_BUCKET_NAME}}
+          serverDevelopmentAddress: ${{secrets.DEVELOPER_ADDRESS}}
+          serverProductionAddress: ${{secrets.PRODUCTION_ADDRESS}}
+          serverTimeout: ${{secrets.SERVER_TIMEOUT}}
       ###########################
       #          Upload         #
       ###########################
