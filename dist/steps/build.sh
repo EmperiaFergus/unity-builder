@@ -24,19 +24,19 @@ echo "Using build target \"$BUILD_TARGET\"."
 #
 
 echo "Using build path \"$BUILD_PATH\" to save file \"$BUILD_FILE\"."
-BUILD_PATH_FULL="$GITHUB_WORKSPACE/$BUILD_PATH"
-CUSTOM_BUILD_PATH="$BUILD_PATH_FULL/$BUILD_FILE"
+#BUILD_PATH_FULL="$GITHUB_WORKSPACE/$BUILD_PATH"
+#CUSTOM_BUILD_PATH="$BUILD_PATH_FULL/$BUILD_FILE"
 
-s3InstallerPath="s3InstallerPath"
-s3InstallerAccessKey="$s3InstallerAccessKey"
-s3InstallerSecretKey="$s3InstallerSecretKey"\
-s3InstallerRegion="s3InstallerRegion"\
-s3InstallerBucketName="$s3InstallerBucketName"\
+#s3InstallerPath="s3InstallerPath"
+#s3InstallerAccessKey="$s3InstallerAccessKey"
+#s3InstallerSecretKey="$s3InstallerSecretKey"\
+#s3InstallerRegion="s3InstallerRegion"\
+#s3InstallerBucketName="$s3InstallerBucketName"\
 
-SERVER_INSTALLER_PATH="$SERVER_INSTALLER_PATH"\
-serverDevelopmentAddress="$serverDevelopmentAddress"\
-serverProductionAddress="$serverProductionAddress"\
-serverTimeout="$serverTimeout"\
+#SERVER_INSTALLER_PATH="$SERVER_INSTALLER_PATH"\
+#serverDevelopmentAddress="$serverDevelopmentAddress"\
+#serverProductionAddress="$serverProductionAddress"\
+#serverTimeout="$serverTimeout"\
 
 
 
@@ -126,32 +126,28 @@ $SERVER_INSTALLER_PATH=C:/Repositories/unity-builder/builder/default-build-scrip
 
 echo "VARIABLES:"
 echo "1"
-echo "$SERVER_INSTALLER_PATH"
-echo "2"
 echo "$s3InstallerAccessKey"
-echo "3"
+echo "2"
 echo "$s3InstallerSecretKey"
-echo "4"
+echo "3"
 echo "$s3InstallerRegion"
-echo "5"
+echo "4"
 echo "$s3InstallerBucketName"
-echo "6"
-echo "$S3_INSTALLER_PATH"
-echo "7"
+echo "5"
 echo "$serverDevelopmentAddress"
-echo "8"
+echo "6"
 echo "$serverProductionAddress"
-echo "9"
+echo "7"
 echo "$serverTimeout"
 echo "###"
 echo ""
-sed -i "s/ServerDevelopmentAddress/\"$SERVER_DEVELOPMENT_ADDRESS\"/g" $SERVER_INSTALLER_PATH > $SERVER_INSTALLER_FINAL_PATH
-sed -i "s/ServerProductionAddress/\"$SERVER_PRODUCTION_ADDRESS\"/g" $SERVER_INSTALLER_FINAL_PATH
-sed -i "s/ServerTimeout/\"$SERVER_TIMEOUT\"/g" $SERVER_INSTALLER_FINAL_PATH
+#sed -i "s/ServerDevelopmentAddress/\"$SERVER_DEVELOPMENT_ADDRESS\"/g" $SERVER_INSTALLER_PATH > $SERVER_INSTALLER_FINAL_PATH
+#sed -i "s/ServerProductionAddress/\"$SERVER_PRODUCTION_ADDRESS\"/g" $SERVER_INSTALLER_FINAL_PATH
+#sed -i "s/ServerTimeout/\"$SERVER_TIMEOUT\"/g" $SERVER_INSTALLER_FINAL_PATH
 
 #S3
-sed -i "s/S3SecretKey/\"$s3InstallerSecretKey\"/g" $S3_INSTALLER_PATH > $S3_INSTALLER_FINAL_PATH
-sed -i "s/S3AccessKey/\"$s3InstallerSecretKey\"/g" $S3_INSTALLER_FINAL_PATH
+#sed -i "s/S3SecretKey/\"$s3InstallerSecretKey\"/g" $S3_INSTALLER_PATH > $S3_INSTALLER_FINAL_PATH
+#sed -i "s/S3AccessKey/\"$s3InstallerSecretKey\"/g" $S3_INSTALLER_FINAL_PATH
 
 
 
