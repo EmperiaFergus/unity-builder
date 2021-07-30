@@ -119,8 +119,10 @@ ls -alh "$UNITY_PROJECT_PATH"
 echo "###########################"
 echo "#        Installers       #"
 echo "###########################"
-#$S3_INSTALLER_PATH=C:/Repositories/unity-builder/builder/default-build-script/ProjectSettings/S3Installer.asset
-#$SERVER_INSTALLER_PATH=C:/Repositories/unity-builder/builder/default-build-script/ProjectSettings/ServerInstaller.asset
+$s3InstallerPath=C:/Repositories/unity-builder/builder/default-build-script/ProjectSettings/S3Installer.asset
+$s3InstallerFinalPath=C:/S3Installer.asset
+$serverInstallerPath=C:/Repositories/unity-builder/builder/default-build-script/ProjectSettings/ServerInstaller.asset
+$serverInstallerFinalPath=C:/ServerInstaller.asset
 
 # /Assets/GameAssets/Resources/Installers
 
@@ -141,9 +143,9 @@ echo "7"
 echo "$serverTimeout"
 echo "###"
 echo ""
-sed -i "s/ServerDevelopmentAddress/\"$SERVER_DEVELOPMENT_ADDRESS\"/g" $SERVER_INSTALLER_PATH > $SERVER_INSTALLER_FINAL_PATH
-sed -i "s/ServerProductionAddress/\"$SERVER_PRODUCTION_ADDRESS\"/g" $SERVER_INSTALLER_FINAL_PATH
-sed -i "s/ServerTimeout/\"$SERVER_TIMEOUT\"/g" $SERVER_INSTALLER_FINAL_PATH
+sed -i "s/ServerDevelopmentAddress/\"$SERVER_DEVELOPMENT_ADDRESS\"/g" $serverInstallerPath > $serverInstallerFinalPath
+sed -i "s/ServerProductionAddress/\"$SERVER_PRODUCTION_ADDRESS\"/g" $serverInstallerFinalPath
+sed -i "s/ServerTimeout/\"$SERVER_TIMEOUT\"/g" $serverInstallerFinalPath
 
 #S3
 sed -i "s/S3SecretKey/\"$s3InstallerSecretKey\"/g" $S3_INSTALLER_PATH > $S3_INSTALLER_FINAL_PATH
