@@ -150,8 +150,8 @@ sed -i "s/ServerProductionAddress/\"$SERVER_PRODUCTION_ADDRESS\"/g" $SERVER_INST
 sed -i "s/ServerTimeout/\"$SERVER_TIMEOUT\"/g" $SERVER_INSTALLER_FINAL_PATH
 
 #S3
-sed -i "s/S3SecretKey/\"$S3_INSTALLER_SECRET_KEY\"/g" $S3_INSTALLER_PATH > $S3_INSTALLER_FINAL_PATH
-sed -i "s/S3AccessKey/\"$S3_INSTALLER_SECRET_KEY\"/g" $S3_INSTALLER_FINAL_PATH
+sed -i "s/S3SecretKey/\"$s3InstallerSecretKey\"/g" $S3_INSTALLER_PATH > $S3_INSTALLER_FINAL_PATH
+sed -i "s/S3AccessKey/\"$s3InstallerSecretKey\"/g" $S3_INSTALLER_FINAL_PATH
 
 
 
