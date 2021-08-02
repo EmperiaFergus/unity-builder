@@ -119,11 +119,11 @@ ls -alh "$UNITY_PROJECT_PATH"
 echo "###########################"
 echo "#        Installers       #"
 echo "###########################"
-/var/lib/docker *REST OF PATH HERE?*
+
 $s3InstallerPath=C:/Repositories/unity-builder/builder/default-build-script/ProjectSettings/S3Installer.asset
 
 $s3InstallerFinalPath = C:/S3Installer.asset
-$serverInstallerPath= "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/S3Installer.asset"
+$serverInstallerPath "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/S3Installer.asset"
 $serverInstallerFinalPath =C:/ServerInstaller.asset
 
 # /Assets/GameAssets/Resources/Installers
