@@ -155,9 +155,9 @@ echo "copy from $serverInstallerPath to $BUILD_PATH_FULL"
 if test -f "$serverInstallerPath"; then
     echo "ServerInstallerPath exists."
 fi
-sed -i "s/ServerDevelopmentAddress/\"$SERVER_DEVELOPMENT_ADDRESS\"/g" $serverInstallerPath > $serverInstallerFinalPath
-sed -i "s/ServerProductionAddress/\"$SERVER_PRODUCTION_ADDRESS\"/g" $serverInstallerFinalPath
-sed -i "s/ServerTimeout/\"$SERVER_TIMEOUT\"/g" $serverInstallerFinalPath
+#sed -i "s/ServerDevelopmentAddress/\"$SERVER_DEVELOPMENT_ADDRESS\"/g" $serverInstallerPath > $serverInstallerFinalPath
+sed -i "s/ServerProductionAddress/\"$SERVER_PRODUCTION_ADDRESS\"/g" "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset"
+sed -i "s/ServerTimeout/\"$SERVER_TIMEOUT\"/g" "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset"
 
 #S3
 sed -i "s/S3SecretKey/\"$s3InstallerSecretKey\"/g" $S3_INSTALLER_PATH > $S3_INSTALLER_FINAL_PATH
