@@ -122,7 +122,7 @@ echo "###########################"
 
 $s3InstallerPath=C:/Repositories/unity-builder/builder/default-build-script/ProjectSettings/S3Installer.asset
 
-$s3InstallerFinalPath "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/S3Installer.asset"
+$s3InstallerPath "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/S3Installer.asset"
 $serverInstallerPath "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset"
 $serverInstallerFinalPath C:/ServerInstaller.asset
 
@@ -160,8 +160,8 @@ sed -i "s/ServerProductionAddress/\"$SERVER_PRODUCTION_ADDRESS\"/g" "${UNITY_PRO
 sed -i "s/ServerTimeout/\"$SERVER_TIMEOUT\"/g" "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset"
 
 #S3
-sed -i "s/S3SecretKey/\"$s3InstallerSecretKey\"/g" $S3_INSTALLER_PATH > $S3_INSTALLER_FINAL_PATH
-sed -i "s/S3AccessKey/\"$s3InstallerSecretKey\"/g" $S3_INSTALLER_FINAL_PATH
+#sed -i "s/S3SecretKey/\"$s3InstallerSecretKey\"/g" $S3_INSTALLER_PATH > $S3_INSTALLER_FINAL_PATH
+sed -i "s/S3AccessKey/\"$s3InstallerSecretKey\"/g" "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset"
 
 
 
