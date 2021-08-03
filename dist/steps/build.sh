@@ -121,7 +121,7 @@ echo "#        Installers       #"
 echo "###########################"
 
 echo $PWD
-$s3InstallerPath "/github/workspace/dist/installers/S3Installer.asset"
+$s3InstallerPath "/github/workspace/dist/installers/test.asset"
 $serverInstallerPath "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset"
 
 #echo "VARIABLES:"
