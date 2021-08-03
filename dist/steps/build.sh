@@ -147,17 +147,17 @@ $serverInstallerPath "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installe
 #echo ""
 
 echo "1"
-sed -i 's/ServerDevelopmentAddress/${SERVER_DEVELOPMENT_ADDRESS} ${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset/g'
+sed -i 's/ServerDevelopmentAddress/${SERVER_DEVELOPMENT_ADDRESS}/g' ${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset
 echo "2"
-sed -i 's/ServerProductionAddress/${SERVER_PRODUCTION_ADDRESS} ${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset/g'
+sed -i 's/ServerProductionAddress/${SERVER_PRODUCTION_ADDRESS}/g' ${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset
 echo "3"
-sed -i 's/ServerTimeout/${SERVER_TIMEOUT} ${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset/g'
+sed -i 's/ServerTimeout/${SERVER_TIMEOUT} ${UNITY_PROJECT_PATH}/g'/Assets/GameAssets/Resources/Installers/ServerInstaller.asset
 
 #S3
 echo "4"
-sed -i 's/S3SecretKey/${s3InstallerSecretKey} ${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset/g'
+sed -i 's/S3SecretKey/${s3InstallerSecretKey} ${UNITY_PROJECT_PATH}/g'/Assets/GameAssets/Resources/Installers/ServerInstaller.asset
 echo "5"
-sed -i 's/S3AccessKey/${s3InstallerSecretKey} ${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset/g'
+sed -i 's/S3AccessKey/${s3InstallerSecretKey} ${UNITY_PROJECT_PATH}/g'/Assets/GameAssets/Resources/Installers/ServerInstaller.asset
 
 #
 # Build
