@@ -155,9 +155,9 @@ sed -i "s/ServerTimeout\"${SERVER_TIMEOUT}\"/g" "${UNITY_PROJECT_PATH}/Assets/Ga
 
 #S3
 echo "4"
-sed -i "s/S3SecretKey\"{$s3InstallerSecretKey}\"/g" "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset"
+sed -i 's/S3SecretKey\"{$s3InstallerSecretKey}\"/g" "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset"/g'
 echo "5"
-sed -i "s/S3AccessKey\"${s3InstallerSecretKey}\"/g" "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset"
+sed -i 's/S3AccessKey\"${s3InstallerSecretKey}\" "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset"/g'
 
 #
 # Build
