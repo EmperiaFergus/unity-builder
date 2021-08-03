@@ -121,7 +121,7 @@ echo "#        Installers       #"
 echo "###########################"
 
 $s3InstallerPath=C:/Repositories/unity-builder/builder/default-build-script/ProjectSettings/S3Installer.asset
-
+echo $PWD
 $s3InstallerPath "/../dist/installers/S3Installer.asset"
 $serverInstallerPath "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset"
 $serverInstallerFinalPath C:/ServerInstaller.asset
