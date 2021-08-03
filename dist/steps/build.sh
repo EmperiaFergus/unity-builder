@@ -122,7 +122,7 @@ echo "###########################"
 
 $s3InstallerPath=C:/Repositories/unity-builder/builder/default-build-script/ProjectSettings/S3Installer.asset
 
-$s3InstallerPath "dist/installers/S3Installer.asset"
+$s3InstallerPath "/dist/installers/S3Installer.asset"
 $serverInstallerPath "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset"
 $serverInstallerFinalPath C:/ServerInstaller.asset
 
@@ -152,15 +152,15 @@ $serverInstallerFinalPath C:/ServerInstaller.asset
 
 echo "copy from $serverInstallerPath to $BUILD_PATH_FULL"
 
-if test -f "$serverInstallerPath"; then
+if test -f "$/dist/installers/S3Installer.asset"; then
     echo "ServerInstallerPath exists."
 fi
-sed -i "s/ServerDevelopmentAddress/\"$SERVER_DEVELOPMENT_ADDRESS\"/g" "dist/installers/S3Installer.asset" > "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset"
+sed -i "s/ServerDevelopmentAddress/\"$SERVER_DEVELOPMENT_ADDRESS\"/g" "/dist/installers/S3Installer.asset" > "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset"
 sed -i "s/${ServerProductionAddress}/\"${SERVER_PRODUCTION_ADDRESS}\"/g" "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset"
 sed -i "s/${ServerTimeout}/\"${SERVER_TIMEOUT}\"/g" "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset"
 
 #S3
-sed -i "s/S3SecretKey/\"$s3InstallerSecretKey\"/g" "dist/installers/S3Installer.asset" > "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset"
+sed -i "s/S3SecretKey/\"$s3InstallerSecretKey\"/g" "/dist/installers/S3Installer.asset" > "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset"
 sed -i "s/${S3AccessKey}$/\"${s3InstallerSecretKey}\"/g" "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset"
 
 
