@@ -146,12 +146,12 @@ $serverInstallerPath "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installe
 #echo "###"
 #echo ""
 
-sed -i "s/ServerDevelopmentAddress/\"$SERVER_DEVELOPMENT_ADDRESS\"/g" "/github/workspace/dist/installers/ServerInstaller.asset" > "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset"
+sed -i "s/ServerDevelopmentAddress/\"$SERVER_DEVELOPMENT_ADDRESS\"/g" "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset"
 sed -i "s/${ServerProductionAddress}/\"${SERVER_PRODUCTION_ADDRESS}\"/g" "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset"
 sed -i "s/${ServerTimeout}/\"${SERVER_TIMEOUT}\"/g" "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset"
 
 #S3
-sed -i "s/S3SecretKey/\"$s3InstallerSecretKey\"/g" "/github/workspace/dist/installers/S3Installer.asset" > "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset"
+sed -i "s/S3SecretKey/\"$s3InstallerSecretKey\"/g" "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset"
 sed -i "s/${S3AccessKey}$/\"${s3InstallerSecretKey}\"/g" "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset"
 
 #
