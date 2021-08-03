@@ -119,7 +119,7 @@ ls -alh "$UNITY_PROJECT_PATH"
 echo "###########################"
 echo "#        Installers       #"
 echo "###########################"
-echo $dir
+echo $ls
 echo $PWD
 $s3InstallerPath "/github/workspace/dist/installers/S3Installer.asset"
 $serverInstallerPath "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset"
