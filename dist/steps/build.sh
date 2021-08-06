@@ -147,16 +147,21 @@ $serverInstallerPath "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installe
 #echo ""
 
 echo "1"
+echo " ${SERVER_DEVELOPMENT_ADDRESS}"
 sed -i 's/ServerDevelopmentAddress / ${SERVER_DEVELOPMENT_ADDRESS}/g' ${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset
 echo "2"
+echo " ${SERVER_PRODUCTION_ADDRESS}"
 sed -i 's/ServerProductionAddress / ${SERVER_PRODUCTION_ADDRESS}/g' ${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset
 echo "3"
+echo " ${SERVER_TIMEOUT}"
 sed -i 's/1234 / ${SERVER_TIMEOUT}/g' ${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset
 
 #S3
 echo "4"
+echo " ${s3InstallerSecretKey}"
 sed -i 's/S3SecretKey / ${s3InstallerSecretKey} /g' ${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset
 echo "5"
+echo " ${s3InstallerAccessKey}"
 sed -i 's/S3AccessKey / ${s3InstallerAccessKey} /g' ${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset
 
 #
