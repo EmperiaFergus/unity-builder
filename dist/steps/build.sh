@@ -146,6 +146,10 @@ $serverInstallerPath "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installe
 #echo "###"
 #echo ""
 
+echo "$(${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset)"
+echo "$(${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/S3Installer.asset)"
+
+
 echo "1"
 sed -i 's/ServerDevelopmentAddress / ${serverDevelopmentAddress}/g' ${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset
 echo "2"
@@ -158,6 +162,9 @@ echo "4"
 sed -i 's/S3SecretKey / ${s3InstallerSecretKey} /g' ${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset
 echo "5"
 sed -i 's/S3AccessKey / ${s3InstallerAccessKey} /g' ${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset
+
+echo "$(${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset)"
+echo "$(${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/S3Installer.asset)"
 
 #
 # Build
