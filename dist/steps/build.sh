@@ -233,7 +233,7 @@ echo "#       Zip Folder        #"
 echo "###########################"
 echo ""
 
-$ zip -r Build.zip build/build_windows/build_windows_Data/
+zip -r Build.zip build/build_windows/build_windows_Data/
 
 
 echo ""
