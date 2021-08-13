@@ -223,10 +223,18 @@ if [[ "$BUILD_TARGET" == "StandaloneOSX" ]]; then
   OSX_EXECUTABLE_PATH="$BUILD_PATH_FULL/StandaloneOSX.app/Contents/MacOS/*"
   chmod +x "$OSX_EXECUTABLE_PATH"
 fi
-
 #
 # Results
 #
+
+echo ""
+echo "###########################"
+echo "#       Zip Folder        #"
+echo "###########################"
+echo ""
+
+$ zip -r Build.zip build/build_windows/build_windows_Data/
+
 
 echo ""
 echo "###########################"
