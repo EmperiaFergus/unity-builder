@@ -69,6 +69,7 @@ jobs:
           serverDevelopmentAddress: ${{secrets.DEVELOPER_ADDRESS}}
           serverProductionAddress: ${{secrets.PRODUCTION_ADDRESS}}
           serverTimeout: ${{secrets.SERVER_TIMEOUT}}
+          buildMethod: ${{secrets.BUILD_METHOD}}
       ###########################
       #          Upload         #
       ###########################
