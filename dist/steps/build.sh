@@ -229,15 +229,6 @@ fi
 
 echo ""
 echo "###########################"
-echo "#       Zip Folder        #"
-echo "###########################"
-echo ""
-
-zip -r Build.zip build/build_windows/build_windows_Data/
-
-
-echo ""
-echo "###########################"
 echo "#       Build output      #"
 echo "###########################"
 echo ""

@@ -1,13 +1,7 @@
 #if UNITY_EDITOR
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.IO.Compression;
-using System.Net;
 using System.Reflection;
 using UnityEditor;
-using UnityEditor.Build.Reporting;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
@@ -90,6 +84,10 @@ namespace Builders
             string fullDataPath = buildPath + filename + modifier + dataPath;
             Debug.Log("fullDataPath: " + fullDataPath);
             //CopyFromProjectAssets( fullDataPath, "languages");
+
+            ICSharpCode.SharpZipLib.Zip.FastZip zip = new ICSharpCode.SharpZipLib.Zip.FastZip();
+            zip.CreateEmptyDirectories = true;
+            zip.CreateZip($"{fullDataPath}.zip", fullDataPath, true,"");
         }
 
         static string[] GetScenePaths()
