@@ -102,7 +102,7 @@ namespace Builders
             //ICSharpCode.SharpZipLib.Zip.FastZip zip = new ICSharpCode.SharpZipLib.Zip.FastZip();
             //zip.CreateEmptyDirectories = true;
             //zip.CreateZip($"{fullDataPath}\\build.zip", fullDataPath, true,"");
-            CreateZip("build.zip",fullDataPath);
+            CreateZip("build/build.zip",fullDataPath);
         }
 
         static string[] GetScenePaths(BuildTarget buildTarget)
