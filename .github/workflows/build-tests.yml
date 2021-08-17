@@ -73,6 +73,7 @@ jobs:
       ###########################
       #          Upload         #
       ###########################
+      - run: ls
       - uses: actions/upload-artifact@v2
         with:
           name: Build (${{ matrix.unityVersion }})
