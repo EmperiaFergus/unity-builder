@@ -73,9 +73,9 @@ jobs:
       ###########################
       #          Upload         #
       ###########################
-      - run: ls /build
+      #- run: ls /build
       - uses: actions/upload-artifact@v2
         with:
           name: Build (${{ matrix.unityVersion }})
-          path: /github/workspace/test-project/build/build.zip
+          path: build
           retention-days: 14
