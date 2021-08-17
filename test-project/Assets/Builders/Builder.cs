@@ -83,8 +83,6 @@ namespace Builders
                     break;
             }
 
-
-
             Debug.Log("====== BuildPlayer: " + buildTarget.ToString() + " at " + path + filename);
             EditorUserBuildSettings.SwitchActiveBuildTarget(buildTarget);
 
@@ -197,36 +195,7 @@ namespace Builders
                 null,
                 new object[] {askForLocation, defaultOptions});
         }
-        // private static void CompressFolder(string path, ZipOutputStream zipStream, int folderOffset) {
-        //
-        // 	string[] files = Directory.GetFiles(path);
-        //
-        // 	foreach (string filename in files) {
-        //
-        // 		FileInfo fi = new FileInfo(filename);
-        //
-        // 		string entryName = filename.Substring(folderOffset); // Makes the name in zip based on the folder
-        // 		entryName = ZipEntry.CleanName(entryName); // Removes drive from name and fixes slash direction
-        // 		ZipEntry newEntry = new ZipEntry(entryName);
-        // 		newEntry.DateTime = fi.LastWriteTime; // Note the zip format stores 2 second granularity
-        //
-        // 		newEntry.Size = fi.Length;
-        //
-        // 		zipStream.PutNextEntry(newEntry);
-        //
-        // 		// Zip the file in buffered chunks
-        // 		// the "using" will close the stream even if an exception occurs
-        // 		byte[ ] buffer = new byte[4096];
-        // 		using (FileStream streamReader = File.OpenRead(filename)) {
-        // 			StreamUtils.Copy(streamReader, zipStream, buffer);
-        // 		}
-        // 		zipStream.CloseEntry();
-        // 	}
-        // 	string[ ] folders = Directory.GetDirectories(path);
-        // 	foreach (string folder in folders) {
-        // 		CompressFolder(folder, zipStream, folderOffset);
-        // 	}
-        // }
+
         public static void CreateZip(string stZipPath, string stDirToZip)
         {
             try
