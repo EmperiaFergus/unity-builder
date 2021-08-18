@@ -167,7 +167,18 @@ echo "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/S3Installer.a
 #
 # Build
 #
-
+echo ""
+echo "###########################"
+echo "#     Pregen project      #"
+echo "###########################"
+echo ""
+unity-editor \
+  -nographics \
+  -logfile /dev/stdout \
+  -quit \
+  -customBuildName "$BUILD_NAME" \
+  -projectPath "$UNITY_PROJECT_PATH" \
+  -buildVersion "$VERSION" \
 echo ""
 echo "###########################"
 echo "#    Building project     #"
