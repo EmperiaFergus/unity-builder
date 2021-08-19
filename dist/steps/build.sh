@@ -164,6 +164,18 @@ sed -i 's|S3InstallerRegion|'"$s3InstallerRegion"'|g' ${UNITY_PROJECT_PATH}/Asse
 echo "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset)"
 echo "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/S3Installer.asset)"
 
+sed -i 's|S3InstallerRegion|'"$s3InstallerRegion"'|g' ${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/S3Installer.asset
+
+echo "###########################"
+echo "#      SIDGIN CONFIG      #"
+echo "###########################"
+
+echo "IF OSX"
+if [[ ${BUILD_TARGET} != *"OSX"* ]];then
+  echo "not building for OSX"
+  echo 1
+  sed -i 's|selectedDefinition: OSX|'"selectedDefinition: Win64"'|g' ${UNITY_PROJECT_PATH}/Assets/SIDGIN/EditorResources/StandaloneBuildSettingsData.asset
+fi
 
 #this is required as we get a error about the build function not existing even when it's correct
 #something to do with the library folder?
