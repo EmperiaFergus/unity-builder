@@ -175,6 +175,9 @@ if [[ ${BUILD_TARGET} != *"OSX"* ]];then
   echo "not building for OSX"
   echo 1
   sed -i 's|selectedDefinition: OSX|'"selectedDefinition: Win64"'|g' ${UNITY_PROJECT_PATH}/Assets/SIDGIN/EditorResources/StandaloneBuildSettingsData.asset
+else
+  echo "building for OSX"
+  sed -i 's|selectedDefinition: Win64|'"selectedDefinition: OSX"'|g' ${UNITY_PROJECT_PATH}/Assets/SIDGIN/EditorResources/StandaloneBuildSettingsData.asset
 fi
 
 #this is required as we get a error about the build function not existing even when it's correct
