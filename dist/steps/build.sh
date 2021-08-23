@@ -170,6 +170,7 @@ echo "###########################"
 echo "#      SIDGIN CONFIG      #"
 echo "###########################"
 
+
 echo "IF OSX"
 if [[ ${BUILD_TARGET} != *"OSX"* ]];then
   echo "not building for OSX"
