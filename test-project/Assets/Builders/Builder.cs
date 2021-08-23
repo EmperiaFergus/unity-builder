@@ -3,10 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using System.Threading;
 using System.Threading.Tasks;
+//using Cysharp.Threading.Tasks;
 using ICSharpCode.SharpZipLib.Checksum;
 using ICSharpCode.SharpZipLib.Zip;
+// using SIDGIN.Common.Editors;
+// using SIDGIN.Patcher.Unity;
+// using SIDGIN.Patcher.Unity.Editors;
 using UnityEditor;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
@@ -24,22 +27,28 @@ namespace Builders
             BuildPlayer(BuildTarget.StandaloneWindows, filename[filename.Length - 1], path + "/");
         }
 
-        [MenuItem("Jobs/Build/Sidgin Test")]
-        public static void StartSIDGINWindows()
-        {
-            // Get filename.
-            string path = "build";
-            var filename = path.Split('/');
-            //CreateSidginUpdate(BuildTarget.StandaloneWindows, filename[filename.Length - 1], path + "/");
-        }
-
         [MenuItem("Jobs/Build/ MacOS")]
-        public static void StartAll()
+        public static void StartMac()
         {
             string path = "build";
             var filename = path.Split('/');
             BuildPlayer(BuildTarget.StandaloneOSX, filename[filename.Length - 1], path + "/");
         }
+
+        // [MenuItem("Jobs/Build/Sidgin Windows")]
+        // public static void StartSIDGINWindows()
+        // {
+        //     amendSIDGINDefinitions("Win64");
+        //     var unityApi = new SGPatcherUnityApi();
+        //     unityApi.BuildAndPatch();
+        // }
+        // [MenuItem("Jobs/Build/Sidgin OSX")]
+        // public static void StartSIDGINMac()
+        // {
+        //     amendSIDGINDefinitions("OSX");
+        //     var unityApi = new SGPatcherUnityApi();
+        //     unityApi.BuildAndPatch();
+        // }
 
         static void BuildPlayer(BuildTarget buildTarget, string filename, string path)
         {
@@ -83,36 +92,27 @@ namespace Builders
                     break;
             }
 
-            Debug.Log("====== BuildPlayer: " + buildTarget.ToString() + " at " + path + filename);
             EditorUserBuildSettings.SwitchActiveBuildTarget(buildTarget);
 
             string buildPath = path + filename + modifier + "/";
-            //Debug.Log("buildpath: " + buildPath);
             string playerPath = buildPath + filename + modifier + fileExtension;
-            //Debug.Log("playerpath: " + playerPath);
             BuildPipeline.BuildPlayer(GetScenePaths(buildTarget), playerPath, buildTarget,
                 buildTarget == BuildTarget.StandaloneWindows ? BuildOptions.ShowBuiltPlayer : BuildOptions.None);
 
             string fullDataPath = buildPath + filename + modifier + dataPath;
-            Debug.Log("fullDataPath: " + fullDataPath);
-            //CopyFromProjectAssets( fullDataPath, "languages");
-
-            //ICSharpCode.SharpZipLib.Zip.FastZip zip = new ICSharpCode.SharpZipLib.Zip.FastZip();
-            //zip.CreateEmptyDirectories = true;
-            //zip.CreateZip($"{fullDataPath}\\build.zip", fullDataPath, true,"");
+            Debug.Log(fullDataPath);
+            Console.WriteLine(fullDataPath);
             CreateZip("build/build.zip",fullDataPath);
         }
 
-        static string[] GetScenePaths(BuildTarget buildTarget)
+        static string[] GetScenePaths(BuildTarget buildTarget, bool useSidgin = false)
         {
-
             string[] scenes = new string[EditorBuildSettings.scenes.Length];
             int j = scenes.Length;
             for (int i = 0; i < j; i++)
             {
-                if (buildTarget != BuildTarget.StandaloneWindows || buildTarget != BuildTarget.StandaloneWindows64)
+                if (!useSidgin)
                 {
-                    //skip sidgin scene if it's not windows
                     if (i == 0)
                     {
                         scenes = new string[scenes.Length-1];
@@ -125,88 +125,15 @@ namespace Builders
             }
             return scenes;
         }
-
-        // private static void CreateSidginUpdate(BuildTarget buildTarget, string s, string path)
-        // {
-        //
-        //     var config = "configString";//path to settings file?
-        //
-        //     var versionToUpload = new VersionToUpload();
-        //     versionToUpload.version = "1.0.0.0";
-        //     versionToUpload.fullName = "ApolloDebug";
-        //     versionToUpload.fullFilePath = "";
-        //     versionToUpload.patchName = "";
-        //     versionToUpload.patchFilePath = "";
-        //     versionToUpload.versionName = "";
-        //     versionToUpload.versionFilePath = "";
-        //     versionToUpload.versionListFilePath = "";
-        //
-        //     var cancelSource = new CancellationTokenSource();
-        //     var token = cancelSource.Token;
-        //     //var task = new Task<VersionToUpload>()
-        //     //configure task here
-        //
-        //     var settings = new ConfigurationReader(config).LoadData();
-        //     //configure settings here
-        //     var updater =  new VersionBuilder(settings);
-        //
-        //     updater.BuildPatch(false, token); //TODO: Find out what isInitial does
-        //     var publisher = new VersionUploader(settings);
-        //     publisher.Upload(versionToUpload);
-        // }
-        static string GetProjectName()
-        {
-            string[] s = Application.dataPath.Split('/');
-            return s[s.Length - 2];
-        }
-
-        static string GetProjectFolderPath()
-        {
-            var s = Application.dataPath;
-            s = s.Substring(s.Length - 7, 7); // remove "Assets/"
-            return s;
-        }
-
-        static void CopyFromProjectAssets(string fullDataPath, string assetsFolderPath, bool deleteMetaFiles = true)
-        {
-            Debug.Log("CopyFromProjectAssets: copying over " + assetsFolderPath);
-            FileUtil.ReplaceDirectory(Application.dataPath + "/" + assetsFolderPath, fullDataPath + assetsFolderPath);
-
-            if (deleteMetaFiles)
-            {
-                var metaFiles = Directory.GetFiles(
-                    fullDataPath + assetsFolderPath,
-                    "*.meta",
-                    SearchOption.AllDirectories);
-
-                foreach (var meta in metaFiles) FileUtil.DeleteFileOrDirectory(meta);
-            }
-        }
-
-        static BuildPlayerOptions GetBuildPlayerOptions(
-            bool askForLocation = false,
-            BuildPlayerOptions defaultOptions = new BuildPlayerOptions())
-        {
-            var method = typeof(BuildPlayerWindow).GetMethod(
-                "GetBuildPlayerOptionsInternal",
-                BindingFlags.NonPublic | BindingFlags.Static);
-
-            return (BuildPlayerOptions) method.Invoke(
-                null,
-                new object[] {askForLocation, defaultOptions});
-        }
-
         public static void CreateZip(string stZipPath, string stDirToZip)
         {
             try
             {
-                //Sanitize inputs
                 stDirToZip = Path.GetFullPath(stDirToZip);
                 stZipPath = Path.GetFullPath(stZipPath);
 
                 Console.WriteLine("Zip directory " + stDirToZip);
 
-                //Recursively parse the directory to zip
                 Stack<FileInfo> stackFiles = DirExplore(stDirToZip);
 
                 ZipOutputStream zipOutput = null;
@@ -243,13 +170,7 @@ namespace Builders
                     ZipEntry entry = new ZipEntry(stFileName);
 
                     entry.DateTime = DateTime.Now;
-                    //
-                    // set Size and the crc, because the information
-                    // about the size and crc should be stored in the header
-                    // if it is not set it is automatically written in the footer.
-                    // (in this case size == crc == -1 in the header)
-                    // Some ZIP programs have problems with zip files that don't store
-                    // the size and crc in the header.
+
                     entry.Size = fs.Length;
                     fs.Close();
 
@@ -264,7 +185,6 @@ namespace Builders
                 }
                 zipOutput.Finish();
                 zipOutput.Close();
-                zipOutput = null;
             }
             catch (Exception)
             {
@@ -272,7 +192,13 @@ namespace Builders
             }
         }
 
-
+        public static void amendSIDGINDefinitions(string definition)
+        {
+            var settingsData = File.ReadAllText($"{Application.dataPath}\\SIDGIN\\EditorResources\\SettingsData.asset");
+            settingsData = settingsData.Replace("OSX",definition);
+            settingsData = settingsData.Replace("Win64",definition);
+            File.WriteAllText($"{Application.dataPath}\\SIDGIN\\EditorResources\\SettingsData.asset", settingsData);
+        }
         static private Stack<FileInfo> DirExplore(string stSrcDirPath)
         {
             try
