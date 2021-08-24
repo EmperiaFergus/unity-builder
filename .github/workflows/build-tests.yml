@@ -12,7 +12,7 @@ env:
 jobs:
   buildForAllPlatforms:
     name: Build for ${{ matrix.targetPlatform }} on version ${{ matrix.unityVersion }}
-    runs-on: OSX-latest
+    runs-on: StandaloneOSX
     strategy:
       fail-fast: false
       matrix:
