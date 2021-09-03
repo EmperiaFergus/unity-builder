@@ -49,8 +49,7 @@ class Docker {
       patchkitSecret
     } = parameters;
 
-    const command = `docker run \
-        --workdir /github/workspace \
+    const command = `docker run \--workdir /github/workspace \
         --rm \
         --env UNITY_LICENSE \
         --env UNITY_LICENSE_FILE \
@@ -81,8 +80,8 @@ class Docker {
         --env serverProductionAddress="${serverProductionAddress}"\
         --env serverTimeout="${serverTimeout}"\
         --env CHOWN_FILES_TO="${chownFilesTo}" \
-        --env PATCHKIT_API_KEY="${patchkitAPIKey}"\
-        --env PATCHKIT_SECRET="${patchkitSecret}"\
+        --env patchkitApiKey="${patchkitAPIKey}"\
+        --env patchkitSecret="${patchkitSecret}"\
         --env GITHUB_REF \
         --env GITHUB_SHA \
         --env GITHUB_REPOSITORY \
