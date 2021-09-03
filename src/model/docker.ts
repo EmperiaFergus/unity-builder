@@ -46,7 +46,7 @@ class Docker {
       serverProductionAddress,
       serverTimeout,
       patchkitSecret,
-      patchkitAPIKey,
+      patchkitAPIKey
     } = parameters;
 
     const command = `docker run \
@@ -73,38 +73,38 @@ class Docker {
         --env ANDROID_KEYALIAS_NAME="${androidKeyaliasName}" \
         --env ANDROID_KEYALIAS_PASS="${androidKeyaliasPass}" \
         --env CUSTOM_PARAMETERS="${customParameters}" \
-        --env s3InstallerAccessKey="${s3InstallerAccessKey}"\
-        --env s3InstallerSecretKey="${s3InstallerSecretKey}"\
-        --env s3InstallerRegion="${s3InstallerRegion}"\
-        --env s3InstallerBucketName="${s3InstallerBucketName}"\
-        --env serverDevelopmentAddress="${serverDevelopmentAddress}"\
-        --env serverProductionAddress="${serverProductionAddress}"\
+        --env s3InstallerAccessKey="${s3InstallerAccessKey}" \
+        --env s3InstallerSecretKey="${s3InstallerSecretKey}" \
+        --env s3InstallerRegion="${s3InstallerRegion}" \
+        --env s3InstallerBucketName="${s3InstallerBucketName}" \
+        --env serverDevelopmentAddress="${serverDevelopmentAddress}" \
+        --env serverProductionAddress="${serverProductionAddress}" \
         --env serverTimeout="${serverTimeout}"\
         --env patchkitSecret="${patchkitSecret}"\
         --env patchkitAPIKey="${patchkitAPIKey}"\
-        --env CHOWN_FILES_TO="${chownFilesTo}"\
-        --env GITHUB_REF\
-        --env GITHUB_SHA\
-        --env GITHUB_REPOSITORY\
-        --env GITHUB_ACTOR\
-        --env GITHUB_WORKFLOW\
-        --env GITHUB_HEAD_REF\
-        --env GITHUB_BASE_REF\
-        --env GITHUB_EVENT_NAME\
-        --env GITHUB_WORKSPACE=/github/workspace\
-        --env GITHUB_ACTION\
-        --env GITHUB_EVENT_PATH\
-        --env RUNNER_OS\
-        --env RUNNER_TOOL_CACHE\
-        --env RUNNER_TEMP\
-        --env RUNNER_WORKSPACE\
-        ${sshAgent ? '--env SSH_AUTH_SOCK=/ssh-agent' : ''}\
-        --volume "/var/run/docker.sock":"/var/run/docker.sock"\
-        --volume "${runnerTempPath}/_github_home":"/root"\
-        --volume "${runnerTempPath}/_github_workflow":"/github/workflow"\
-        --volume "${workspace}":"/github/workspace"\
-        ${sshAgent ? '--volume ${sshAgent}:/ssh-agent' : ''}\
-        ${sshAgent ? '--volume /home/runner/.ssh/known_hosts:/root/.ssh/known_hosts:ro' : ''}\
+        --env CHOWN_FILES_TO="${chownFilesTo}" \
+        --env GITHUB_REF \
+        --env GITHUB_SHA \
+        --env GITHUB_REPOSITORY \
+        --env GITHUB_ACTOR \
+        --env GITHUB_WORKFLOW \
+        --env GITHUB_HEAD_REF \
+        --env GITHUB_BASE_REF \
+        --env GITHUB_EVENT_NAME \
+        --env GITHUB_WORKSPACE=/github/workspace \
+        --env GITHUB_ACTION \
+        --env GITHUB_EVENT_PATH \
+        --env RUNNER_OS \
+        --env RUNNER_TOOL_CACHE \
+        --env RUNNER_TEMP \
+        --env RUNNER_WORKSPACE \
+        ${sshAgent ? '--env SSH_AUTH_SOCK=/ssh-agent' : ''} \
+        --volume "/var/run/docker.sock":"/var/run/docker.sock" \
+        --volume "${runnerTempPath}/_github_home":"/root" \
+        --volume "${runnerTempPath}/_github_workflow":"/github/workflow" \
+        --volume "${workspace}":"/github/workspace" \
+        ${sshAgent ? '--volume ${sshAgent}:/ssh-agent' : ''} \
+        ${sshAgent ? '--volume /home/runner/.ssh/known_hosts:/root/.ssh/known_hosts:ro' : ''} \
         ${image}`;
 
     await exec(command, undefined, { silent });
