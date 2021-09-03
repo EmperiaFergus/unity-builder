@@ -120,6 +120,15 @@ inputs:
     required: false
     default: '10'
     description: 'the timeout of connection attempts within Apollo'
+  patchkitSecret:
+    required:  false
+    default: ''
+    description: 'secret key for patchkit'
+  patchkitAPIKey:
+    required: false
+    default: ''
+    description: 'patchkitAPIKey for patchkit'
+
 
   customParameters:
     required: false
