@@ -38,15 +38,6 @@ class Docker {
       customParameters,
       sshAgent,
       chownFilesTo,
-      s3InstallerAccessKey,
-      s3InstallerSecretKey,
-      s3InstallerRegion,
-      s3InstallerBucketName,
-      serverDevelopmentAddress,
-      serverProductionAddress,
-      serverTimeout,
-      patchkitSecret,
-      patchkitAPIKey,
     } = parameters;
 
     const command = `docker run \
@@ -73,15 +64,6 @@ class Docker {
         --env ANDROID_KEYALIAS_NAME="${androidKeyaliasName}" \
         --env ANDROID_KEYALIAS_PASS="${androidKeyaliasPass}" \
         --env CUSTOM_PARAMETERS="${customParameters}" \
-        --env s3InstallerAccessKey="${s3InstallerAccessKey}"\
-        --env s3InstallerSecretKey="${s3InstallerSecretKey}"\
-        --env s3InstallerRegion="${s3InstallerRegion}"\
-        --env s3InstallerBucketName="${s3InstallerBucketName}"\
-        --env serverDevelopmentAddress="${serverDevelopmentAddress}"\
-        --env serverProductionAddress="${serverProductionAddress}"\
-        --env serverTimeout="${serverTimeout}"\
-        --env patchkitSecret="${patchkitSecret}"\
-        --env patchkitAPIKey="${patchkitAPIKey}"\
         --env CHOWN_FILES_TO="${chownFilesTo}" \
         --env GITHUB_REF \
         --env GITHUB_SHA \
