@@ -44,12 +44,11 @@ class Docker {
       s3InstallerBucketName,
       serverDevelopmentAddress,
       serverProductionAddress,
-      serverTimeout,
-      patchkitAPIKey,
-      patchkitSecret
+      serverTimeout
     } = parameters;
 
-    const command = `docker run \--workdir /github/workspace \
+    const command = `docker run \
+        --workdir /github/workspace \
         --rm \
         --env UNITY_LICENSE \
         --env UNITY_LICENSE_FILE \
@@ -80,8 +79,6 @@ class Docker {
         --env serverProductionAddress="${serverProductionAddress}"\
         --env serverTimeout="${serverTimeout}"\
         --env CHOWN_FILES_TO="${chownFilesTo}" \
-        --env patchkitApiKey="${patchkitAPIKey}"\
-        --env patchkitSecret="${patchkitSecret}"\
         --env GITHUB_REF \
         --env GITHUB_SHA \
         --env GITHUB_REPOSITORY \
