@@ -364,4 +364,28 @@ describe('Input', () => {
       expect(spy).toHaveBeenCalledTimes(1);
     });
   });
+  describe('patchkitAPIKey', () => {
+    it('returns the default value', () => {
+      expect(Input.serverProductionAddress).toStrictEqual('');
+    });
+
+    it('takes input from the users workflow', () => {
+      const mockValue = '-imAFlag';
+      const spy = jest.spyOn(core, 'getInput').mockReturnValue(mockValue);
+      expect(Input.serverProductionAddress).toStrictEqual(mockValue);
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+  });
+  describe('patchkitSecret', () => {
+    it('returns the default value', () => {
+      expect(Input.serverTimeout).toStrictEqual('');
+    });
+
+    it('takes input from the users workflow', () => {
+      const mockValue = '-imAFlag';
+      const spy = jest.spyOn(core, 'getInput').mockReturnValue(mockValue);
+      expect(Input.serverTimeout).toStrictEqual(mockValue);
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+  });
 });

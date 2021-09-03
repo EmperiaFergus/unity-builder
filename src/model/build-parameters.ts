@@ -39,6 +39,8 @@ class BuildParameters {
   public serverDevelopmentAddress!: string;
   public serverProductionAddress!: string;
   public serverTimeout!: string;
+  public patchkitSecret!: string;
+  public patchkitAPIKey!: string;
 
   static async create(): Promise<BuildParameters> {
     const buildFile = this.parseBuildFile(Input.buildName, Input.targetPlatform, Input.androidAppBundle);
@@ -85,6 +87,9 @@ class BuildParameters {
       serverDevelopmentAddress: Input.serverDevelopmentAddress,
       serverProductionAddress: Input.serverProductionAddress,
       serverTimeout: Input.serverTimeout,
+      patchkitAPIKey: Input.patchkitSecret,
+      patchkitSecret: Input.patchkitSecret,
+
     };
   }
 

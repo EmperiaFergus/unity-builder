@@ -44,7 +44,9 @@ class Docker {
       s3InstallerBucketName,
       serverDevelopmentAddress,
       serverProductionAddress,
-      serverTimeout
+      serverTimeout,
+      patchkitAPIKEY,
+      patchkitSecret
     } = parameters;
 
     const command = `docker run \
@@ -79,6 +81,8 @@ class Docker {
         --env serverProductionAddress="${serverProductionAddress}"\
         --env serverTimeout="${serverTimeout}"\
         --env CHOWN_FILES_TO="${chownFilesTo}" \
+        --env PATCHKIT_API_KEY="${patchkitAPIKEY}"\
+        --env PATCHKIT_SECRET="${patchkitSecret}"\
         --env GITHUB_REF \
         --env GITHUB_SHA \
         --env GITHUB_REPOSITORY \

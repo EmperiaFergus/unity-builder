@@ -247,6 +247,14 @@ class Kubernetes {
                     value: this.buildParameters.serverProductionAddress,
                   },
                   {
+                    name: 'patchkitAPIKey',
+                    value: this.buildParameters.patchkitAPIKey,
+                  },
+                  {
+                    name: 'patchkitSecret',
+                    value: this.buildParameters.patchkitSecret,
+                  },
+                  {
                     name: 'serverTimeout',
                     value: this.buildParameters.serverTimeout,
                   },

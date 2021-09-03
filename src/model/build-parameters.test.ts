@@ -194,5 +194,15 @@ describe('BuildParameters', () => {
       jest.spyOn(Input, 'serverTimeout', 'get').mockReturnValue(mockValue);
       await expect(BuildParameters.create()).resolves.toEqual(expect.objectContaining({ serverTimeout: mockValue }));
     });
+    it('returns the patchkitAPIKey', async () => {
+      const mockValue = 'patchkitAPIKey';
+      jest.spyOn(Input, 'patchkitAPIKey', 'get').mockReturnValue(mockValue);
+      await expect(BuildParameters.create()).resolves.toEqual(expect.objectContaining({ patchkitAPIKey: mockValue }));
+    });
+    it('returns the serverTimeout', async () => {
+      const mockValue = 'patchkitSecret';
+      jest.spyOn(Input, 'patchkitSecret', 'get').mockReturnValue(mockValue);
+      await expect(BuildParameters.create()).resolves.toEqual(expect.objectContaining({ patchkitSecret: mockValue }));
+    });
   });
 });
