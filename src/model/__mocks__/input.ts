@@ -16,6 +16,8 @@ export const mockGetFromUser = jest.fn().mockResolvedValue({
   s3InstallerBucketName:'',
   serverDevelopmentAddress:'',
   serverProductionAddress:'',
+  patchkitSecret:'',
+  patchkitAPIKey:'',
   serverTimeout:'',
   sshAgent: '',
   chownFilesTo: '',
