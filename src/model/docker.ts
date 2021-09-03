@@ -49,7 +49,7 @@ class Docker {
       patchkitAPIKey,
     } = parameters;
 
-    const command = ` docker run \
+    const command = `docker run \
         --workdir /github/workspace \
         --rm \
         --env UNITY_LICENSE \

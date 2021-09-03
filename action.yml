@@ -127,7 +127,7 @@ inputs:
   patchkitAPIKey:
     required: false
     default: ''
-    description: 'patchkitAPIKey for patchkit'
+    description: 'APIKey for patchkit'
 
 
   customParameters:
