@@ -366,25 +366,25 @@ describe('Input', () => {
   });
   describe('patchkitAPIKey', () => {
     it('returns the default value', () => {
-      expect(Input.serverProductionAddress).toStrictEqual('');
+      expect(Input.patchkitSecret).toStrictEqual('');
     });
 
     it('takes input from the users workflow', () => {
       const mockValue = '-imAFlag';
       const spy = jest.spyOn(core, 'getInput').mockReturnValue(mockValue);
-      expect(Input.serverProductionAddress).toStrictEqual(mockValue);
+      expect(Input.patchkitSecret).toStrictEqual(mockValue);
       expect(spy).toHaveBeenCalledTimes(1);
     });
   });
   describe('patchkitSecret', () => {
     it('returns the default value', () => {
-      expect(Input.serverTimeout).toStrictEqual('');
+      expect(Input.patchkitAPIKey).toStrictEqual('');
     });
 
     it('takes input from the users workflow', () => {
       const mockValue = '-imAFlag';
       const spy = jest.spyOn(core, 'getInput').mockReturnValue(mockValue);
-      expect(Input.serverTimeout).toStrictEqual(mockValue);
+      expect(Input.patchkitAPIKey).toStrictEqual(mockValue);
       expect(spy).toHaveBeenCalledTimes(1);
     });
   });
