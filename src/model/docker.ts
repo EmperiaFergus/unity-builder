@@ -44,9 +44,9 @@ class Docker {
       s3InstallerBucketName,
       serverDevelopmentAddress,
       serverProductionAddress,
+      serverTimeout,
       patchkitSecret,
       patchkitAPIKey,
-      serverTimeout
     } = parameters;
 
     const command = `docker run \
