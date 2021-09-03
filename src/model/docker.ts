@@ -45,7 +45,7 @@ class Docker {
       serverDevelopmentAddress,
       serverProductionAddress,
       serverTimeout,
-      patchkitAPIKEY,
+      patchkitAPIKey,
       patchkitSecret
     } = parameters;
 
@@ -81,7 +81,7 @@ class Docker {
         --env serverProductionAddress="${serverProductionAddress}"\
         --env serverTimeout="${serverTimeout}"\
         --env CHOWN_FILES_TO="${chownFilesTo}" \
-        --env PATCHKIT_API_KEY="${patchkitAPIKEY}"\
+        --env PATCHKIT_API_KEY="${patchkitAPIKey}"\
         --env PATCHKIT_SECRET="${patchkitSecret}"\
         --env GITHUB_REF \
         --env GITHUB_SHA \
