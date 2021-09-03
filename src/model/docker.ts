@@ -44,6 +44,8 @@ class Docker {
       s3InstallerBucketName,
       serverDevelopmentAddress,
       serverProductionAddress,
+      patchkitSecret,
+      patchkitAPIKey,
       serverTimeout
     } = parameters;
 
@@ -77,6 +79,8 @@ class Docker {
         --env s3InstallerBucketName="${s3InstallerBucketName}"\
         --env serverDevelopmentAddress="${serverDevelopmentAddress}"\
         --env serverProductionAddress="${serverProductionAddress}"\
+        --env patchkitSecret="${patchkitSecret}"\
+        --env patchkitAPIKey="${patchkitAPIKey}"\
         --env serverTimeout="${serverTimeout}"\
         --env CHOWN_FILES_TO="${chownFilesTo}" \
         --env GITHUB_REF \
