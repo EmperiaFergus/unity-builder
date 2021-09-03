@@ -67,6 +67,8 @@ jobs:
           s3InstallerBucketName: ${{secrets.S3_BUCKET_NAME}}
           serverDevelopmentAddress: ${{secrets.DEVELOPER_ADDRESS}}
           serverProductionAddress: ${{secrets.PRODUCTION_ADDRESS}}
+          patchkitAPIKey: ${{secrets.patchkitAPIKey}}
+          patchkitSecret: ${{secrets.patchkitSecret}}
           serverTimeout: ${{secrets.SERVER_TIMEOUT}}
           buildMethod: Builders.Builder.StartMac
       ###########################
