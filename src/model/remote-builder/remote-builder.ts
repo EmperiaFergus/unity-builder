@@ -267,6 +267,14 @@ class RemoteBuilder {
           value: buildParameters.serverTimeout,
         },
         {
+          name: 'patchkitAPIKey',
+          value: buildParameters.patchkitAPIKey,
+        },
+        {
+          name: 'patchkitSecret',
+          value: buildParameters.patchkitSecret,
+        },
+        {
           name: 'BUILD_TARGET',
           value: buildParameters.platform,
         },
