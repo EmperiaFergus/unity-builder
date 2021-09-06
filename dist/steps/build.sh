@@ -167,6 +167,14 @@ echo "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/S3Installer.a
 sed -i 's|S3InstallerRegion|'"$s3InstallerRegion"'|g' ${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/S3Installer.asset
 
 echo "###########################"
+echo "#     PATCHKIT CONFIG     #"
+echo "###########################"
+
+echo "PATCHKITTEST"
+echo $patchkitSecret
+echo $patchkitAPIKey
+
+echo "###########################"
 echo "#      SIDGIN CONFIG      #"
 echo "###########################"
 
