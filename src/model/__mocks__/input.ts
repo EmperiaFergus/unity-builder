@@ -17,6 +17,8 @@ export const mockGetFromUser = jest.fn().mockResolvedValue({
   serverDevelopmentAddress:'',
   serverProductionAddress:'',
   serverTimeout:'',
+  patchkitSecret:'',
+  patchkitAPIKey:'',
   sshAgent: '',
   chownFilesTo: '',
 });
