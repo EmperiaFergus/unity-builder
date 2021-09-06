@@ -170,6 +170,7 @@ echo "###########################"
 echo "#     PATCHKIT CONFIG     #"
 echo "###########################"
 
+
 echo "PATCHKITTEST"
 echo $patchkitSecret
 echo $patchkitAPIKey
