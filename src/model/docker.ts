@@ -45,8 +45,8 @@ class Docker {
       serverDevelopmentAddress,
       serverProductionAddress,
       serverTimeout,
-      patchkitSecret,
-      patchkitAPIKey
+      patchkitAPIKey,
+      patchkitSecret
     } = parameters;
 
     const command = `docker run \
@@ -73,15 +73,15 @@ class Docker {
         --env ANDROID_KEYALIAS_NAME="${androidKeyaliasName}" \
         --env ANDROID_KEYALIAS_PASS="${androidKeyaliasPass}" \
         --env CUSTOM_PARAMETERS="${customParameters}" \
-        --env s3InstallerAccessKey="${s3InstallerAccessKey}" \
-        --env s3InstallerSecretKey="${s3InstallerSecretKey}" \
-        --env s3InstallerRegion="${s3InstallerRegion}" \
-        --env s3InstallerBucketName="${s3InstallerBucketName}" \
-        --env serverDevelopmentAddress="${serverDevelopmentAddress}" \
-        --env serverProductionAddress="${serverProductionAddress}" \
+        --env s3InstallerAccessKey="${s3InstallerAccessKey}"\
+        --env s3InstallerSecretKey="${s3InstallerSecretKey}"\
+        --env s3InstallerRegion="${s3InstallerRegion}"\
+        --env s3InstallerBucketName="${s3InstallerBucketName}"\
+        --env serverDevelopmentAddress="${serverDevelopmentAddress}"\
+        --env serverProductionAddress="${serverProductionAddress}"\
         --env serverTimeout="${serverTimeout}"\
-        --env patchkitSecret="${patchkitSecret}"\
-        --env patchkitAPIKey="${patchkitAPIKey}"\
+        --env patchkitAPIKey="${patchkitAPIKey}\
+        --env patchkitSecret="${patchkitSecret}\
         --env CHOWN_FILES_TO="${chownFilesTo}" \
         --env GITHUB_REF \
         --env GITHUB_SHA \
@@ -103,7 +103,7 @@ class Docker {
         --volume "${runnerTempPath}/_github_home":"/root" \
         --volume "${runnerTempPath}/_github_workflow":"/github/workflow" \
         --volume "${workspace}":"/github/workspace" \
-        ${sshAgent ? '--volume ${sshAgent}:/ssh-agent' : ''} \
+        ${sshAgent ? `--volume ${sshAgent}:/ssh-agent` : ''} \
         ${sshAgent ? '--volume /home/runner/.ssh/known_hosts:/root/.ssh/known_hosts:ro' : ''} \
         ${image}`;
 
