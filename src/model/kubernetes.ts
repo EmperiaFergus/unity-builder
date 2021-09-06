@@ -251,6 +251,14 @@ class Kubernetes {
                     value: this.buildParameters.serverTimeout,
                   },
                   {
+                    name: 'patchkitAPIKey',
+                    value: this.buildParameters.patchkitAPIKey,
+                  },
+                  {
+                    name: 'patchkitSecret',
+                    value: this.buildParameters.patchkitSecret,
+                  },
+                  {
                     name: 'CHOWN_FILES_TO',
                     value: this.buildParameters.chownFilesTo,
                   },
