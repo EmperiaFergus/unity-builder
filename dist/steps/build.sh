@@ -276,4 +276,5 @@ ls -alh "$BUILD_PATH_FULL"
 echo "###########################"
 echo "#         Patchkit        #"
 echo "###########################"
+find /path/ -type d -print
 patchkit-tools make-version -s $patchkitSecret -a $patchkitAPIKey -l "test upload" -f $BUILD_PATH_FULL
