@@ -69,6 +69,8 @@ jobs:
           serverProductionAddress: ${{secrets.PRODUCTION_ADDRESS}}
           serverTimeout: ${{secrets.SERVER_TIMEOUT}}
           buildMethod: Builders.Builder.StartMac
+          patchkitSecret: ${{secrets.PATCHKITSECRET}}
+          patchkitAPIKey: ${{secrets.PATCHKITAPIKEY}}
       ###########################
       #          Upload         #
       ###########################
