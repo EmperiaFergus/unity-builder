@@ -152,6 +152,14 @@ class Input {
   static get serverTimeout() {
     return core.getInput('serverTimeout') || '';
   }
+
+  static get patchkitSecret() {
+    return core.getInput('patchkitSecret') || '';
+  }
+
+  static get patchkitAPIKey() {
+    return core.getInput('patchkitAPIKey') || '';
+  }
 }
 
 export default Input;
