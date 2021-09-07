@@ -278,8 +278,8 @@ echo "#         Patchkit        #"
 echo "###########################"
 #find / -type d -print
 cd /github/workspace/dist/patchkit
+ls -a
 patchkit-tools
-
 patchkit-tools make-version -s $patchkitSecret -a $patchkitAPIKey -l "test upload" -f $BUILD_PATH_FULL
 
 
