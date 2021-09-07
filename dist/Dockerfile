@@ -15,8 +15,8 @@ ADD steps /steps
 RUN chmod -R +x /steps
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
-ADD patchkit /steps/patchkit
-RUN chmod -R +x /steps/patchkit
+ADD patchkit ./steps/patchkit
+RUN chmod -R +x ./steps/patchkit
 #ADD patchkit /patchkit
 #RUN chmod -R +x /patchkit/patchkit-tools
 RUN ls
