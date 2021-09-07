@@ -285,7 +285,7 @@ echo "###########################"
 set -e
 
 # Figure out where this script is located.
-SELFDIR="`dirname \"$0\"`"
+SELFDIR="/github/workspace/dist/patchkit"
 SELFDIR="`cd \"$SELFDIR\" && pwd`"
 
 # Tell Bundler where the Gemfile and gems are.
