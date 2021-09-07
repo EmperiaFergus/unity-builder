@@ -16,7 +16,7 @@ RUN chmod -R +x /steps
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ADD patchkit /steps/patchkit/patchkit-tools.sh
-RUN sudo chmod -R +x /steps/patchkit/patchkit-tools.sh
+RUN sudo chmod +x /steps/patchkit/patchkit-tools.sh
 #ADD patchkit /patchkit
 #RUN chmod -R +x /patchkit/patchkit-tools
 RUN ls
