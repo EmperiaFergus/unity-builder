@@ -280,7 +280,7 @@ find / -type d -print
 cd /github/workspace/dist/patchkit
 ls -a
 ./patchkit-tools
-RUN ["chmod", "+x", "/github/workspace/dist/patchkit/patchkit-tools"]
+chmod, +x, ./patchkit-tools
 patchkit-tools make-version -s $patchkitSecret -a $patchkitAPIKey -l "test upload" -f $BUILD_PATH_FULL
 
 #set -e
