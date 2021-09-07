@@ -13,10 +13,10 @@ LABEL "maintainer"="Webber Takken <webber@takken.io>"
 ADD default-build-script /UnityBuilderAction
 ADD steps /steps
 RUN chmod -R +x /steps
-ADD steps /steps/patchkit
-RUN chmod -R +x /steps/patchkit
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
+ADD steps /steps/patchkit/patchkit-tools
+RUN chmod +x /steps/patchkit/patchkit-tools
 #ADD patchkit /patchkit
 #RUN chmod -R +x /patchkit/patchkit-tools
 RUN ls
