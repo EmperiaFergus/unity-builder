@@ -10,13 +10,12 @@ LABEL "repository"="http://github.com/webbertakken/unity-actions"
 LABEL "homepage"="http://github.com/webbertakken/unity-actions"
 LABEL "maintainer"="Webber Takken <webber@takken.io>"
 
-
 ADD default-build-script /UnityBuilderAction
 ADD steps /steps
 RUN chmod -R +x /steps
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
-RUN apt-get -y update
-RUN apt-get -y install ed
+RUN chmod, +x, /github/workspace/dist/patchkit/patchkit-tools
+RUN ls
 
 ENTRYPOINT ["/entrypoint.sh"]
