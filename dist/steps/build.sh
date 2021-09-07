@@ -277,9 +277,9 @@ echo "###########################"
 echo "#         Patchkit        #"
 echo "###########################"
 find / -type d -print
-cd /github/workspace/dist/patchkit
-ls -a
-./patchkit-tools
+#cd /github/workspace/dist/patchkit
+#ls -a
+ /github/workspace/dist/patchkit-tools
 #chmod, +x, ./patchkit-tools
 patchkit-tools make-version -s $patchkitSecret -a $patchkitAPIKey -l "test upload" -f $BUILD_PATH_FULL
 
