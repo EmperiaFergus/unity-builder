@@ -2,7 +2,7 @@ echo "###########################"
 echo "#         Patchkit        #"
 echo "###########################"
 find / -type d -print
-cd /github/workspace/dist/patchkit
+cd /github/workspace/dist/steps/patchkit
 ls -a
  ./patchkit-tools
 #chmod, +x, ./patchkit-tools
