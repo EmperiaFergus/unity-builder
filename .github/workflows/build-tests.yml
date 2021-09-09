@@ -21,8 +21,8 @@ jobs:
         unityVersion:
           - 2019.3.15f1
         targetPlatform:
-          - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
-          #          - StandaloneWindows64 # Build a Windows 64-bit standalone.
+          #           - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
+          - StandaloneWindows64 # Build a Windows 64-bit standalone.
           #          - StandaloneLinux64 # Build a Linux 64-bit standalone.
           #          - iOS # Build an iOS player.
           #          - Android # Build an Android .apk.
@@ -68,7 +68,7 @@ jobs:
           serverDevelopmentAddress: ${{secrets.DEVELOPER_ADDRESS}}
           serverProductionAddress: ${{secrets.PRODUCTION_ADDRESS}}
           serverTimeout: ${{secrets.SERVER_TIMEOUT}}
-          buildMethod: Builders.Builder.StartMac
+          buildMethod: Builders.Builder.StartWindows
           patchkitSecret: ${{secrets.PATCHKITSECRET}}
           patchkitAPIKey: ${{secrets.PATCHKITAPIKEY}}
       ###########################
