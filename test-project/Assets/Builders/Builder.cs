@@ -1,6 +1,7 @@
 #if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -25,6 +26,7 @@ namespace Builders
             string path = "build";
             var filename = path.Split('/');
             BuildPlayer(BuildTarget.StandaloneWindows, filename[filename.Length - 1], path + "/");
+            uploadToPatchKit(path + "/");
         }
 
         [MenuItem("Jobs/Build/ MacOS")]
@@ -35,20 +37,6 @@ namespace Builders
             BuildPlayer(BuildTarget.StandaloneOSX, filename[filename.Length - 1], path + "/");
         }
 
-        // [MenuItem("Jobs/Build/Sidgin Windows")]
-        // public static void StartSIDGINWindows()
-        // {
-        //     amendSIDGINDefinitions("Win64");
-        //     var unityApi = new SGPatcherUnityApi();
-        //     unityApi.BuildAndPatch();
-        // }
-        // [MenuItem("Jobs/Build/Sidgin OSX")]
-        // public static void StartSIDGINMac()
-        // {
-        //     amendSIDGINDefinitions("OSX");
-        //     var unityApi = new SGPatcherUnityApi();
-        //     unityApi.BuildAndPatch();
-        // }
 
         static void BuildPlayer(BuildTarget buildTarget, string filename, string path)
         {
@@ -198,6 +186,41 @@ namespace Builders
             settingsData = settingsData.Replace("OSX",definition);
             settingsData = settingsData.Replace("Win64",definition);
             File.WriteAllText($"{Application.dataPath}\\SIDGIN\\EditorResources\\SettingsData.asset", settingsData);
+        }
+
+        static void uploadToPatchKit(string path)
+        {
+
+          var processInfo = new ProcessStartInfo("terminal",
+            $"/c start {Application.dataPath}/builders/patchKit/patchkit-tools make-version -s ac1ae6ae296777d8f700b72ea5231cc8 -a ccfb4cd4e4aea80d14fcc2b649001f0b -l WHO -f {Application.dataPath}/../build/build_windows /c");
+          processInfo.CreateNoWindow = false;
+          processInfo.UseShellExecute = false;
+          processInfo.WindowStyle = ProcessWindowStyle.Normal;
+          var process = Process.Start(processInfo);
+          Debug.Log("started successfully!");
+          process.WaitForExit();
+          process.Close();
+          Debug.Log("Exit successfuly!");
+
+          //  // Start the child process.
+          //  var p = new Process();
+          //  // Redirect the output stream of the child process.
+          //  p.StartInfo.UseShellExecute = false;
+          //  p.StartInfo.RedirectStandardOutput = true;
+          //  p.StartInfo.FileName = "YOURBATCHFILE.bat";
+          //  p.Start();
+          //  // Do not wait for the child process to exit before
+          //  // reading to the end of its redirected stream.
+          //  // p.WaitForExit();
+          //  // Read the output stream first and then wait.
+          //  string output = p.StandardOutput.ReadToEnd();
+          //  p.WaitForExit();
+
+          // var psi = new ProcessStartInfo();
+          // psi.FileName = $"/bin/sh";
+          // psi.UseShellExecute = false;
+          // psi.RedirectStandardOutput = true;
+          // psi.Arguments = Application.dataPath + "/test.sh" + " arg1 arg2 arg3";
         }
         static private Stack<FileInfo> DirExplore(string stSrcDirPath)
         {
