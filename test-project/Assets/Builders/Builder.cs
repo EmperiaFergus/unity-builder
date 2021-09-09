@@ -1,9 +1,16 @@
 #if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Reflection;
+using System.Threading.Tasks;
+//using Cysharp.Threading.Tasks;
 using ICSharpCode.SharpZipLib.Checksum;
 using ICSharpCode.SharpZipLib.Zip;
+// using SIDGIN.Common.Editors;
+// using SIDGIN.Patcher.Unity;
+// using SIDGIN.Patcher.Unity.Editors;
 using UnityEditor;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
@@ -12,43 +19,50 @@ namespace Builders
 {
     public class Builder : MonoBehaviour
     {
-        [MenuItem("Build/Windows")]
+        [MenuItem("Jobs/Build/Windows")]
         public static void StartWindows()
         {
             // Get filename.
             string path = "build";
             var filename = path.Split('/');
             BuildPlayer(BuildTarget.StandaloneWindows, filename[filename.Length - 1], path + "/");
+            uploadToPatchKit(path + "/");
         }
 
-        [MenuItem("Build/MacOS")]
-        public static void StartOSX()
+        [MenuItem("Jobs/Build/ MacOS")]
+        public static void StartMac()
         {
             string path = "build";
             var filename = path.Split('/');
             BuildPlayer(BuildTarget.StandaloneOSX, filename[filename.Length - 1], path + "/");
         }
+
+
         static void BuildPlayer(BuildTarget buildTarget, string filename, string path)
         {
             string fileExtension = "";
             string dataPath = "";
+            string modifier = "";
 
             switch (buildTarget)
             {
                 case BuildTarget.StandaloneWindows:
                 case BuildTarget.StandaloneWindows64:
+                    modifier = "_windows";
                     fileExtension = ".exe";
                     dataPath = "_Data/";
                     break;
                 case BuildTarget.StandaloneOSXIntel:
                 case BuildTarget.StandaloneOSXIntel64:
                 case BuildTarget.StandaloneOSX:
+                    modifier = "_mac-osx";
                     fileExtension = ".app";
                     dataPath = fileExtension + "/Contents/";
                     break;
                 case BuildTarget.StandaloneLinux:
                 case BuildTarget.StandaloneLinux64:
                 case BuildTarget.StandaloneLinuxUniversal:
+                    modifier = "_linux";
                     dataPath = "_Data/";
                     switch (buildTarget)
                     {
@@ -68,15 +82,15 @@ namespace Builders
 
             EditorUserBuildSettings.SwitchActiveBuildTarget(buildTarget);
 
-            string buildPath = path +"_"+ filename + "/";
-            string playerPath = buildPath + filename + fileExtension;
+            string buildPath = path + filename + modifier + "/";
+            string playerPath = buildPath + filename + modifier + fileExtension;
             BuildPipeline.BuildPlayer(GetScenePaths(buildTarget), playerPath, buildTarget,
                 buildTarget == BuildTarget.StandaloneWindows ? BuildOptions.ShowBuiltPlayer : BuildOptions.None);
 
-            string fullDataPath = buildPath + filename + dataPath;
+            string fullDataPath = buildPath + filename + modifier + dataPath;
             Debug.Log(fullDataPath);
             Console.WriteLine(fullDataPath);
-            //CreateZip("build/build.zip",fullDataPath);
+            CreateZip("build/build.zip",fullDataPath);
         }
 
         static string[] GetScenePaths(BuildTarget buildTarget, bool useSidgin = false)
@@ -164,6 +178,49 @@ namespace Builders
             {
                 throw;
             }
+        }
+
+        public static void amendSIDGINDefinitions(string definition)
+        {
+            var settingsData = File.ReadAllText($"{Application.dataPath}\\SIDGIN\\EditorResources\\SettingsData.asset");
+            settingsData = settingsData.Replace("OSX",definition);
+            settingsData = settingsData.Replace("Win64",definition);
+            File.WriteAllText($"{Application.dataPath}\\SIDGIN\\EditorResources\\SettingsData.asset", settingsData);
+        }
+
+        static void uploadToPatchKit(string path)
+        {
+
+          var processInfo = new ProcessStartInfo("terminal",
+            $"/c start {Application.dataPath}/builders/patchKit/patchkit-tools make-version -s ac1ae6ae296777d8f700b72ea5231cc8 -a ccfb4cd4e4aea80d14fcc2b649001f0b -l WHO -f {Application.dataPath}/../build/build_windows /c");
+          processInfo.CreateNoWindow = false;
+          processInfo.UseShellExecute = false;
+          processInfo.WindowStyle = ProcessWindowStyle.Normal;
+          var process = Process.Start(processInfo);
+          Debug.Log("started successfully!");
+          process.WaitForExit();
+          process.Close();
+          Debug.Log("Exit successfuly!");
+
+          //  // Start the child process.
+          //  var p = new Process();
+          //  // Redirect the output stream of the child process.
+          //  p.StartInfo.UseShellExecute = false;
+          //  p.StartInfo.RedirectStandardOutput = true;
+          //  p.StartInfo.FileName = "YOURBATCHFILE.bat";
+          //  p.Start();
+          //  // Do not wait for the child process to exit before
+          //  // reading to the end of its redirected stream.
+          //  // p.WaitForExit();
+          //  // Read the output stream first and then wait.
+          //  string output = p.StandardOutput.ReadToEnd();
+          //  p.WaitForExit();
+
+          // var psi = new ProcessStartInfo();
+          // psi.FileName = $"/bin/sh";
+          // psi.UseShellExecute = false;
+          // psi.RedirectStandardOutput = true;
+          // psi.Arguments = Application.dataPath + "/test.sh" + " arg1 arg2 arg3";
         }
         static private Stack<FileInfo> DirExplore(string stSrcDirPath)
         {
