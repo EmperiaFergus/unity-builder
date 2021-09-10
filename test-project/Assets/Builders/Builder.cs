@@ -1,14 +1,14 @@
-  using System;
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.IO;
-    using ICSharpCode.SharpZipLib.Checksum;
-    using ICSharpCode.SharpZipLib.Zip;
-  using UnityEditor;
-    using UnityEngine;
-    using Debug = UnityEngine.Debug;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using ICSharpCode.SharpZipLib.Checksum;
+using ICSharpCode.SharpZipLib.Zip;
+using UnityEditor;
+using UnityEngine;
+using Debug = UnityEngine.Debug;
 
-    namespace Editor
+    namespace Builders
     {
       public class Builder
       {
@@ -35,7 +35,6 @@
           var filename = path.Split('/');
           BuildPlayer(BuildTarget.StandaloneOSX, filename[filename.Length - 1], path + "/");
           uploadToPatchKit(path + "/");
-
         }
         static void BuildPlayer(BuildTarget buildTarget, string filename, string path)
         {

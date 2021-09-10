@@ -67,7 +67,7 @@ jobs:
           serverDevelopmentAddress: ${{secrets.DEVELOPER_ADDRESS}}
           serverProductionAddress: ${{secrets.PRODUCTION_ADDRESS}}
           serverTimeout: ${{secrets.SERVER_TIMEOUT}}
-          buildMethod: Builders.Builder.StartWindows
+          buildMethod: Builders.Builder.StartOSX
           patchkitSecret: ${{secrets.PATCHKITSECRET}}
           patchkitAPIKey: ${{secrets.PATCHKITAPIKEY}}
       ###########################
