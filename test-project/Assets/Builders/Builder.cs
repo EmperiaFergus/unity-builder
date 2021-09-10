@@ -3,14 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Reflection;
-using System.Threading.Tasks;
-//using Cysharp.Threading.Tasks;
 using ICSharpCode.SharpZipLib.Checksum;
 using ICSharpCode.SharpZipLib.Zip;
-// using SIDGIN.Common.Editors;
-// using SIDGIN.Patcher.Unity;
-// using SIDGIN.Patcher.Unity.Editors;
 using UnityEditor;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
@@ -19,6 +13,12 @@ namespace Builders
 {
     public class Builder : MonoBehaviour
     {
+        [MenuItem("Jobs/Build/patchkit")]
+        public static void PatchkitUpload()
+        {
+            string path = "build";
+            uploadToPatchKit(path + "/");
+        }
         [MenuItem("Jobs/Build/Windows")]
         public static void StartWindows()
         {
@@ -30,13 +30,28 @@ namespace Builders
         }
 
         [MenuItem("Jobs/Build/ MacOS")]
-        public static void StartMac()
+        public static void StartOSX()
         {
             string path = "build";
             var filename = path.Split('/');
             BuildPlayer(BuildTarget.StandaloneOSX, filename[filename.Length - 1], path + "/");
+
         }
 
+        [MenuItem("Jobs/Build/Sidgin Windows")]
+        public static void StartSIDGINWindows()
+        {
+            //amendSIDGINDefinitions("Win64");
+            var unityApi = new SGPatcherUnityApi();
+            unityApi.BuildAndPatch();
+        }
+        [MenuItem("Jobs/Build/Sidgin OSX")]
+        public static void StartSIDGINOSX()
+        {
+            //amendSIDGINDefinitions("OSX");
+            var unityApi = new SGPatcherUnityApi();
+            unityApi.BuildAndPatch();
+        }
 
         static void BuildPlayer(BuildTarget buildTarget, string filename, string path)
         {
@@ -93,6 +108,28 @@ namespace Builders
             CreateZip("build/build.zip",fullDataPath);
         }
 
+        static void uploadToPatchKit(string path)
+        {
+            string[] contents =
+            {
+                "#!/bin/sh",
+                $"start {Application.dataPath}/builders/patchKit/patchkit-tools make-version -s ac1ae6ae296777d8f700b72ea5231cc8 -a ccfb4cd4e4aea80d14fcc2b649001f0b -l WHO -f {Application.dataPath}/../build/build_windows"
+                //$"/c start {Application.dataPath}/builders/patchKit/patchkit-tools make-version -s ac1ae6ae296777d8f700b72ea5231cc8 -a ccfb4cd4e4aea80d14fcc2b649001f0b -l WHO -f {Application.dataPath}/../build/build_windows /c"
+            };
+            var filePath = $"{Application.dataPath}/builders/patchKit/upload.sh";
+            File.WriteAllLines(filePath, contents);
+            Process.Start(filePath);
+            File.Delete(filePath);
+            //var processInfo = new ProcessStartInfo("cmd.exe",contents);
+            //processInfo.CreateNoWindow = false;
+            //processInfo.UseShellExecute = false;
+            // processInfo.WindowStyle = ProcessWindowStyle.Normal;
+            //var process = Process.Start(processInfo);
+            //Debug.Log("started successfully!");
+            //process.WaitForExit();
+            //process.Close();
+            //Debug.Log("Exit successfuly!");
+        }
         static string[] GetScenePaths(BuildTarget buildTarget, bool useSidgin = false)
         {
             string[] scenes = new string[EditorBuildSettings.scenes.Length];
@@ -178,28 +215,6 @@ namespace Builders
             {
                 throw;
             }
-        }
-
-        public static void amendSIDGINDefinitions(string definition)
-        {
-            var settingsData = File.ReadAllText($"{Application.dataPath}\\SIDGIN\\EditorResources\\SettingsData.asset");
-            settingsData = settingsData.Replace("OSX",definition);
-            settingsData = settingsData.Replace("Win64",definition);
-            File.WriteAllText($"{Application.dataPath}\\SIDGIN\\EditorResources\\SettingsData.asset", settingsData);
-        }
-
-        static void uploadToPatchKit(string path)
-        {
-          string[] contents =
-          {
-            "#!/bin/sh",
-            $"start {Application.dataPath}/builders/patchKit/patchkit-tools make-version -s ac1ae6ae296777d8f700b72ea5231cc8 -a ccfb4cd4e4aea80d14fcc2b649001f0b -l WHO -f {Application.dataPath}/../build/build_windows"
-            //$"/c start {Application.dataPath}/builders/patchKit/patchkit-tools make-version -s ac1ae6ae296777d8f700b72ea5231cc8 -a ccfb4cd4e4aea80d14fcc2b649001f0b -l WHO -f {Application.dataPath}/../build/build_windows /c"
-          };
-          var filePath = $"{Application.dataPath}/builders/patchKit/upload.sh";
-          File.WriteAllLines(filePath, contents);
-          Process.Start(filePath);
-          File.Delete(filePath);
         }
         static private Stack<FileInfo> DirExplore(string stSrcDirPath)
         {
