@@ -47,7 +47,7 @@ jobs:
             Library-${{ matrix.projectPath }}-
             Library-
       #Build windows
-      - uses: EmperiaFergus/unity-builder@V3.3ca
+      - uses: ./
         with:
           projectPath: ${{ matrix.projectPath }}
           unityVersion: ${{ matrix.unityVersion }}
