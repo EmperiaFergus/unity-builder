@@ -2,7 +2,7 @@ echo "###########################"
 echo "#         Patchkit        #"
 echo "###########################"
 #find / -type d -print
-cd ./test-project/Assets/Builders/patchkit/
+#cd ./test-project/Assets/Builders/patchkit/
 echo 1.
 echo $patchkitSecret
 echo 2.
@@ -15,7 +15,7 @@ do
   echo "$entry"
 done
 #chmod, +x, ./patchkit-tools
-patchkit-tools.sh make-version -s $patchkitSecret -a $patchkitAPIKey -l test3 -f $BUILD_PATH_FULL -x
+./test-project/Assets/Builders/patchkit/patchkit-tools.sh make-version -s $patchkitSecret -a $patchkitAPIKey -l test3 -f $BUILD_PATH_FULL -x
 
 #set -e
 
