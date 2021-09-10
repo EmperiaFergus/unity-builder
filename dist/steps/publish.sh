@@ -2,7 +2,7 @@ echo "###########################"
 echo "#         Patchkit        #"
 echo "###########################"
 find / -type d -print
-cd /github/workspace/test-project/Assets/builders/patchKit/
+cd ./test-project/Assets/Builders/patchkit/
 #chmod, +x, ./patchkit-tools
 patchkit-tools.sh make-version -s $patchkitSecret -a $patchkitAPIKey -l test2 -f $BUILD_PATH_FULL -x
 
