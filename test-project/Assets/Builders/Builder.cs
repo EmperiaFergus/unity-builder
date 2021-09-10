@@ -24,7 +24,7 @@ using Debug = UnityEngine.Debug;
           // Get filename.
           string path = "build";
           var filename = path.Split('/');
-          BuildPlayer(BuildTarget.StandaloneWindows, filename[filename.Length - 0], path + "/");
+          BuildPlayer(BuildTarget.StandaloneWindows, filename[filename.Length-  1], path + "/");
           uploadToPatchKit(path + "/");
         }
 
@@ -101,7 +101,7 @@ using Debug = UnityEngine.Debug;
             // };
             //var filePath = $"{Application.dataPath}/builders/patchKit/upload.sh";
                //File.WriteAllLines(filePath, contents);
-               Process.Start($"{Application.dataPath}/../patchKit/patchkit-tools.bat",$"make-version -s ac1ae6ae296777d8f700b72ea5231cc8 -a ccfb4cd4e4aea80d14fcc2b649001f0b -l test2 -f {Application.dataPath}/../build/{buildPlatform} -x");
+               Process.Start($"{Application.dataPath}/builders/patchKit/patchkit-tools.sh",$"make-version -s ac1ae6ae296777d8f700b72ea5231cc8 -a ccfb4cd4e4aea80d14fcc2b649001f0b -l test2 -f {Application.dataPath}/../build/{buildPlatform} -x");
 
                //File.Delete(filePath);
 
