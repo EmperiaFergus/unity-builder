@@ -16,7 +16,7 @@ using Debug = UnityEngine.Debug;
         public static void PatchkitUpload()
         {
           string path = "build";
-          uploadToPatchKit(path + "/");
+          //uploadToPatchKit(path + "/");
         }
         [MenuItem("Build/Windows")]
         public static void StartWindows()
@@ -25,7 +25,7 @@ using Debug = UnityEngine.Debug;
           string path = "build";
           var filename = path.Split('/');
           BuildPlayer(BuildTarget.StandaloneWindows, filename[filename.Length-  1], path + "/");
-          uploadToPatchKit(path + "/");
+          //uploadToPatchKit(path + "/");
         }
 
         [MenuItem("Jobs/Build/ MacOS")]
@@ -34,7 +34,7 @@ using Debug = UnityEngine.Debug;
           string path = "build";
           var filename = path.Split('/');
           BuildPlayer(BuildTarget.StandaloneOSX, filename[filename.Length - 1], path + "/");
-          uploadToPatchKit(path + "/");
+          //uploadToPatchKit(path + "/");
         }
         static void BuildPlayer(BuildTarget buildTarget, string filename, string path)
         {

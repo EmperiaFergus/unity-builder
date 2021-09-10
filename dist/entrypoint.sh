@@ -5,7 +5,7 @@
 #
 source /steps/activate.sh
 source /steps/build.sh
-#source /steps/publish.sh
+source /steps/publish.sh
 source /steps/return_license.sh
 
 #
