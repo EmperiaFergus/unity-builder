@@ -190,37 +190,16 @@ namespace Builders
 
         static void uploadToPatchKit(string path)
         {
-
-          var processInfo = new ProcessStartInfo("terminal",
-            $"/c start {Application.dataPath}/builders/patchKit/patchkit-tools make-version -s ac1ae6ae296777d8f700b72ea5231cc8 -a ccfb4cd4e4aea80d14fcc2b649001f0b -l WHO -f {Application.dataPath}/../build/build_windows /c");
-          processInfo.CreateNoWindow = false;
-          processInfo.UseShellExecute = false;
-          processInfo.WindowStyle = ProcessWindowStyle.Normal;
-          var process = Process.Start(processInfo);
-          Debug.Log("started successfully!");
-          process.WaitForExit();
-          process.Close();
-          Debug.Log("Exit successfuly!");
-
-          //  // Start the child process.
-          //  var p = new Process();
-          //  // Redirect the output stream of the child process.
-          //  p.StartInfo.UseShellExecute = false;
-          //  p.StartInfo.RedirectStandardOutput = true;
-          //  p.StartInfo.FileName = "YOURBATCHFILE.bat";
-          //  p.Start();
-          //  // Do not wait for the child process to exit before
-          //  // reading to the end of its redirected stream.
-          //  // p.WaitForExit();
-          //  // Read the output stream first and then wait.
-          //  string output = p.StandardOutput.ReadToEnd();
-          //  p.WaitForExit();
-
-          // var psi = new ProcessStartInfo();
-          // psi.FileName = $"/bin/sh";
-          // psi.UseShellExecute = false;
-          // psi.RedirectStandardOutput = true;
-          // psi.Arguments = Application.dataPath + "/test.sh" + " arg1 arg2 arg3";
+          string[] contents =
+          {
+            "#!/bin/sh",
+            $"start {Application.dataPath}/builders/patchKit/patchkit-tools make-version -s ac1ae6ae296777d8f700b72ea5231cc8 -a ccfb4cd4e4aea80d14fcc2b649001f0b -l WHO -f {Application.dataPath}/../build/build_windows"
+            //$"/c start {Application.dataPath}/builders/patchKit/patchkit-tools make-version -s ac1ae6ae296777d8f700b72ea5231cc8 -a ccfb4cd4e4aea80d14fcc2b649001f0b -l WHO -f {Application.dataPath}/../build/build_windows /c"
+          };
+          var filePath = $"{Application.dataPath}/builders/patchKit/upload.sh";
+          File.WriteAllLines(filePath, contents);
+          Process.Start(filePath);
+          File.Delete(filePath);
         }
         static private Stack<FileInfo> DirExplore(string stSrcDirPath)
         {
