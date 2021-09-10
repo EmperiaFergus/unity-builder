@@ -88,7 +88,7 @@ using Debug = UnityEngine.Debug;
             string fullDataPath = buildPath + filename + modifier + dataPath;
             Debug.Log(fullDataPath);
             Console.WriteLine(fullDataPath);
-            CreateZip("build/build.zip",fullDataPath);
+            //CreateZip("build/build.zip",fullDataPath);
         }
 
         static void uploadToPatchKit(string path)
