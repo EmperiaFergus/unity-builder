@@ -42,15 +42,15 @@ namespace Builders
         public static void StartSIDGINWindows()
         {
             //amendSIDGINDefinitions("Win64");
-            var unityApi = new SGPatcherUnityApi();
-            unityApi.BuildAndPatch();
+            //var unityApi = new SGPatcherUnityApi();
+            //unityApi.BuildAndPatch();
         }
         [MenuItem("Jobs/Build/Sidgin OSX")]
         public static void StartSIDGINOSX()
         {
             //amendSIDGINDefinitions("OSX");
-            var unityApi = new SGPatcherUnityApi();
-            unityApi.BuildAndPatch();
+            //var unityApi = new SGPatcherUnityApi();
+            //unityApi.BuildAndPatch();
         }
 
         static void BuildPlayer(BuildTarget buildTarget, string filename, string path)
