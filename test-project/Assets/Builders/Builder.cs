@@ -24,7 +24,7 @@ using Debug = UnityEngine.Debug;
           // Get filename.
           string path = "build";
           var filename = path.Split('/');
-          BuildPlayer(BuildTarget.StandaloneWindows, filename[filename.Length - 1], path + "/");
+          BuildPlayer(BuildTarget.StandaloneWindows, filename[filename.Length - 0], path + "/");
           uploadToPatchKit(path + "/");
         }
 
