@@ -49,15 +49,17 @@ jobs:
           projectPath: ${{ matrix.projectPath }}
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
-          buildMethod: ${{secrets.BUILD_METHOD}}
+          customParameters: -profile SomeProfile -someBoolean -someValue exampleValue
           s3InstallerAccessKey: ${{secrets.S3_ACCESS_KEY}}
           s3InstallerSecretKey: ${{secrets.S3_SECRET_KEY}}
           s3InstallerRegion: ${{secrets.S3_REGION}}
           s3InstallerBucketName: ${{secrets.S3_BUCKET_NAME}}
           serverDevelopmentAddress: ${{secrets.DEVELOPER_ADDRESS}}
           serverProductionAddress: ${{secrets.PRODUCTION_ADDRESS}}
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          serverTimeout: ${{secrets.SERVER_TIMEOUT}}
+          buildMethod: Builders.Builder.StartWindows
+          patchkitSecret: ${{secrets.PATCHKITSECRET}}
+          patchkitAPIKey: ${{secrets.PATCHKITAPIKEY}}
       #Upload
       - uses: actions/upload-artifact@v2
         with:
