@@ -90,31 +90,7 @@ using Debug = UnityEngine.Debug;
             Console.WriteLine(fullDataPath);
             //CreateZip("build/build.zip",fullDataPath);
         }
-
-        static void uploadToPatchKit(string path)
-        {
-          var buildPlatform = "build_windows";
-          // string[] contents =
-          // {
-               //     "#!/bin/sh",
-               //     $"start {Application.dataPath}/builders/patchKit/patchkit-tools make-version -s ac1ae6ae296777d8f700b72ea5231cc8 -a ccfb4cd4e4aea80d14fcc2b649001f0b -l test -f {Application.dataPath}/../build/{buildPlatform}"
-            // };
-            //var filePath = $"{Application.dataPath}/builders/patchKit/upload.sh";
-               //File.WriteAllLines(filePath, contents);
-               Process.Start($"{Application.dataPath}/builders/patchKit/patchkit-tools.sh",$"make-version -s ac1ae6ae296777d8f700b72ea5231cc8 -a ccfb4cd4e4aea80d14fcc2b649001f0b -l test2 -f {Application.dataPath}/../build/{buildPlatform} -x");
-
-               //File.Delete(filePath);
-
-               //var contents = $"/c start {Application.dataPath}/builders/patchKit/patchkit-tools make-version -s ac1ae6ae296777d8f700b72ea5231cc8 -a ccfb4cd4e4aea80d14fcc2b649001f0b -l test -f {Application.dataPath}/../build/build_windows /c"
-               //var processInfo = new ProcessStartInfo("cmd.exe",contents);
-               //processInfo.CreateNoWindow = false;
-               //processInfo.UseShellExecute = false;
-               // processInfo.WindowStyle = ProcessWindowStyle.Normal;
-               //var process = Process.Start(processInfo);
-               //process.WaitForExit();
-               //process.Close();
-        }
-          static string[] GetScenePaths(BuildTarget buildTarget, bool useSidgin = false)
+        static string[] GetScenePaths(BuildTarget buildTarget, bool useSidgin = false)
           {
             string[] scenes = new string[EditorBuildSettings.scenes.Length];
             int j = scenes.Length;
