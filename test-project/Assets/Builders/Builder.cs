@@ -55,7 +55,7 @@ using Debug = UnityEngine.Debug;
               case BuildTarget.StandaloneOSX:
                 modifier = "_mac-osx";
                 fileExtension = ".app";
-                dataPath = fileExtension + "/Contents/";
+                dataPath = fileExtension + "Contents/";
                 break;
               case BuildTarget.StandaloneLinux:
               case BuildTarget.StandaloneLinux64:
