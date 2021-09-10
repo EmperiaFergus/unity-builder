@@ -10,7 +10,7 @@ using Debug = UnityEngine.Debug;
 
     namespace Builders
     {
-      public class Builder
+      public class Builder:MonoBehaviour
       {
         [MenuItem("Jobs/Build/patchkit")]
         public static void PatchkitUpload()
