@@ -1,106 +1,90 @@
-#if UNITY_EDITOR
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using ICSharpCode.SharpZipLib.Checksum;
-using ICSharpCode.SharpZipLib.Zip;
-using UnityEditor;
-using UnityEngine;
-using Debug = UnityEngine.Debug;
+  using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.IO;
+    using ICSharpCode.SharpZipLib.Checksum;
+    using ICSharpCode.SharpZipLib.Zip;
+  using UnityEditor;
+    using UnityEngine;
+    using Debug = UnityEngine.Debug;
 
-namespace Builders
-{
-    public class Builder : MonoBehaviour
+    namespace Editor
     {
+      public class Builder
+      {
         [MenuItem("Jobs/Build/patchkit")]
         public static void PatchkitUpload()
         {
-            string path = "build";
-            uploadToPatchKit(path + "/");
+          string path = "build";
+          uploadToPatchKit(path + "/");
         }
-        [MenuItem("Jobs/Build/Windows")]
+        [MenuItem("Build/Windows")]
         public static void StartWindows()
         {
-            // Get filename.
-            string path = "build";
-            var filename = path.Split('/');
-            BuildPlayer(BuildTarget.StandaloneWindows, filename[filename.Length - 1], path + "/");
-            uploadToPatchKit(path + "/");
+          // Get filename.
+          string path = "build";
+          var filename = path.Split('/');
+          BuildPlayer(BuildTarget.StandaloneWindows, filename[filename.Length - 1], path + "/");
+          uploadToPatchKit(path + "/");
         }
 
         [MenuItem("Jobs/Build/ MacOS")]
         public static void StartOSX()
         {
-            string path = "build";
-            var filename = path.Split('/');
-            BuildPlayer(BuildTarget.StandaloneOSX, filename[filename.Length - 1], path + "/");
+          string path = "build";
+          var filename = path.Split('/');
+          BuildPlayer(BuildTarget.StandaloneOSX, filename[filename.Length - 1], path + "/");
+          uploadToPatchKit(path + "/");
 
         }
-
-        [MenuItem("Jobs/Build/Sidgin Windows")]
-        public static void StartSIDGINWindows()
-        {
-            //amendSIDGINDefinitions("Win64");
-            //var unityApi = new SGPatcherUnityApi();
-            //unityApi.BuildAndPatch();
-        }
-        [MenuItem("Jobs/Build/Sidgin OSX")]
-        public static void StartSIDGINOSX()
-        {
-            //amendSIDGINDefinitions("OSX");
-            //var unityApi = new SGPatcherUnityApi();
-            //unityApi.BuildAndPatch();
-        }
-
         static void BuildPlayer(BuildTarget buildTarget, string filename, string path)
         {
-            string fileExtension = "";
-            string dataPath = "";
-            string modifier = "";
+          string fileExtension = "";
+          string dataPath = "";
+          string modifier = "";
 
-            switch (buildTarget)
-            {
-                case BuildTarget.StandaloneWindows:
-                case BuildTarget.StandaloneWindows64:
-                    modifier = "_windows";
-                    fileExtension = ".exe";
-                    dataPath = "_Data/";
-                    break;
-                case BuildTarget.StandaloneOSXIntel:
-                case BuildTarget.StandaloneOSXIntel64:
-                case BuildTarget.StandaloneOSX:
-                    modifier = "_mac-osx";
-                    fileExtension = ".app";
-                    dataPath = fileExtension + "/Contents/";
-                    break;
-                case BuildTarget.StandaloneLinux:
-                case BuildTarget.StandaloneLinux64:
-                case BuildTarget.StandaloneLinuxUniversal:
-                    modifier = "_linux";
+          switch (buildTarget)
+          {
+            case BuildTarget.StandaloneWindows:
+              case BuildTarget.StandaloneWindows64:
+                modifier = "_windows";
+                fileExtension = ".exe";
+                dataPath = "_Data/";
+                break;
+              case BuildTarget.StandaloneOSXIntel:
+              case BuildTarget.StandaloneOSXIntel64:
+              case BuildTarget.StandaloneOSX:
+                modifier = "_mac-osx";
+                fileExtension = ".app";
+                dataPath = fileExtension + "/Contents/";
+                break;
+              case BuildTarget.StandaloneLinux:
+              case BuildTarget.StandaloneLinux64:
+              case BuildTarget.StandaloneLinuxUniversal:
+                  modifier = "_linux";
                     dataPath = "_Data/";
                     switch (buildTarget)
-                    {
-                        case BuildTarget.StandaloneLinux:
-                            fileExtension = ".x86";
-                            break;
-                        case BuildTarget.StandaloneLinux64:
-                            fileExtension = ".x64";
-                            break;
-                        case BuildTarget.StandaloneLinuxUniversal:
-                            fileExtension = ".x86_64";
-                            break;
-                    }
+                {
+                  case BuildTarget.StandaloneLinux:
+                    fileExtension = ".x86";
+                    break;
+                    case BuildTarget.StandaloneLinux64:
+                      fileExtension = ".x64";
+                      break;
+                    case BuildTarget.StandaloneLinuxUniversal:
+                      fileExtension = ".x86_64";
+                      break;
+                }
 
                     break;
-            }
+          }
 
-            EditorUserBuildSettings.SwitchActiveBuildTarget(buildTarget);
+          EditorUserBuildSettings.SwitchActiveBuildTarget(buildTarget);
 
-            string buildPath = path + filename + modifier + "/";
-            string playerPath = buildPath + filename + modifier + fileExtension;
-            BuildPipeline.BuildPlayer(GetScenePaths(buildTarget), playerPath, buildTarget,
-                buildTarget == BuildTarget.StandaloneWindows ? BuildOptions.ShowBuiltPlayer : BuildOptions.None);
+          string buildPath = path + filename + modifier + "/";
+          string playerPath = buildPath + filename + modifier + fileExtension;
+          BuildPipeline.BuildPlayer(GetScenePaths(buildTarget), playerPath, buildTarget,
+          buildTarget == BuildTarget.StandaloneWindows ? BuildOptions.ShowBuiltPlayer : BuildOptions.None);
 
             string fullDataPath = buildPath + filename + modifier + dataPath;
             Debug.Log(fullDataPath);
@@ -110,152 +94,152 @@ namespace Builders
 
         static void uploadToPatchKit(string path)
         {
-            string[] contents =
-            {
-                "#!/bin/sh",
-                $"start {Application.dataPath}/builders/patchKit/patchkit-tools make-version -s ac1ae6ae296777d8f700b72ea5231cc8 -a ccfb4cd4e4aea80d14fcc2b649001f0b -l WHO -f {Application.dataPath}/../build/build_windows"
-                //$"/c start {Application.dataPath}/builders/patchKit/patchkit-tools make-version -s ac1ae6ae296777d8f700b72ea5231cc8 -a ccfb4cd4e4aea80d14fcc2b649001f0b -l WHO -f {Application.dataPath}/../build/build_windows /c"
-            };
-            var filePath = $"{Application.dataPath}/builders/patchKit/upload.sh";
-            File.WriteAllLines(filePath, contents);
-            Process.Start(filePath);
-            File.Delete(filePath);
-            //var processInfo = new ProcessStartInfo("cmd.exe",contents);
-            //processInfo.CreateNoWindow = false;
-            //processInfo.UseShellExecute = false;
-            // processInfo.WindowStyle = ProcessWindowStyle.Normal;
-            //var process = Process.Start(processInfo);
-            //Debug.Log("started successfully!");
-            //process.WaitForExit();
-            //process.Close();
-            //Debug.Log("Exit successfuly!");
+          var buildPlatform = "build_windows";
+          // string[] contents =
+          // {
+               //     "#!/bin/sh",
+               //     $"start {Application.dataPath}/builders/patchKit/patchkit-tools make-version -s ac1ae6ae296777d8f700b72ea5231cc8 -a ccfb4cd4e4aea80d14fcc2b649001f0b -l test -f {Application.dataPath}/../build/{buildPlatform}"
+            // };
+            //var filePath = $"{Application.dataPath}/builders/patchKit/upload.sh";
+               //File.WriteAllLines(filePath, contents);
+               Process.Start($"{Application.dataPath}/../patchKit/patchkit-tools.bat",$"make-version -s ac1ae6ae296777d8f700b72ea5231cc8 -a ccfb4cd4e4aea80d14fcc2b649001f0b -l test2 -f {Application.dataPath}/../build/{buildPlatform} -x");
+
+               //File.Delete(filePath);
+
+               //var contents = $"/c start {Application.dataPath}/builders/patchKit/patchkit-tools make-version -s ac1ae6ae296777d8f700b72ea5231cc8 -a ccfb4cd4e4aea80d14fcc2b649001f0b -l test -f {Application.dataPath}/../build/build_windows /c"
+               //var processInfo = new ProcessStartInfo("cmd.exe",contents);
+               //processInfo.CreateNoWindow = false;
+               //processInfo.UseShellExecute = false;
+               // processInfo.WindowStyle = ProcessWindowStyle.Normal;
+               //var process = Process.Start(processInfo);
+               //process.WaitForExit();
+               //process.Close();
         }
-        static string[] GetScenePaths(BuildTarget buildTarget, bool useSidgin = false)
-        {
+          static string[] GetScenePaths(BuildTarget buildTarget, bool useSidgin = false)
+          {
             string[] scenes = new string[EditorBuildSettings.scenes.Length];
             int j = scenes.Length;
             for (int i = 0; i < j; i++)
             {
-                if (!useSidgin)
+              if (!useSidgin)
+              {
+                if (i == 0)
                 {
-                    if (i == 0)
-                    {
-                        scenes = new string[scenes.Length-1];
-                        continue;
-                    }
-                    scenes[i-1] = EditorBuildSettings.scenes[i].path;
+                  scenes = new string[scenes.Length-1];
+                  continue;
                 }
-                else
-                    scenes[i] = EditorBuildSettings.scenes[i].path;
+                scenes[i-1] = EditorBuildSettings.scenes[i].path;
+              }
+              else
+              scenes[i] = EditorBuildSettings.scenes[i].path;
             }
             return scenes;
-        }
-        public static void CreateZip(string stZipPath, string stDirToZip)
-        {
+          }
+          public static void CreateZip(string stZipPath, string stDirToZip)
+          {
             try
             {
-                stDirToZip = Path.GetFullPath(stDirToZip);
-                stZipPath = Path.GetFullPath(stZipPath);
+              stDirToZip = Path.GetFullPath(stDirToZip);
+              stZipPath = Path.GetFullPath(stZipPath);
 
-                Console.WriteLine("Zip directory " + stDirToZip);
+              Console.WriteLine("Zip directory " + stDirToZip);
 
-                Stack<FileInfo> stackFiles = DirExplore(stDirToZip);
+              Stack<FileInfo> stackFiles = DirExplore(stDirToZip);
 
-                ZipOutputStream zipOutput = null;
+              ZipOutputStream zipOutput = null;
 
-                if (File.Exists(stZipPath))
-                    File.Delete(stZipPath);
+              if (File.Exists(stZipPath))
+              File.Delete(stZipPath);
 
-                Crc32 crc = new Crc32();
-                zipOutput = new ZipOutputStream(File.Create(stZipPath));
-                zipOutput.SetLevel(6); // 0 - store only to 9 - means best compression
+              Crc32 crc = new Crc32();
+              zipOutput = new ZipOutputStream(File.Create(stZipPath));
+              zipOutput.SetLevel(6); // 0 - store only to 9 - means best compression
 
-                Debug.Log(stZipPath);
-                Console.WriteLine(stZipPath);
+              Debug.Log(stZipPath);
+              Console.WriteLine(stZipPath);
 
-                Console.WriteLine(stackFiles.Count + " files to zip.\n");
+              Console.WriteLine(stackFiles.Count + " files to zip.\n");
 
-                int index = 0;
-                foreach (FileInfo fi in stackFiles)
+              int index = 0;
+              foreach (FileInfo fi in stackFiles)
+              {
+                ++index;
+                int percent = (int)((float)index / ((float)stackFiles.Count / 100));
+                if (percent % 1 == 0)
                 {
-                    ++index;
-                    int percent = (int)((float)index / ((float)stackFiles.Count / 100));
-                    if (percent % 1 == 0)
-                    {
-                        Console.CursorLeft = 0;
-                        Console.Write(_stSchon[index % _stSchon.Length].ToString() + " " + percent + "% done.");
-                    }
-                    FileStream fs = File.OpenRead(fi.FullName);
-
-                    byte[] buffer = new byte[fs.Length];
-                    fs.Read(buffer, 0, buffer.Length);
-
-                    //Create the right arborescence within the archive
-                    string stFileName = fi.FullName.Remove(0, stDirToZip.Length + 1);
-                    ZipEntry entry = new ZipEntry(stFileName);
-
-                    entry.DateTime = DateTime.Now;
-
-                    entry.Size = fs.Length;
-                    fs.Close();
-
-                    crc.Reset();
-                    crc.Update(buffer);
-
-                    entry.Crc = crc.Value;
-
-                    zipOutput.PutNextEntry(entry);
-
-                    zipOutput.Write(buffer, 0, buffer.Length);
+                  Console.CursorLeft = 0;
+                  Console.Write(_stSchon[index % _stSchon.Length].ToString() + " " + percent + "% done.");
                 }
-                zipOutput.Finish();
-                zipOutput.Close();
+                FileStream fs = File.OpenRead(fi.FullName);
+
+                byte[] buffer = new byte[fs.Length];
+                fs.Read(buffer, 0, buffer.Length);
+
+                //Create the right arborescence within the archive
+                string stFileName = fi.FullName.Remove(0, stDirToZip.Length + 1);
+                ZipEntry entry = new ZipEntry(stFileName);
+
+                entry.DateTime = DateTime.Now;
+
+                entry.Size = fs.Length;
+                fs.Close();
+
+                crc.Reset();
+                crc.Update(buffer);
+
+                entry.Crc = crc.Value;
+
+                zipOutput.PutNextEntry(entry);
+
+                zipOutput.Write(buffer, 0, buffer.Length);
+              }
+              zipOutput.Finish();
+              zipOutput.Close();
             }
             catch (Exception)
             {
-                throw;
+              throw;
             }
-        }
-        static private Stack<FileInfo> DirExplore(string stSrcDirPath)
-        {
+          }
+          static private Stack<FileInfo> DirExplore(string stSrcDirPath)
+          {
             try
             {
-                Stack<DirectoryInfo> stackDirs = new Stack<DirectoryInfo>();
-                Stack<FileInfo> stackPaths = new Stack<FileInfo>();
+              Stack<DirectoryInfo> stackDirs = new Stack<DirectoryInfo>();
+              Stack<FileInfo> stackPaths = new Stack<FileInfo>();
 
-                DirectoryInfo dd = new DirectoryInfo(Path.GetFullPath(stSrcDirPath));
+              DirectoryInfo dd = new DirectoryInfo(Path.GetFullPath(stSrcDirPath));
 
-                stackDirs.Push(dd);
-                while (stackDirs.Count > 0)
+              stackDirs.Push(dd);
+              while (stackDirs.Count > 0)
+              {
+                DirectoryInfo currentDir = (DirectoryInfo)stackDirs.Pop();
+
+
+                try
                 {
-                    DirectoryInfo currentDir = (DirectoryInfo)stackDirs.Pop();
+                  //Process .\files
+                  foreach (FileInfo fileInfo in currentDir.GetFiles())
+                  {
+                    stackPaths.Push(fileInfo);
+                  }
 
-
-                    try
-                    {
-                        //Process .\files
-                        foreach (FileInfo fileInfo in currentDir.GetFiles())
-                        {
-                            stackPaths.Push(fileInfo);
-                        }
-
-                        //Process Subdirectories
-                        foreach (DirectoryInfo diNext in currentDir.GetDirectories())
-                            stackDirs.Push(diNext);
-                    }
-                    catch (Exception)
-                    {//Might be a system directory
-                    }
+                  //Process Subdirectories
+                  foreach (DirectoryInfo diNext in currentDir.GetDirectories())
+                  stackDirs.Push(diNext);
                 }
-                return stackPaths;
+                catch (Exception)
+                {//Might be a system directory
+                }
+              }
+              return stackPaths;
             }
             catch (Exception)
             {
-                throw;
+              throw;
             }
-        }
+          }
 
-        private static char[] _stSchon = new char[] { '-', '\\', '|', '/' };
-    }
-}
-#endif
+          private static char[] _stSchon = new char[] { '-', '\\', '|', '/' };
+        }
+      }

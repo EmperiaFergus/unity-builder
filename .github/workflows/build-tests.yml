@@ -17,12 +17,12 @@ jobs:
       fail-fast: false
       matrix:
         projectPath:
-          - U.GB
+          - test-project
         unityVersion:
           - 2020.3.14f1
         targetPlatform:
-          #          - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
-          - StandaloneWindows64 # Build a Windows 64-bit standalone.
+          - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
+          #           - StandaloneWindows64 # Build a Windows 64-bit standalone.
           #          - StandaloneLinux64 # Build a Linux 64-bit standalone.
           #          - iOS # Build an iOS player.
           #          - Android # Build an Android .apk.
@@ -34,11 +34,16 @@ jobs:
           #          - tvOS # Build to Apple's tvOS platform.
           #          - Switch # Build a Nintendo Switch player
     steps:
-      #checkout
+      ###########################
+      #         Checkout        #
+      ###########################
       - uses: actions/checkout@v2
         with:
           lfs: true
-      #Cache
+
+      ###########################
+      #          Cache          #
+      ###########################
       - uses: actions/cache@v2
         with:
           path: ${{ matrix.projectPath }}/Library
@@ -46,22 +51,33 @@ jobs:
           restore-keys: |
             Library-${{ matrix.projectPath }}-
             Library-
-      #Build windows
-      - uses: EmperiaFergus/unity-builder@V3.3ca
+      ###########################
+      #          Build          #
+      ###########################
+      - uses: ./
         with:
           projectPath: ${{ matrix.projectPath }}
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
-          buildMethod: ${{secrets.BUILD_METHOD}}
+          customParameters: -profile SomeProfile -someBoolean -someValue exampleValue
           s3InstallerAccessKey: ${{secrets.S3_ACCESS_KEY}}
           s3InstallerSecretKey: ${{secrets.S3_SECRET_KEY}}
           s3InstallerRegion: ${{secrets.S3_REGION}}
           s3InstallerBucketName: ${{secrets.S3_BUCKET_NAME}}
           serverDevelopmentAddress: ${{secrets.DEVELOPER_ADDRESS}}
           serverProductionAddress: ${{secrets.PRODUCTION_ADDRESS}}
-      #Upload
+          serverTimeout: ${{secrets.SERVER_TIMEOUT}}
+          buildMethod: Builders.Builder.StartWindows
+          patchkitSecret: ${{secrets.PATCHKITSECRET}}
+          patchkitAPIKey: ${{secrets.PATCHKITAPIKEY}}
+      ###########################
+      #          Upload         #
+      ###########################
+      - run: find . -type f -name "*.zip"
+
+      #- run: find . -name "build.zip"
       - uses: actions/upload-artifact@v2
         with:
-          name: Build (${{ matrix.targetPlatform }})
+          name: Build (${{ matrix.unityVersion }})
           path: ./${{ matrix.projectPath }}/build/build.zip
           retention-days: 14
