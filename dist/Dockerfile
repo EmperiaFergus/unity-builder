@@ -1,6 +1,6 @@
-#ARG IMAGE
-#FROM $IMAGE
-FROM timbru31/ruby-node
+ARG IMAGE
+FROM $IMAGE
+
 LABEL "com.github.actions.name"="Unity - Builder"
 LABEL "com.github.actions.description"="Build Unity projects for different platforms."
 LABEL "com.github.actions.icon"="box"
@@ -11,7 +11,10 @@ LABEL "homepage"="http://github.com/webbertakken/unity-actions"
 LABEL "maintainer"="Webber Takken <webber@takken.io>"
 
 
-
+RUN git clone https://github.com/rbenv/ruby-build.git && \
+  PREFIX=/usr/local ./ruby-build/install.sh && \
+  ruby-build -v 2.4.1 /usr/local && \
+  gem install bundler -v <VERSION HERE> --no-ri --no-rdoc && bundle install
 
 ADD default-build-script /UnityBuilderAction
 ADD steps /steps
