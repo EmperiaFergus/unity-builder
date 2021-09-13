@@ -12,9 +12,9 @@ LABEL "maintainer"="Webber Takken <webber@takken.io>"
 
 
 # Install Ruby.
-#RUN \
-#  apt-get update && \
-#  apt-get install -y ruby
+RUN \
+  apt-get update && \
+  apt-get install -y ruby
 # Download the ruby-build code
 
 ADD default-build-script /UnityBuilderAction
