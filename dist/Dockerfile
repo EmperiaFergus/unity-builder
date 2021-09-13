@@ -16,7 +16,8 @@ LABEL "maintainer"="Webber Takken <webber@takken.io>"
 #  apt-get update && \
 #  apt-get install -y ruby
 # Download the ruby-build code
-RUN \curl -L https://github.com/sstephenson/ruby-build/archive/v20130518.tar.gz | tar -zxvf - -C /tmp/
+
+
 
 # Install ruby-build
 RUN cd /tmp/ruby-build-* && ./install.sh && cd / && rm -rfv /tmp/ruby-build-master

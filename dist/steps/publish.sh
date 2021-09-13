@@ -19,6 +19,11 @@ done
 # ADD patchkit /patchkit
 # RUN chmod -R +x /patchkit
 #/github/workspace/dist/patchkit/patchkit-tools.sh make-version -s $patchkitSecret -a $patchkitAPIKey -l test3 -f $BUILD_PATH_FULL -x
+
+RUN \
+  apt-get update && \
+  apt-get install -y ruby
+
 /patchkit/patchkit-tools.sh make-version -s $patchkitSecret -a $patchkitAPIKey -l test3 -f $BUILD_PATH_FULL -x
 
 
