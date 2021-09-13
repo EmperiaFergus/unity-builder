@@ -1,6 +1,6 @@
-ARG IMAGE
-FROM $IMAGE
-
+#ARG IMAGE
+#FROM $IMAGE
+FROM timbru31/ruby-node
 LABEL "com.github.actions.name"="Unity - Builder"
 LABEL "com.github.actions.description"="Build Unity projects for different platforms."
 LABEL "com.github.actions.icon"="box"
