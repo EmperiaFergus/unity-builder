@@ -12,11 +12,24 @@ LABEL "maintainer"="Webber Takken <webber@takken.io>"
 
 
 # Install Ruby.
-RUN \
-  apt-get update && \
-  apt-get install -y ruby && \
-  gem install rubygems-update && \
-  update_rubygems
+#RUN \
+#  apt-get update && \
+#  apt-get install -y ruby
+# Download the ruby-build code
+RUN \curl -L https://github.com/sstephenson/ruby-build/archive/v20130518.tar.gz | tar -zxvf - -C /tmp/
+
+# Install ruby-build
+RUN cd /tmp/ruby-build-* && ./install.sh && cd / && rm -rfv /tmp/ruby-build-master
+
+# Install ruby
+RUN ruby-build -v 1.9.3-p429 /usr/local
+
+# Install gems
+RUN gem install bundler rubygems-bundler --no-rdoc --no-ri
+
+# Regenerate binstubs
+RUN gem regenerate_binstubs
+
 
 ADD default-build-script /UnityBuilderAction
 ADD steps /steps
