@@ -1,7 +1,5 @@
-#ARG IMAGE
-#FROM $IMAGE
 ARG IMAGE
-FROM starefossen/ruby-node
+FROM $IMAGE
 
 LABEL "com.github.actions.name"="Unity - Builder"
 LABEL "com.github.actions.description"="Build Unity projects for different platforms."
