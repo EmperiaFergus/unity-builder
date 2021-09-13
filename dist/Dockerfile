@@ -11,11 +11,7 @@ LABEL "homepage"="http://github.com/webbertakken/unity-actions"
 LABEL "maintainer"="Webber Takken <webber@takken.io>"
 
 
-# Install Ruby.
-RUN \
-  apt-get update && \
-  apt-get install -y ruby
-# Download the ruby-build code
+
 
 ADD default-build-script /UnityBuilderAction
 ADD steps /steps
