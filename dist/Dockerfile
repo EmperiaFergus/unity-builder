@@ -1,5 +1,7 @@
+#ARG IMAGE
+#FROM $IMAGE
 ARG IMAGE
-FROM $IMAGE
+FROM starefossen/ruby-node
 
 LABEL "com.github.actions.name"="Unity - Builder"
 LABEL "com.github.actions.description"="Build Unity projects for different platforms."
@@ -24,8 +26,6 @@ ADD patchkit /patchkit
 RUN chmod -R +x /patchkit
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
-#ADD steps/patchkit/patchkit-tools.sh /steps/patchkit/patchkit-tools.sh
-#RUN chmod -R +x /steps/patchkit/patchkit-tools.sh
 RUN ls
 
 ENTRYPOINT ["/entrypoint.sh"]
