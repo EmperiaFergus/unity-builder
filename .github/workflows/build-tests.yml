@@ -56,7 +56,6 @@ jobs:
       ###########################
       - uses: ./
         with:
-          customImage: 'drecom/ubuntu-ruby'
           projectPath: ${{ matrix.projectPath }}
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
