@@ -104,14 +104,14 @@ module PatchKitTools
 
       validate_source_version! unless mode_files?
 
-      #if !draft_version.nil?
-        #if !@overwrite_draft && !ask_yes_or_no("Draft version already exists. Its "\
-          #"contents will be overwritten. Proceed?", "y")
-          #exit
-        #end
-      #else
-        #create_draft_version
-      #end
+      if !draft_version.nil?
+        if !@overwrite_draft && !ask_yes_or_no("Draft version already exists. Its "\
+          "contents will be overwritten. Proceed?", "y")
+          exit
+        end
+      else
+        create_draft_version!
+      end
 
       update_draft_version_details!
 
