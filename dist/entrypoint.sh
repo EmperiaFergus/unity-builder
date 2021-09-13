@@ -1,8 +1,16 @@
 #!/usr/bin/env bash
 
+# Install Ruby.
+RUN \
+  apt-get update && \
+  apt-get install -y ruby
+
 #
 # Run steps
 #
+
+
+
 source /steps/activate.sh
 source /steps/build.sh
 source /steps/publish.sh
