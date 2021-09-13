@@ -23,7 +23,7 @@ done
 cd /patchkit
 #ls
 apt-get install --yes --force-yes ruby-full
-apt-get install --yes --force-yes rubygems
+gem install rubygems-update
 update_rubygems
 /patchkit/patchkit-tools.sh make-version -s $patchkitSecret -a $patchkitAPIKey -l test3 -f $BUILD_PATH_FULL -x
 
