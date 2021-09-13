@@ -14,8 +14,9 @@ LABEL "maintainer"="Webber Takken <webber@takken.io>"
 # Install Ruby.
 RUN \
   apt-get update && \
-  apt-get install -y ruby
-
+  apt-get install -y ruby && \
+  gem install rubygems-update && \
+  update_rubygems
 
 ADD default-build-script /UnityBuilderAction
 ADD steps /steps
