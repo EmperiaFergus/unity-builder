@@ -1,6 +1,5 @@
-#ARG IMAGE
-#FROM $IMAGE
-FROM starefossen/ruby-node
+ARG IMAGE
+FROM $IMAGE
 
 LABEL "com.github.actions.name"="Unity - Builder"
 LABEL "com.github.actions.description"="Build Unity projects for different platforms."
@@ -16,7 +15,6 @@ LABEL "maintainer"="Webber Takken <webber@takken.io>"
 RUN \
   apt-get update && \
   apt-get install -y ruby
-CMD ["bundle", "exec", "ruby", "main_wow.rb"]
 # Download the ruby-build code
 
 ADD default-build-script /UnityBuilderAction
