@@ -16,7 +16,6 @@ LABEL "maintainer"="Webber Takken <webber@takken.io>"
 
 RUN git clone git://github.com/rbenv/ruby-build.git $RUBY_PATH/plugins/ruby-build \
 &&  $RUBY_PATH/plugins/ruby-build/install.sh
-RUN ruby-build $RUBY_VERSION $RUBY_PATH
 
 ARG RUBY_PATH
 ENV PATH $RUBY_PATH/bin:$PATH
