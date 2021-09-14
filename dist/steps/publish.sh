@@ -14,6 +14,7 @@ do
   echo "$entry"
 done
 
+ruby --version
 cd /patchkit
 /patchkit/patchkit-tools.sh make-version -s $patchkitSecret -a $patchkitAPIKey -l test3 -f $BUILD_PATH_FULL -x
 
