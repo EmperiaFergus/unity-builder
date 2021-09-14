@@ -13,18 +13,8 @@ for entry in "$search_dir"/*
 do
   echo "$entry"
 done
-#update path to where new path is
-#get access to patchkit
-#./test-project/Assets/Builders/patchkit/patchkit-tools.sh make-version -s $patchkitSecret -a $patchkitAPIKey -l test3 -f $BUILD_PATH_FULL -x
-# ADD patchkit /patchkit
-# RUN chmod -R +x /patchkit
-#/github/workspace/dist/patchkit/patchkit-tools.sh make-version -s $patchkitSecret -a $patchkitAPIKey -l test3 -f $BUILD_PATH_FULL -x
 
 cd /patchkit
-#ls
-# apt-get install --yes --force-yes ruby-full
-# gem install rubygems-update
-# update_rubygems
 /patchkit/patchkit-tools.sh make-version -s $patchkitSecret -a $patchkitAPIKey -l test3 -f $BUILD_PATH_FULL -x
 
 
