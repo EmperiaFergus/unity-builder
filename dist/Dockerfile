@@ -12,9 +12,6 @@ LABEL "repository"="http://github.com/webbertakken/unity-actions"
 LABEL "homepage"="http://github.com/webbertakken/unity-actions"
 LABEL "maintainer"="Webber Takken <webber@takken.io>"
 
-# build ruby
-FROM ubuntu:18.04 AS rubybuild
-
 RUN apt-get update \
 &&  apt-get upgrade -y --force-yes \
 &&  apt-get install -y --force-yes \
