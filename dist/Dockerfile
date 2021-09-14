@@ -1,17 +1,4 @@
-ARG IMAGE
-FROM $IMAGE
-
-LABEL "com.github.actions.name"="Unity - Builder"
-LABEL "com.github.actions.description"="Build Unity projects for different platforms."
-LABEL "com.github.actions.icon"="box"
-LABEL "com.github.actions.color"="gray-dark"
-
-LABEL "repository"="http://github.com/webbertakken/unity-actions"
-LABEL "homepage"="http://github.com/webbertakken/unity-actions"
-LABEL "maintainer"="Webber Takken <webber@takken.io>"
-
-
-# Install Ruby.
+# initially inspired from https://github.com/drecom/docker-ubuntu-ruby/blob/master/Dockerfile
 ARG RUBY_PATH=/usr/local/
 ARG RUBY_VERSION=2.6.0
 ARG GAME_CI_UNITY_EDITOR_IMAGE
@@ -54,6 +41,21 @@ RUN apt-get update && \
         libsqlite3-dev
 COPY --from=rubybuild $RUBY_PATH $RUBY_PATH
 
+LABEL "com.github.actions.name"="Unity - Builder"
+LABEL "com.github.actions.description"="Build Unity projects for different platforms."
+LABEL "com.github.actions.icon"="box"
+LABEL "com.github.actions.color"="gray-dark"
+
+LABEL "repository"="http://github.com/webbertakken/unity-actions"
+LABEL "homepage"="http://github.com/webbertakken/unity-actions"
+LABEL "maintainer"="Webber Takken <webber@takken.io>"
+
+
+# Install Ruby.
+RUN \
+  apt-get update && \
+  apt-get install -y ruby
+# Download the ruby-build code
 
 ADD default-build-script /UnityBuilderAction
 ADD steps /steps
