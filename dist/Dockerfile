@@ -1,10 +1,6 @@
 ARG IMAGE
 FROM $IMAGE
 
-ARG RUBY_PATH=/usr/local/
-ARG RUBY_VERSION=2.6.0
-ARG GAME_CI_UNITY_EDITOR_IMAGE
-
 LABEL "com.github.actions.name"="Unity - Builder"
 LABEL "com.github.actions.description"="Build Unity projects for different platforms."
 LABEL "com.github.actions.icon"="box"
@@ -16,6 +12,13 @@ LABEL "maintainer"="Webber Takken <webber@takken.io>"
 
 
 # Install Ruby.
+ARG RUBY_PATH=/usr/local/
+ARG RUBY_VERSION=2.6.0
+ARG GAME_CI_UNITY_EDITOR_IMAGE
+
+# build ruby
+FROM ubuntu:18.04 AS rubybuild
+
 RUN apt-get update \
 &&  apt-get upgrade -y --force-yes \
 &&  apt-get install -y --force-yes \
@@ -50,7 +53,6 @@ RUN apt-get update && \
         zlib1g-dev \
         libsqlite3-dev
 COPY --from=rubybuild $RUBY_PATH $RUBY_PATH
-#installed ruby
 
 
 ADD default-build-script /UnityBuilderAction
