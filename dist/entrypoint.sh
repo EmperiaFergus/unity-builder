@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
-# # Install Ruby.
-# RUN \
-#   apt-get update && \
-#   apt-get install -y ruby
+#update ruby
+gem install rubygems-update
+update_rubygems
 
 #
 # Run steps
