@@ -104,7 +104,7 @@ jobs:
             name: Build (${{ matrix.unityVersion }})
             path: ./${{ matrix.projectPath }}/build/build.zip
       - name: publish to patchkit
-        uses: EmperiaFergus/actions-patchkit@v.0q
+        uses: EmperiaFergus/actions-patchkit@v.0r
         with:
             api-key: ${{secrets.PATCHKITAPIKEY}}
             secret-key: ${{secrets.PATCHKITSECRET}}
