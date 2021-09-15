@@ -56,7 +56,7 @@ jobs:
       ###########################
       - uses: ./
         with:
-          customImage: ubuntu:20.04
+          customImage: fbeake/editor:ubuntu-2021.1.16f1-windows-mono-0.15.0
           projectPath: ${{ matrix.projectPath }}
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
@@ -71,6 +71,15 @@ jobs:
           buildMethod: Builders.Builder.StartWindows
           patchkitSecret: ${{secrets.PATCHKITSECRET}}
           patchkitAPIKey: ${{secrets.PATCHKITAPIKEY}}
+
+      ###########################
+      #          publish        #
+      ###########################
+      - uses: EmperiaFergus/actions-patchkit@v0.a
+        with:
+          api-key: ${{secrets.PATCHKITAPIKEY}}
+          secret-key: ${{secrets.PATCHKITSECRET}}
+          path: ./${{ matrix.projectPath }}/build/build.zip
       ###########################
       #          Upload         #
       ###########################

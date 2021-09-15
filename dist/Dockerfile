@@ -26,6 +26,5 @@ ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 #ADD steps/patchkit/patchkit-tools.sh /steps/patchkit/patchkit-tools.sh
 #RUN chmod -R +x /steps/patchkit/patchkit-tools.sh
-RUN ls
 
 ENTRYPOINT ["/entrypoint.sh"]
