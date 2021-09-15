@@ -87,23 +87,24 @@ jobs:
       ###########################
       #          publish        #
       ###########################
-      name: publish with patchkit
+  publish:
+    name: publish with patchkit
       runs-on: ubuntu-latest
       strategy:
-        matrix:
-          projectPath:
-            - test-project
-          unityVersion:
-            - 2020.3.14f1
-      steps:
-        - name: download artifact
-          uses: actions/download-artifact@v2
-            with:
-              name: Build (${{ matrix.unityVersion }})
-              path: ./${{ matrix.projectPath }}/build/build.zip
-        - name: publish to patchkit
-            uses: EmperiaFergus/actions-patchkit@v0.l
-            with:
-              api-key: ${{secrets.PATCHKITAPIKEY}}
-              secret-key: ${{secrets.PATCHKITSECRET}}
-              path: ./${{ matrix.projectPath }}/build/build.zip
+      matrix:
+        projectPath:
+          - test-project
+        unityVersion:
+          - 2020.3.14f1
+    steps:
+      - name: download artifact
+        uses: actions/download-artifact@v2
+          with:
+            name: Build (${{ matrix.unityVersion }})
+            path: ./${{ matrix.projectPath }}/build/build.zip
+      - name: publish to patchkit
+          uses: EmperiaFergus/actions-patchkit@v0.k
+          with:
+            api-key: ${{secrets.PATCHKITAPIKEY}}
+            secret-key: ${{secrets.PATCHKITSECRET}}
+            path: ./${{ matrix.projectPath }}/build/build.zip
