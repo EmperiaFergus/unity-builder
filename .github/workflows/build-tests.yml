@@ -56,7 +56,7 @@ jobs:
       ###########################
       - uses: ./
         with:
-          customImage: fbeake/editor:ubuntu-2021.1.16f1-windows-mono-0.15.0
+          customImage: debian
           projectPath: ${{ matrix.projectPath }}
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
