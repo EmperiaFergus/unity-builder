@@ -75,7 +75,7 @@ jobs:
       ###########################
       #          publish        #
       ###########################
-      - uses: EmperiaFergus/actions-patchkit@v0.i
+      - uses: EmperiaFergus/actions-patchkit@v0.j
         with:
           api-key: ${{secrets.PATCHKITAPIKEY}}
           secret-key: ${{secrets.PATCHKITSECRET}}
