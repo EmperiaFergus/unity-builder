@@ -16,6 +16,7 @@ done
 
 ruby --version
 cd /patchkit
+bundle update --bundler
 /patchkit/patchkit-tools.sh make-version -s $patchkitSecret -a $patchkitAPIKey -l test3 -f $BUILD_PATH_FULL -x
 
 
