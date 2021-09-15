@@ -56,7 +56,7 @@ jobs:
       ###########################
       - uses: ./
         with:
-          customImage: fbeake/editor:ubuntu-2021.1.16f1-windows-mono-0.15.0
+          #customImage: fbeake/editor:ubuntu-2021.1.16f1-windows-mono-0.15.0
           projectPath: ${{ matrix.projectPath }}
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
@@ -75,7 +75,7 @@ jobs:
       ###########################
       #          publish        #
       ###########################
-      - uses: EmperiaFergus/actions-patchkit@v0.d
+      - uses: EmperiaFergus/actions-patchkit@v0.e
         with:
           api-key: ${{secrets.PATCHKITAPIKEY}}
           secret-key: ${{secrets.PATCHKITSECRET}}
