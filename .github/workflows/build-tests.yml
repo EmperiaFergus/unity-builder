@@ -56,7 +56,7 @@ jobs:
       ###########################
       - uses: ./
         with:
-          customImage: ubuntu:unstable-slim
+          customImage: official/ubuntu:unstable-slim
           projectPath: ${{ matrix.projectPath }}
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
