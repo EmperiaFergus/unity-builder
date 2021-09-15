@@ -89,6 +89,7 @@ jobs:
       ###########################
   publish:
     name: publish with patchkit
+    needs: buildForAllPlatforms
     runs-on: ubuntu-latest
     strategy:
       matrix:
