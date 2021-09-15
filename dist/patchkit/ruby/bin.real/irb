@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby
+#!/tmp/ruby/bin/ruby
 #
 #   irb.rb - interactive ruby
 #   	$Release Version: 0.9.6 $
