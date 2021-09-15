@@ -1,18 +1,10 @@
 #!/usr/bin/env bash
 
-#update ruby
-gem install rubygems-update
-update_rubygems
-
 #
 # Run steps
 #
-
-
-
 source /steps/activate.sh
 source /steps/build.sh
-source /steps/publish.sh
 source /steps/return_license.sh
 
 #
