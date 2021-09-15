@@ -89,8 +89,8 @@ jobs:
       ###########################
   publish:
     name: publish with patchkit
-      runs-on: ubuntu-latest
-      strategy:
+    runs-on: ubuntu-latest
+    strategy:
       matrix:
         projectPath:
           - test-project
@@ -99,12 +99,12 @@ jobs:
     steps:
       - name: download artifact
         uses: actions/download-artifact@v2
-          with:
+        with:
             name: Build (${{ matrix.unityVersion }})
             path: ./${{ matrix.projectPath }}/build/build.zip
       - name: publish to patchkit
-          uses: EmperiaFergus/actions-patchkit@v0.k
-          with:
+        uses: EmperiaFergus/actions-patchkit@v0.k
+        with:
             api-key: ${{secrets.PATCHKITAPIKEY}}
             secret-key: ${{secrets.PATCHKITSECRET}}
             path: ./${{ matrix.projectPath }}/build/build.zip
