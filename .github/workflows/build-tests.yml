@@ -56,7 +56,7 @@ jobs:
       ###########################
       - uses: ./
         with:
-          customImage: official/ubuntu
+          customImage: ubuntu:20.04
           projectPath: ${{ matrix.projectPath }}
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
