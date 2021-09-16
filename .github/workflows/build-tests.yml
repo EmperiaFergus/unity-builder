@@ -81,7 +81,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: Build (${{ matrix.unityVersion }})
-          path: ./${{ matrix.projectPath }}/build
+          path: ./${{ matrix.projectPath }}/build/_build
           retention-days: 14
 
       ###########################
