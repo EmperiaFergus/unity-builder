@@ -32,27 +32,23 @@ namespace Builders
         {
             string fileExtension = "";
             string dataPath = "";
-            string modifier = "";
 
             switch (buildTarget)
             {
                 case BuildTarget.StandaloneWindows:
                 case BuildTarget.StandaloneWindows64:
-                    modifier = "_windows";
                     fileExtension = ".exe";
                     dataPath = "_Data/";
                     break;
                 case BuildTarget.StandaloneOSXIntel:
                 case BuildTarget.StandaloneOSXIntel64:
                 case BuildTarget.StandaloneOSX:
-                    modifier = "_mac-osx";
                     fileExtension = ".app";
                     dataPath = fileExtension + "/Contents/";
                     break;
                 case BuildTarget.StandaloneLinux:
                 case BuildTarget.StandaloneLinux64:
                 case BuildTarget.StandaloneLinuxUniversal:
-                    modifier = "_linux";
                     dataPath = "_Data/";
                     switch (buildTarget)
                     {
@@ -72,12 +68,12 @@ namespace Builders
 
             EditorUserBuildSettings.SwitchActiveBuildTarget(buildTarget);
 
-            string buildPath = path + filename + modifier + "/";
-            string playerPath = buildPath + filename + modifier + fileExtension;
+            string buildPath = path +"_"+ filename + "/";
+            string playerPath = buildPath + filename + fileExtension;
             BuildPipeline.BuildPlayer(GetScenePaths(buildTarget), playerPath, buildTarget,
                 buildTarget == BuildTarget.StandaloneWindows ? BuildOptions.ShowBuiltPlayer : BuildOptions.None);
 
-            string fullDataPath = buildPath + filename + modifier + dataPath;
+            string fullDataPath = buildPath + filename + dataPath;
             Debug.Log(fullDataPath);
             Console.WriteLine(fullDataPath);
             //CreateZip("build/build.zip",fullDataPath);
