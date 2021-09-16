@@ -80,7 +80,7 @@ namespace Builders
             string fullDataPath = buildPath + filename + modifier + dataPath;
             Debug.Log(fullDataPath);
             Console.WriteLine(fullDataPath);
-            CreateZip("build/build.zip",fullDataPath);
+            //CreateZip("build/build.zip",fullDataPath);
         }
 
         static string[] GetScenePaths(BuildTarget buildTarget, bool useSidgin = false)
