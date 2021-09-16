@@ -27,19 +27,6 @@ echo "Using build path \"$BUILD_PATH\" to save file \"$BUILD_FILE\"."
 BUILD_PATH_FULL="$GITHUB_WORKSPACE/$BUILD_PATH"
 CUSTOM_BUILD_PATH="$BUILD_PATH_FULL/$BUILD_FILE"
 
-#s3InstallerPath="s3InstallerPath"
-#s3InstallerAccessKey="$s3InstallerAccessKey"
-#s3InstallerSecretKey="$s3InstallerSecretKey"
-#s3InstallerRegion="s3InstallerRegion"
-#s3InstallerBucketName="$s3InstallerBucketName"
-#
-#SERVER_INSTALLER_PATH="$SERVER_INSTALLER_PATH"
-#serverDevelopmentAddress="$serverDevelopmentAddress"
-#serverProductionAddress="$serverProductionAddress"
-#serverTimeout="$serverTimeout"
-
-
-
 #
 # Set the build method, must reference one of:
 #
@@ -124,28 +111,6 @@ echo $PWD
 $s3InstallerPath "/github/workspace/dist/installers/S3Installer.asset"
 $serverInstallerPath "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset"
 
-#echo "VARIABLES:"
-#echo "1"
-#echo "$s3InstallerAccessKey"
-#echo "2"
-#echo "$s3InstallerSecretKey"
-#echo "3"
-#echo "$s3InstallerRegion"
-#echo "4"
-#echo "$s3InstallerBucketName"
-#echo "5"
-#echo "$serverDevelopmentAddress"
-#echo "6"
-#echo "$serverProductionAddress"
-#echo "7"
-#echo "$serverTimeout"
-#echo "8"
-#echo "$BUILD_PATH_FULL"
-#echo "9"
-#echo "$UNITY_PROJECT_PATH"
-#echo "###"
-#echo ""
-
 echo "1"
 sed -i 's|ServerDevelopmentAddress|'"$serverDevelopmentAddress"'|g' ${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset
 echo "2"
@@ -166,33 +131,6 @@ echo "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/S3Installer.a
 
 sed -i 's|S3InstallerRegion|'"$s3InstallerRegion"'|g' ${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/S3Installer.asset
 
-echo "###########################"
-echo "#     PATCHKIT CONFIG     #"
-echo "###########################"
-
-
-echo "PATCHKITTEST"
-echo $patchkitSecret
-echo $patchkitAPIKey
-
-echo "###########################"
-echo "#      SIDGIN CONFIG      #"
-echo "###########################"
-
-
-echo "IF OSX"
-if [[ ${BUILD_TARGET} != *"OSX"* ]];then
-  echo "not building for OSX"
-  echo 1
-  sed -i 's|selectedDefinition: OSX|'"selectedDefinition: Win64"'|g' ${UNITY_PROJECT_PATH}/Assets/SIDGIN/EditorResources/StandaloneBuildSettingsData.asset
-else
-  echo "building for OSX"
-  sed -i 's|selectedDefinition: Win64|'"selectedDefinition: OSX"'|g' ${UNITY_PROJECT_PATH}/Assets/SIDGIN/EditorResources/StandaloneBuildSettingsData.asset
-fi
-echo "$(${UNITY_PROJECT_PATH}/Assets/SIDGIN/EditorResources/StandaloneBuildSettingsData.asset)"
-#this is required as we get a error about the build function not existing even when it's correct
-#something to do with the library folder?
-echo ""
 echo "###########################"
 echo "#     Pregen project      #"
 echo "###########################"
