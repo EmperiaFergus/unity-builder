@@ -173,38 +173,20 @@ echo "PATCHKITTEST"
 echo "${patchkitSecret}"
 echo "${patchkitAPIKey}"
 
-echo "###########################"
-echo "#      SIDGIN CONFIG      #"
-echo "###########################"
-
-
-echo "IF OSX"
-if [[ ${BUILD_TARGET} != *"OSX"* ]];then
-  echo "not building for OSX"
-  echo 1
-  sed -i 's|selectedDefinition: OSX|'"selectedDefinition: Win64"'|g' ${UNITY_PROJECT_PATH}/Assets/SIDGIN/EditorResources/StandaloneBuildSettingsData.asset
-else
-  echo "building for OSX"
-  sed -i 's|selectedDefinition: Win64|'"selectedDefinition: OSX"'|g' ${UNITY_PROJECT_PATH}/Assets/SIDGIN/EditorResources/StandaloneBuildSettingsData.asset
-fi
-echo "$(${UNITY_PROJECT_PATH}/Assets/SIDGIN/EditorResources/StandaloneBuildSettingsData.asset)"
-#this is required as we get a error about the build function not existing even when it's correct
-#something to do with the library folder?
-echo ""
-echo "###########################"
-echo "#     Pregen project      #"
-echo "###########################"
-echo ""
-unity-editor \
-  -nographics \
-  -logfile /dev/stdout \
-  -quit \
-  -customBuildName "$BUILD_NAME" \
-  -projectPath "$UNITY_PROJECT_PATH" \
-  -buildVersion "$VERSION" \
-#
-# Build
-#
+#echo "###########################"
+#echo "#     Pregen project      #"
+#echo "###########################"
+#echo ""
+#unity-editor \
+#  -nographics \
+#  -logfile /dev/stdout \
+#  -quit \
+#  -customBuildName "$BUILD_NAME" \
+#  -projectPath "$UNITY_PROJECT_PATH" \
+#  -buildVersion "$VERSION" \
+##
+## Build
+##
 echo ""
 echo "###########################"
 echo "#    Building project     #"
