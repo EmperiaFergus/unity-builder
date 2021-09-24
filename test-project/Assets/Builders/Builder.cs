@@ -12,7 +12,7 @@ namespace Builders
 {
     public class Builder : MonoBehaviour
     {
-        [MenuItem("Jobs/Build/Windows")]
+        [MenuItem("Build/Windows")]
         public static void StartWindows()
         {
             // Get filename.
@@ -21,7 +21,7 @@ namespace Builders
             BuildPlayer(BuildTarget.StandaloneWindows, filename[filename.Length - 1], path + "/");
         }
 
-        [MenuItem("Jobs/Build/ MacOS")]
+        [MenuItem("Build/MacOS")]
         public static void StartOSX()
         {
             string path = "build";
