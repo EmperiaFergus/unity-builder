@@ -124,28 +124,6 @@ echo $PWD
 $s3InstallerPath "/github/workspace/dist/installers/S3Installer.asset"
 $serverInstallerPath "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset"
 
-#echo "VARIABLES:"
-#echo "1"
-#echo "$s3InstallerAccessKey"
-#echo "2"
-#echo "$s3InstallerSecretKey"
-#echo "3"
-#echo "$s3InstallerRegion"
-#echo "4"
-#echo "$s3InstallerBucketName"
-#echo "5"
-#echo "$serverDevelopmentAddress"
-#echo "6"
-#echo "$serverProductionAddress"
-#echo "7"
-#echo "$serverTimeout"
-#echo "8"
-#echo "$BUILD_PATH_FULL"
-#echo "9"
-#echo "$UNITY_PROJECT_PATH"
-#echo "###"
-#echo ""
-
 echo "1"
 sed -i 's|ServerDevelopmentAddress|'"$serverDevelopmentAddress"'|g' ${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset
 echo "2"
@@ -153,7 +131,7 @@ sed -i 's|ServerProductionAddress|'"$serverProductionAddress"'|g' ${UNITY_PROJEC
 echo "3"
 sed -i 's|1234|'"$serverTimeout"'|g' ${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset
 
-#S3
+echo "S3"
 echo "4"
 sed -i 's|S3SecretKey|'"$s3InstallerSecretKey"'|g' ${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/S3Installer.asset
 echo "5"
