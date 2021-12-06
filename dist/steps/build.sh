@@ -119,7 +119,7 @@ ServerInstallerFile="$InstallersDir/ServerInstaller.asset"
 S3InstallerFile="$InstallersDir/S3Installer.asset"
 
 # ServerInstaller.asset
-ed -s $ServerInstaller <<EOF
+ed -s $ServerInstallerFile <<EOF
 %s/\(developmentAddress:\).*$/\1 $serverDevelopmentAddress/
 %s/\(productionAddress:\).*$/\1 $serverProductionAddress/
 %s/\(timeout:\).*$/\1 $serverTimeout/
@@ -128,7 +128,7 @@ w
 EOF
 
 # S3Installer.asset
-ed -s $S3Installer <<EOF
+ed -s $S3InstallerFile <<EOF
 %s/\(accessKey:\).*$/\1 $s3InstallerAccessKey/
 %s/\(secretKey:\).*$/\1 $s3InstallerSecretKey/
 %s/\(region:\).*$/\1 $s3InstallerRegion/
