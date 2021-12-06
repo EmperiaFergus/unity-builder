@@ -112,43 +112,30 @@ echo "#        Installers       #"
 echo "###########################"
 echo $ls
 echo $PWD
-#$s3InstallerPath "/github/workspace/dist/installers/S3Installer.asset"
-#$serverInstallerPath "${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset"
 
-#echo "1"
-#sed -i 's|ServerDevelopmentAddress|'"$serverDevelopmentAddress"'|g' ${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset
-#echo "2"
-#sed -i 's|ServerProductionAddress|'"$serverProductionAddress"'|g' ${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset
-#
-#echo "3"
-#sed -i 's|1234|'"$serverTimeout"'|g' ${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset
-#
-#echo "S3"
-#echo "4"
-##UP TO HERE
-##FIND AND REPLACE accessKey and secretKey in S3Installer.asset
-##Find how to replace entire line in sed
-#sed -i 's|S3SecretKey|'"$s3InstallerSecretKey"'|g' ${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/S3Installer.asset
-#echo "5"
-#sed -i 's|S3AccessKey|'"$s3InstallerAccessKey"'|g' ${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/S3Installer.asset
-#echo "6"
-#sed -i 's|S3InstallerRegion|'"$s3InstallerRegion"'|g' ${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/S3Installer.asset
+InstallersDir="$UNITY_PROJECT_PATH/Assets/GameAssets/Resources/Installers"
 
+ServerInstallerFile="$InstallersDir/ServerInstaller.asset"
+S3InstallerFile="$InstallersDir/S3Installer.asset"
 
-#server
-sed -i \
-    -e 's/\(developmentAddress:\).*$/\1 '"$serverDevelopmentAddress"'/m' \
-    -e 's/\(productionAddress:\).*$/\1 '"$serverProductionAddress"'/m' \
-    -e 's/\(timeout:\).*$/\1 '"$serverTimeout"'/m' \
-    ${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/ServerInstaller.asset
+# ServerInstaller.asset
+ed -s $ServerInstaller <<EOF
+%s/\(developmentAddress:\).*$/\1 $serverDevelopmentAddress/
+%s/\(productionAddress:\).*$/\1 $serverProductionAddress/
+%s/\(timeout:\).*$/\1 $serverTimeout/
+%s/\(<Value>k__BackingField:\).*$/\1 $S3Bucket/
+w
+EOF
 
-#S3
-sed -i \
-    -e 's/\(S3SecretKey:\).*$/\1 '"$s3InstallerSecretKey"'/m' \
-    -e 's/\(S3AccessKey:\).*$/\1 '"$s3InstallerAccessKey"'/m' \
-    -e 's/\(S3InstallerRegion:\).*$/\1 '"$s3InstallerRegion"'/m' \
-    -e 's/\(<Value>k__BackingField:\).*$/\1 '"$s3Bucket"'/m' \
-    ${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/S3Installer.asset
+# S3Installer.asset
+ed -s $S3Installer <<EOF
+%s/\(accessKey:\).*$/\1 $s3InstallerAccessKey/
+%s/\(secretKey:\).*$/\1 $s3InstallerSecretKey/
+%s/\(region:\).*$/\1 $s3InstallerRegion/
+%s/\(<Value>k__BackingField:\).*$/\1 $S3Bucket/
+w
+EOF
+
 #add s3 bucket if required
 
 
