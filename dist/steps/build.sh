@@ -147,7 +147,7 @@ sed -i \
     -e 's/\(S3SecretKey:\).*$/\1 '"$s3InstallerSecretKey"'/m' \
     -e 's/\(S3AccessKey:\).*$/\1 '"$s3InstallerAccessKey"'/m' \
     -e 's/\(S3InstallerRegion:\).*$/\1 '"$s3InstallerRegion"'/m' \
-    -e 's/\(<Value>k__BackingField:\).*$/\1 '"$S3Bucket"'/m' \
+    -e 's/\(<Value>k__BackingField:\).*$/\1 '"$s3Bucket"'/m' \
     ${UNITY_PROJECT_PATH}/Assets/GameAssets/Resources/Installers/S3Installer.asset
 #add s3 bucket if required
 
