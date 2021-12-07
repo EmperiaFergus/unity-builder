@@ -117,7 +117,9 @@ InstallersDir="$UNITY_PROJECT_PATH/Assets/GameAssets/Resources/Installers"
 
 ServerInstallerFile="$InstallersDir/ServerInstaller.asset"
 S3InstallerFile="$InstallersDir/S3Installer.asset"
+echo "Editing file at $InstallersDir"
 
+echo $S3InstallerFile
 ## ServerInstaller.asset
 #ed -s $ServerInstallerFile <<EOF
 #%s/\(developmentAddress:\).*$/\1 $serverDevelopmentAddress/
@@ -126,7 +128,7 @@ S3InstallerFile="$InstallersDir/S3Installer.asset"
 #%s/\(<Value>k__BackingField:\).*$/\1 $S3Bucket/
 #w
 #EOF
-
+echo "Editing $ServerInstallerFile"
 # S3Installer.asset
 ed -s $S3InstallerFile <<EOF
 %s/\(accessKey:\).*$/\1 $s3InstallerAccessKey/
