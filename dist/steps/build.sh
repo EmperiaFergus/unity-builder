@@ -118,14 +118,14 @@ InstallersDir="$UNITY_PROJECT_PATH/Assets/GameAssets/Resources/Installers"
 ServerInstallerFile="$InstallersDir/ServerInstaller.asset"
 S3InstallerFile="$InstallersDir/S3Installer.asset"
 
-# ServerInstaller.asset
-ed -s $ServerInstallerFile <<EOF
-%s/\(developmentAddress:\).*$/\1 $serverDevelopmentAddress/
-%s/\(productionAddress:\).*$/\1 $serverProductionAddress/
-%s/\(timeout:\).*$/\1 $serverTimeout/
-%s/\(<Value>k__BackingField:\).*$/\1 $S3Bucket/
-w
-EOF
+## ServerInstaller.asset
+#ed -s $ServerInstallerFile <<EOF
+#%s/\(developmentAddress:\).*$/\1 $serverDevelopmentAddress/
+#%s/\(productionAddress:\).*$/\1 $serverProductionAddress/
+#%s/\(timeout:\).*$/\1 $serverTimeout/
+#%s/\(<Value>k__BackingField:\).*$/\1 $S3Bucket/
+#w
+#EOF
 
 # S3Installer.asset
 ed -s $S3InstallerFile <<EOF
