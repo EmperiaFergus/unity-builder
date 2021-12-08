@@ -133,8 +133,6 @@ echo "Editing $ServerInstallerFile"
 ed -s $S3InstallerFile <<EOF
 %s/\(accessKey:\).*$/\1 $s3InstallerAccessKey/
 %s/\(secretKey:\).*$/\1 $s3InstallerSecretKey/
-%s/\(region:\).*$/\1 $s3InstallerRegion/
-%s/\(<Value>k__BackingField:\).*$/\1 $S3Bucket/
 w
 EOF
 
