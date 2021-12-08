@@ -1,7 +1,7 @@
 name: Builds
 
 on:
-  push: { branches: [main] }
+  push:
   pull_request:
     paths-ignore:
       - '.github/**'
@@ -19,10 +19,10 @@ jobs:
         projectPath:
           - test-project
         unityVersion:
-          - 2019.3.15f1
+          - 2020.3.14f1
         targetPlatform:
-          - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
-          #          - StandaloneWindows64 # Build a Windows 64-bit standalone.
+          #          - StandaloneOSX # Build a macOS standalone (Intel 64-bit).
+          - StandaloneWindows64 # Build a Windows 64-bit standalone.
           #          - StandaloneLinux64 # Build a Linux 64-bit standalone.
           #          - iOS # Build an iOS player.
           #          - Android # Build an Android .apk.
@@ -51,12 +51,12 @@ jobs:
           restore-keys: |
             Library-${{ matrix.projectPath }}-
             Library-
-
       ###########################
       #          Build          #
       ###########################
       - uses: ./
         with:
+          #customImage: fbeake/editor:ubuntu-2021.1.16f1-windows-mono-0.15.0
           projectPath: ${{ matrix.projectPath }}
           unityVersion: ${{ matrix.unityVersion }}
           targetPlatform: ${{ matrix.targetPlatform }}
@@ -68,9 +68,10 @@ jobs:
           serverDevelopmentAddress: ${{secrets.DEVELOPER_ADDRESS}}
           serverProductionAddress: ${{secrets.PRODUCTION_ADDRESS}}
           serverTimeout: ${{secrets.SERVER_TIMEOUT}}
-          patchkitAPIKey: ${{secrets.patchkitAPIKey}}
-          patchkitSecret: ${{secrets.patchkitSecret}}
-          buildMethod: Builders.Builder.StartMac
+          buildMethod: Builders.Builder.StartWindows
+          patchkitSecret: ${{secrets.PATCHKITSECRET}}
+          patchkitAPIKey: ${{secrets.PATCHKITAPIKEY}}
+
       ###########################
       #          Upload         #
       ###########################
@@ -80,5 +81,31 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: Build (${{ matrix.unityVersion }})
-          path: ./${{ matrix.projectPath }}/build/build.zip
+          path: ./${{ matrix.projectPath }}/build/_build
           retention-days: 14
+
+      ###########################
+      #          publish        #
+      ###########################
+  publish:
+    name: publish with patchkit
+    needs: buildForAllPlatforms
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        projectPath:
+          - test-project
+        unityVersion:
+          - 2020.3.14f1
+    steps:
+      - name: download artifact
+        uses: actions/download-artifact@v2
+        with:
+            name: Build (${{ matrix.unityVersion }})
+            path: ./${{ matrix.projectPath }}/build/build.zip
+      - name: publish to patchkit
+        uses: EmperiaFergus/actions-patchkit@v0.am
+        with:
+            api-key: ${{secrets.PATCHKITAPIKEY}}
+            secret-key: ${{secrets.PATCHKITSECRET}}
+            path: /home/runner/work/unity-builder/unity-builder/test-project/build/build.zip

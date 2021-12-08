@@ -87,9 +87,8 @@ class BuildParameters {
       serverDevelopmentAddress: Input.serverDevelopmentAddress,
       serverProductionAddress: Input.serverProductionAddress,
       serverTimeout: Input.serverTimeout,
-      patchkitAPIKey: Input.patchkitSecret,
       patchkitSecret: Input.patchkitSecret,
-
+      patchkitAPIKey: Input.patchkitAPIKey,
     };
   }
 

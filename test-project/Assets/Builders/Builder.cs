@@ -2,14 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
-using System.Threading.Tasks;
-//using Cysharp.Threading.Tasks;
 using ICSharpCode.SharpZipLib.Checksum;
 using ICSharpCode.SharpZipLib.Zip;
-// using SIDGIN.Common.Editors;
-// using SIDGIN.Patcher.Unity;
-// using SIDGIN.Patcher.Unity.Editors;
 using UnityEditor;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
@@ -18,7 +12,7 @@ namespace Builders
 {
     public class Builder : MonoBehaviour
     {
-        [MenuItem("Jobs/Build/Windows")]
+        [MenuItem("Build/Windows")]
         public static void StartWindows()
         {
             // Get filename.
@@ -27,54 +21,34 @@ namespace Builders
             BuildPlayer(BuildTarget.StandaloneWindows, filename[filename.Length - 1], path + "/");
         }
 
-        [MenuItem("Jobs/Build/ MacOS")]
-        public static void StartMac()
+        [MenuItem("Build/MacOS")]
+        public static void StartOSX()
         {
             string path = "build";
             var filename = path.Split('/');
             BuildPlayer(BuildTarget.StandaloneOSX, filename[filename.Length - 1], path + "/");
         }
-
-        // [MenuItem("Jobs/Build/Sidgin Windows")]
-        // public static void StartSIDGINWindows()
-        // {
-        //     amendSIDGINDefinitions("Win64");
-        //     var unityApi = new SGPatcherUnityApi();
-        //     unityApi.BuildAndPatch();
-        // }
-        // [MenuItem("Jobs/Build/Sidgin OSX")]
-        // public static void StartSIDGINMac()
-        // {
-        //     amendSIDGINDefinitions("OSX");
-        //     var unityApi = new SGPatcherUnityApi();
-        //     unityApi.BuildAndPatch();
-        // }
-
         static void BuildPlayer(BuildTarget buildTarget, string filename, string path)
         {
             string fileExtension = "";
             string dataPath = "";
-            string modifier = "";
 
             switch (buildTarget)
             {
                 case BuildTarget.StandaloneWindows:
                 case BuildTarget.StandaloneWindows64:
-                    modifier = "_windows";
                     fileExtension = ".exe";
                     dataPath = "_Data/";
                     break;
                 case BuildTarget.StandaloneOSXIntel:
                 case BuildTarget.StandaloneOSXIntel64:
                 case BuildTarget.StandaloneOSX:
-                    modifier = "_mac-osx";
                     fileExtension = ".app";
                     dataPath = fileExtension + "/Contents/";
                     break;
                 case BuildTarget.StandaloneLinux:
                 case BuildTarget.StandaloneLinux64:
                 case BuildTarget.StandaloneLinuxUniversal:
-                    modifier = "_linux";
                     dataPath = "_Data/";
                     switch (buildTarget)
                     {
@@ -94,15 +68,15 @@ namespace Builders
 
             EditorUserBuildSettings.SwitchActiveBuildTarget(buildTarget);
 
-            string buildPath = path + filename + modifier + "/";
-            string playerPath = buildPath + filename + modifier + fileExtension;
+            string buildPath = path +"_"+ filename + "/";
+            string playerPath = buildPath + filename + fileExtension;
             BuildPipeline.BuildPlayer(GetScenePaths(buildTarget), playerPath, buildTarget,
                 buildTarget == BuildTarget.StandaloneWindows ? BuildOptions.ShowBuiltPlayer : BuildOptions.None);
 
-            string fullDataPath = buildPath + filename + modifier + dataPath;
+            string fullDataPath = buildPath + filename + dataPath;
             Debug.Log(fullDataPath);
             Console.WriteLine(fullDataPath);
-            CreateZip("build/build.zip",fullDataPath);
+            //CreateZip("build/build.zip",fullDataPath);
         }
 
         static string[] GetScenePaths(BuildTarget buildTarget, bool useSidgin = false)
@@ -190,14 +164,6 @@ namespace Builders
             {
                 throw;
             }
-        }
-
-        public static void amendSIDGINDefinitions(string definition)
-        {
-            var settingsData = File.ReadAllText($"{Application.dataPath}\\SIDGIN\\EditorResources\\SettingsData.asset");
-            settingsData = settingsData.Replace("OSX",definition);
-            settingsData = settingsData.Replace("Win64",definition);
-            File.WriteAllText($"{Application.dataPath}\\SIDGIN\\EditorResources\\SettingsData.asset", settingsData);
         }
         static private Stack<FileInfo> DirExplore(string stSrcDirPath)
         {
