@@ -275,6 +275,10 @@ class RemoteBuilder {
           value: buildParameters.patchkitSecret,
         },
         {
+          name:'scriptingDefineSymbol',
+          value: buildParameters.scriptingDefineSymbol,
+        },
+        {
           name: 'BUILD_TARGET',
           value: buildParameters.platform,
         },

@@ -366,18 +366,6 @@ describe('Input', () => {
   });
   describe('patchkitAPIKey', () => {
     it('returns the default value', () => {
-      expect(Input.patchkitSecret).toStrictEqual('');
-    });
-
-    it('takes input from the users workflow', () => {
-      const mockValue = '-imAFlag';
-      const spy = jest.spyOn(core, 'getInput').mockReturnValue(mockValue);
-      expect(Input.patchkitSecret).toStrictEqual(mockValue);
-      expect(spy).toHaveBeenCalledTimes(1);
-    });
-  });
-  describe('patchkitSecret', () => {
-    it('returns the default value', () => {
       expect(Input.patchkitAPIKey).toStrictEqual('');
     });
 
@@ -388,9 +376,21 @@ describe('Input', () => {
       expect(spy).toHaveBeenCalledTimes(1);
     });
   });
+  describe('patchkitSecret', () => {
+    it('returns the default value', () => {
+      expect(Input.patchkitSecret).toStrictEqual('');
+    });
+
+    it('takes input from the users workflow', () => {
+      const mockValue = '-imAFlag';
+      const spy = jest.spyOn(core, 'getInput').mockReturnValue(mockValue);
+      expect(Input.patchkitSecret).toStrictEqual(mockValue);
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+  });
   describe('scriptingDefineSymbol', () => {
     it('returns the default value', () => {
-      expect(Input.patchkitAPIKey).toStrictEqual('');
+      expect(Input.scriptingDefineSymbol).toStrictEqual('');
     });
 
     it('takes input from the users workflow', () => {
