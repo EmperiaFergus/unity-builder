@@ -127,6 +127,16 @@ ed -s $S3InstallerFile <<EOF
 w
 EOF
 
+echo "###########################"
+echo "# Scripting Define Symbols#"
+echo "###########################"
+PROJECT_SETTINGS_PATH="$UNITY_PROJECT_PATH/ProjectSettings/ProjectSettings.asset"
+
+if  grep -q "$STRING" "$PROJECT_SETTINGS_PATH" ; then
+         sed -i 's/ARTEMIS/'"$SCRIPTINGDEFINESYMBOL"'/g' $PROJECT_SETTINGS_PATH
+else
+         sed -i '1: UNITY_POST_PROCESSING_STACK_V2'"1: UNITY_POST_PROCESSING_STACK_V2;$SCRIPTINGDEFINESYMBOL"'/g' $PROJECT_SETTINGS_PATH
+fi
 #
 # Build
 #
