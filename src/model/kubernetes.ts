@@ -255,6 +255,11 @@ class Kubernetes {
                     value: this.buildParameters.patchkitSecret,
                   },
                   {
+                    name: 'scriptingDefineSymbol',
+                    value: this.buildParameters.scriptingDefineSymbol,
+                  },
+
+                  {
                     name: 'serverTimeout',
                     value: this.buildParameters.serverTimeout,
                   },

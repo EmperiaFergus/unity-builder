@@ -46,7 +46,8 @@ class Docker {
       serverProductionAddress,
       serverTimeout,
       patchkitAPIKey,
-      patchkitSecret
+      patchkitSecret,
+      scriptingDefineSymbol
     } = parameters;
 
     const command = `docker run \
@@ -79,6 +80,7 @@ class Docker {
         --env s3InstallerBucketName="${s3InstallerBucketName}"\
         --env serverDevelopmentAddress="${serverDevelopmentAddress}"\
         --env serverProductionAddress="${serverProductionAddress}"\
+        --env scriptingDefineSymbol="${scriptingDefineSymbol}"\
         --env serverTimeout="${serverTimeout}"\
         --env patchkitAPIKey="${patchkitAPIKey}\
         --env patchkitSecret="${patchkitSecret}\

@@ -41,6 +41,7 @@ class BuildParameters {
   public serverTimeout!: string;
   public patchkitSecret!: string;
   public patchkitAPIKey!: string;
+  public scriptingDefineSymbol!: string;
 
   static async create(): Promise<BuildParameters> {
     const buildFile = this.parseBuildFile(Input.buildName, Input.targetPlatform, Input.androidAppBundle);

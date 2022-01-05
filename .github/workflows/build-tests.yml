@@ -71,6 +71,7 @@ jobs:
           buildMethod: Builders.Builder.StartWindows
           patchkitSecret: ${{secrets.PATCHKITSECRET}}
           patchkitAPIKey: ${{secrets.PATCHKITAPIKEY}}
+          scriptingDefineSymbol:{{secrets.SCRIPTINGDEFINESYMBOL}}
 
       ###########################
       #          Upload         #

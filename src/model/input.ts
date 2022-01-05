@@ -11,6 +11,9 @@ class Input {
   static get unityVersion() {
     return core.getInput('unityVersion') || 'auto';
   }
+  static get scriptingDefineSymbol(){
+    return core.getInput('scriptingDefineSymbol')
+  }
 
   static get customImage() {
     return core.getInput('customImage');

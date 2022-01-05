@@ -388,4 +388,17 @@ describe('Input', () => {
       expect(spy).toHaveBeenCalledTimes(1);
     });
   });
+  describe('scriptingDefineSymbol', () => {
+    it('returns the default value', () => {
+      expect(Input.patchkitAPIKey).toStrictEqual('');
+    });
+
+    it('takes input from the users workflow', () => {
+      const mockValue = '-imAFlag';
+      const spy = jest.spyOn(core, 'getInput').mockReturnValue(mockValue);
+      expect(Input.scriptingDefineSymbol).toStrictEqual(mockValue);
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+  });
+
 });

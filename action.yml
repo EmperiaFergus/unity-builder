@@ -128,7 +128,10 @@ inputs:
     required: false
     default: ''
     description: 'API Key for patchkit'
-
+  scriptingDefineSymbol:
+    description: 'Scripting define symbol to add to projectSettings.assets'
+    required: true
+    default: 'null'
 
   customParameters:
     required: false
