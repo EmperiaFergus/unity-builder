@@ -7,6 +7,9 @@
 UNITY_PROJECT_PATH="$GITHUB_WORKSPACE/$PROJECT_PATH"
 echo "Using project path \"$UNITY_PROJECT_PATH\"."
 
+echo "Scripting define symbol: $scriptingDefineSymbol"
+
+
 #
 # Display the name for the build, doubles as the output name
 #
@@ -131,25 +134,15 @@ echo "###########################"
 echo "# Scripting Define Symbols#"
 echo "###########################"
 PROJECT_SETTINGS_PATH="$UNITY_PROJECT_PATH/ProjectSettings/ProjectSettings.asset"
-LINE_TO_CHECK=" 1: UNITY_POST_PROCESSING_STACK_V2"
-LINE_TO_CHECK_ARTEMIS=" 1: UNITY_POST_PROCESSING_STACK_V2"
-LINE_TO_WRITE="$LINE_TO_CHECK;$SCRIPTINGDEFINESYMBOL"
+LINE_TO_CHECK="UNITY_POST_PROCESSING_STACK_V2"
+LINE_TO_CHECK_ARTEMIS="UNITY_POST_PROCESSING_STACK_V2"
+LINE_TO_WRITE=" 1: $scriptingDefineSymbol;$LINE_TO_CHECK"
 if  grep -q "ARTEMIS" "$PROJECT_SETTINGS_PATH" ; then
   echo "Artemis Detected!"
-  sed 's/ 1: UNITY_POST_PROCESSING_STACK_V2;ARTEMIS/'"$LINE_TO_WRITE"'/g' $PROJECT_SETTINGS_PATH
+  sed -i 's/ 1: ARTEMIS;UNITY_POST_PROCESSING_STACK_V2/'"$LINE_TO_WRITE"'/g' $PROJECT_SETTINGS_PATH
 else
   echo "Apollo Detected!"
-  sed 's/ 1: UNITY_POST_PROCESSING_STACK_V2/'"$LINE_TO_WRITE"'/g' $PROJECT_SETTINGS_PATH
-fi
-$SHELL
-
-
-
-
-if  grep -q "$STRING" "$PROJECT_SETTINGS_PATH" ; then
-  sed -i 's/ARTEMIS/'"$SCRIPTINGDEFINESYMBOL"'/g' $PROJECT_SETTINGS_PATH
-else
-  sed -i '1: UNITY_POST_PROCESSING_STACK_V2'"1: UNITY_POST_PROCESSING_STACK_V2;$SCRIPTINGDEFINESYMBOL"'/g' $PROJECT_SETTINGS_PATH
+  sed -i 's/ 1: UNITY_POST_PROCESSING_STACK_V2/'"$LINE_TO_WRITE"'/g' $PROJECT_SETTINGS_PATH
 fi
 #
 # Build
