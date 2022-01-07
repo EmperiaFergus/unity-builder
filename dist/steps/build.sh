@@ -131,6 +131,20 @@ echo "###########################"
 echo "# Scripting Define Symbols#"
 echo "###########################"
 PROJECT_SETTINGS_PATH="$UNITY_PROJECT_PATH/ProjectSettings/ProjectSettings.asset"
+LINE_TO_CHECK=" 1: UNITY_POST_PROCESSING_STACK_V2"
+LINE_TO_CHECK_ARTEMIS=" 1: UNITY_POST_PROCESSING_STACK_V2"
+LINE_TO_WRITE="$LINE_TO_CHECK;$SCRIPTINGDEFINESYMBOL"
+if  grep -q "ARTEMIS" "$PROJECT_SETTINGS_PATH" ; then
+  echo "Artemis Detected!"
+  sed 's/ 1: UNITY_POST_PROCESSING_STACK_V2;ARTEMIS/'"$LINE_TO_WRITE"'/g' $PROJECT_SETTINGS_PATH
+else
+  echo "Apollo Detected!"
+  sed 's/ 1: UNITY_POST_PROCESSING_STACK_V2/'"$LINE_TO_WRITE"'/g' $PROJECT_SETTINGS_PATH
+fi
+$SHELL
+
+
+
 
 if  grep -q "$STRING" "$PROJECT_SETTINGS_PATH" ; then
   sed -i 's/ARTEMIS/'"$SCRIPTINGDEFINESYMBOL"'/g' $PROJECT_SETTINGS_PATH
