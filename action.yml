@@ -131,7 +131,7 @@ inputs:
   scriptingDefineSymbol:
     description: 'Scripting define symbol to add to projectSettings.assets'
     required: true
-    default: 'null'
+    default: 'APOLLO'
 
   customParameters:
     required: false
