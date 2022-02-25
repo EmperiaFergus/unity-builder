@@ -117,9 +117,10 @@ echo $ls
 echo $PWD
 
 InstallersDir="$UNITY_PROJECT_PATH/Assets/GameAssets/Resources/Installers"
-
 ServerInstallerFile="$InstallersDir/ServerInstaller.asset"
 S3InstallerFile="$InstallersDir/S3Installer.asset"
+ApiInstallerFile="$UNITY_PROJECT_PATH/Assets/API/Resources/Installers/ApiInstaller.asset"
+ApiInstallerFileSample="$UNITY_PROJECT_PATH/Assets/API/Resources/Installers/ApiInstaller.sample.asset"
 echo "Editing file at $InstallersDir"
 
 echo "Editing $ServerInstallerFile"
@@ -127,6 +128,18 @@ echo "Editing $ServerInstallerFile"
 ed -s $S3InstallerFile <<EOF
 %s/\(accessKey:\).*$/\1 $s3InstallerAccessKey/
 %s/\(secretKey:\).*$/\1 $s3InstallerSecretKey/
+w
+EOF
+
+echo "Editing $ApiInstallerFile"
+cp $ApiInstallerFileSample $ApiInstallerFile
+ed -s $ApiInstallerFile <<EOF
+%s/\(stagingServerUrl:\).*$/\1 $APIstagingServerUrl/
+%s/\(stagingAuthServerUrl:\).*$/\1 $APIStagingAuthServerUrl/
+%s/\(productionServerUrl:\).*$/\1 $APIProductionServerUrl/
+%s/\(productionAuthServerUrl:\).*$/\1 $APIProductionAuthServerUrl/
+%s/\(clientID:\).*$/\1 $APIClientID/
+%s/\(clientSecret:\).*$/\1 $APIClientSecret/
 w
 EOF
 

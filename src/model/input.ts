@@ -163,6 +163,26 @@ class Input {
   static get patchkitAPIKey() {
     return core.getInput('patchkitAPIKey') || '';
   }
+
+  static get APIstagingServerUrl() {
+    return core.getInput('APIstagingServerUrl') || '';
+  }
+
+  static get APIStagingAuthServerUrl() {
+    return core.getInput('APIStagingAuthServerUrl') || '';
+  }
+  static get APIProductionServerUrl() {
+    return core.getInput('APIProductionServerUrl') || '';
+  }
+  static get APIStagingAuthServerUrl() {
+    return core.getInput('APIStagingAuthServerUrl') || '';
+  }
+  static get APIClientID() {
+    return core.getInput('APIClientID') || '';
+  }
+  static get APIClientSecret() {
+    return core.getInput('APIClientSecret') || '';
+  }
 }
 
 export default Input;

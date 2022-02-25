@@ -42,7 +42,12 @@ class BuildParameters {
   public patchkitSecret!: string;
   public patchkitAPIKey!: string;
   public scriptingDefineSymbol!: string;
-
+  public APIstagingServerUrl!: string;
+  public APIStagingAuthServerUrl!: string;
+  public APIProductionServerUrl!: string;
+  public APIProductionAuthServerUrl!: string;
+  public APIClientID!: string;
+  public APIClientSecret!: string;
   static async create(): Promise<BuildParameters> {
     const buildFile = this.parseBuildFile(Input.buildName, Input.targetPlatform, Input.androidAppBundle);
 
@@ -90,7 +95,13 @@ class BuildParameters {
       serverTimeout: Input.serverTimeout,
       patchkitSecret: Input.patchkitSecret,
       patchkitAPIKey: Input.patchkitAPIKey,
-    };
+      APIstagingServerUrl: Input.APIstagingServerUrl,
+      APIStagingAuthServerUrl: Input.APIStagingAuthServerUrl,
+      APIProductionServerUrl: Input.APIProductionServerUrl,
+      APIStagingAuthServerUrl: Input.APIStagingAuthServerUrl,
+      APIClientID: Input.APIClientID,
+      APIClientSecret: Input.APIClientSecret
+  };
   }
 
   static parseBuildFile(filename, platform, androidAppBundle) {

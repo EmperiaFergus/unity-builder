@@ -47,7 +47,13 @@ class Docker {
       serverTimeout,
       patchkitAPIKey,
       patchkitSecret,
-      scriptingDefineSymbol
+      scriptingDefineSymbol,
+      APIstagingServerUrl,
+      APIStagingAuthServerUrl,
+      APIProductionServerUrl,
+      APIProductionAuthServerUrl,
+      APIClientID,
+      APIClientSecret
     } = parameters;
 
     const command = `docker run \
@@ -85,6 +91,12 @@ class Docker {
         --env patchkitAPIKey="${patchkitAPIKey}\
         --env patchkitSecret="${patchkitSecret}\
         --env CHOWN_FILES_TO="${chownFilesTo}" \
+        --env APIstagingServerUrl="${APIstagingServerUrl}" \
+        --env APIStagingAuthServerUrl="${APIStagingAuthServerUrl}" \
+        --env APIProductionServerUrl="${APIProductionServerUrl}" \
+        --env APIStagingAuthServerUrl="${APIProductionAuthServerUrl}" \
+        --env APIClientID="${APIClientID}" \
+        --env APIClientSecret="${APIClientSecret}" \
         --env GITHUB_REF \
         --env GITHUB_SHA \
         --env GITHUB_REPOSITORY \

@@ -294,6 +294,34 @@ class RemoteBuilder {
           name: 'ANDROID_KEYALIAS_NAME',
           value: buildParameters.androidKeyaliasName,
         },
+        {
+          name: 'APIstagingServerUrl',
+          value: buildParameters.APIstagingServerUrl,
+        },
+        {
+          name: 'APIStagingAuthServerUrl',
+          value: buildParameters.APIStagingAuthServerUrl,
+        },
+        {
+          name: 'APIStagingServerUrl',
+          value: buildParameters.APIProductionServerUrl,
+        },
+        {
+          name: 'APIStagingAuthServerUrl',
+          value: buildParameters.APIStagingAuthServerUrl,
+        },
+        {
+          name: 'APIStagingAuthServerUrl',
+          value: buildParameters.APIStagingAuthServerUrl,
+        },
+        {
+          name: 'APIClientID',
+          value: buildParameters.APIClientID,
+        },
+        {
+          name: 'APIClientSecret',
+          value: buildParameters.APIClientSecret,
+        }
       ],
       buildSecrets,
     );
