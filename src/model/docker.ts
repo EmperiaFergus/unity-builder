@@ -91,7 +91,7 @@ class Docker {
         --env patchkitAPIKey="${patchkitAPIKey}\
         --env patchkitSecret="${patchkitSecret}\
         --env CHOWN_FILES_TO="${chownFilesTo}" \
-        --env APIstagingServerUrl="${APIstagingServerUrl}" \
+        --env APIStagingServerUrl="${APIstagingServerUrl}" \
         --env APIStagingAuthServerUrl="${APIStagingAuthServerUrl}" \
         --env APIProductionServerUrl="${APIProductionServerUrl}" \
         --env APIStagingAuthServerUrl="${APIProductionAuthServerUrl}" \

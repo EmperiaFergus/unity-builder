@@ -272,6 +272,34 @@ class Kubernetes {
                     value: this.buildParameters.patchkitSecret,
                   },
                   {
+                    name: 'APIstagingServerUrl',
+                    value: this.buildParameters.APIstagingServerUrl,
+                  },
+                  {
+                    name: 'APIStagingAuthServerUrl',
+                    value: this.buildParameters.APIStagingAuthServerUrl,
+                  },
+                  {
+                    name: 'APIProductionServerUrl',
+                    value: this.buildParameters.APIProductionServerUrl,
+                  },
+                  {
+                    name: 'APIProductionAuthServerUrl',
+                    value: this.buildParameters.APIProductionAuthServerUrl,
+                  },
+                  {
+                    name: 'APIClientID',
+                    value: this.buildParameters.APIClientID,
+                  },
+                  {
+                    name: 'APIClientSecret',
+                    value: this.buildParameters.APIClientSecret,
+                  },
+                  {
+                    name: 'APIClientSecret',
+                    value: this.buildParameters.APIClientSecret,
+                  },
+                  {
                     name: 'CHOWN_FILES_TO',
                     value: this.buildParameters.chownFilesTo,
                   },

@@ -58,6 +58,7 @@ class BuildParameters {
     const androidVersionCode = AndroidVersioning.determineVersionCode(buildVersion, Input.androidVersionCode);
 
     return {
+      scriptingDefineSymbol: "",
       version: unityVersion,
       customImage: Input.customImage,
 
@@ -98,7 +99,7 @@ class BuildParameters {
       APIstagingServerUrl: Input.APIstagingServerUrl,
       APIStagingAuthServerUrl: Input.APIStagingAuthServerUrl,
       APIProductionServerUrl: Input.APIProductionServerUrl,
-      APIStagingAuthServerUrl: Input.APIStagingAuthServerUrl,
+      APIProductionAuthServerUrl: Input.APIStagingAuthServerUrl,
       APIClientID: Input.APIClientID,
       APIClientSecret: Input.APIClientSecret
   };
