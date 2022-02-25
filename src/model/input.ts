@@ -164,7 +164,7 @@ class Input {
     return core.getInput('patchkitAPIKey') || '';
   }
 
-  static get APIstagingServerUrl() {
+  static get APIStagingServerUrl() {
     return core.getInput('APIstagingServerUrl') || '';
   }
 
