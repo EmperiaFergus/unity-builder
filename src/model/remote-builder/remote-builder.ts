@@ -303,16 +303,12 @@ class RemoteBuilder {
           value: buildParameters.APIStagingAuthServerUrl,
         },
         {
-          name: 'APIStagingServerUrl',
+          name: 'APIProductionServerUrl',
           value: buildParameters.APIProductionServerUrl,
         },
         {
-          name: 'APIStagingAuthServerUrl',
-          value: buildParameters.APIStagingAuthServerUrl,
-        },
-        {
-          name: 'APIStagingAuthServerUrl',
-          value: buildParameters.APIStagingAuthServerUrl,
+          name: 'APIProductionAuthServerUrl',
+          value: buildParameters.APIProductionAuthServerUrl,
         },
         {
           name: 'APIClientID',
