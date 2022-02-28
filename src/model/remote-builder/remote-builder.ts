@@ -295,7 +295,7 @@ class RemoteBuilder {
           value: buildParameters.androidKeyaliasName,
         },
         {
-          name: 'APIstagingServerUrl',
+          name: 'APIStagingServerUrl',
           value: buildParameters.APIstagingServerUrl,
         },
         {

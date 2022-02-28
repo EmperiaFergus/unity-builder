@@ -272,7 +272,7 @@ class Kubernetes {
                     value: this.buildParameters.patchkitSecret,
                   },
                   {
-                    name: 'APIstagingServerUrl',
+                    name: 'APIStagingServerUrl',
                     value: this.buildParameters.APIstagingServerUrl,
                   },
                   {
@@ -290,10 +290,6 @@ class Kubernetes {
                   {
                     name: 'APIClientID',
                     value: this.buildParameters.APIClientID,
-                  },
-                  {
-                    name: 'APIClientSecret',
-                    value: this.buildParameters.APIClientSecret,
                   },
                   {
                     name: 'APIClientSecret',

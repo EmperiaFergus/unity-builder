@@ -204,5 +204,35 @@ describe('BuildParameters', () => {
       jest.spyOn(Input, 'patchkitSecret', 'get').mockReturnValue(mockValue);
       await expect(BuildParameters.create()).resolves.toEqual(expect.objectContaining({ patchkitSecret: mockValue }));
     });
+    it('returns the APIstagingServerUrl', async () => {
+      const mockValue = 'APIstagingServerUrl';
+      jest.spyOn(Input, 'APIstagingServerUrl', 'get').mockReturnValue(mockValue);
+      await expect(BuildParameters.create()).resolves.toEqual(expect.objectContaining({ APIstagingServerUrl: mockValue }));
+    });
+    it('returns the APIStagingAuthServerUrl', async () => {
+      const mockValue = 'APIStagingAuthServerUrl';
+      jest.spyOn(Input, 'APIStagingAuthServerUrl', 'get').mockReturnValue(mockValue);
+      await expect(BuildParameters.create()).resolves.toEqual(expect.objectContaining({ APIStagingAuthServerUrl: mockValue }));
+    });
+    it('returns the APIProductionServerUrl', async () => {
+      const mockValue = 'APIProductionServerUrl';
+      jest.spyOn(Input, 'APIProductionServerUrl', 'get').mockReturnValue(mockValue);
+      await expect(BuildParameters.create()).resolves.toEqual(expect.objectContaining({ APIProductionServerUrl: mockValue }));
+    });
+    it('returns the APIProductionAuthServerUrl', async () => {
+      const mockValue = 'APIProductionAuthServerUrl';
+      jest.spyOn(Input, 'APIProductionAuthServerUrl', 'get').mockReturnValue(mockValue);
+      await expect(BuildParameters.create()).resolves.toEqual(expect.objectContaining({ APIProductionAuthServerUrl: mockValue }));
+    });
+    it('returns the APIClientID', async () => {
+      const mockValue = 'APIClientID';
+      jest.spyOn(Input, 'APIClientID', 'get').mockReturnValue(mockValue);
+      await expect(BuildParameters.create()).resolves.toEqual(expect.objectContaining({ APIProductionAuthServerUrl: mockValue }));
+    });
+    it('returns the APIClientSecret', async () => {
+      const mockValue = 'APIClientSecret';
+      jest.spyOn(Input, 'APIClientSecret', 'get').mockReturnValue(mockValue);
+      await expect(BuildParameters.create()).resolves.toEqual(expect.objectContaining({ APIClientSecret: mockValue }));
+    });
   });
 });
