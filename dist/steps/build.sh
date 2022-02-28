@@ -123,10 +123,12 @@ ApiInstallerFileSample="$UNITY_PROJECT_PATH/Assets/API/Resources/Installers/ApiI
 echo "Editing file at $InstallersDir"
 
 echo "Editing $ServerInstallerFile"
+echo "AccessKey $s3InstallerAccessKey"
+echo "SecretKey $s3InstallerSecretKey"
 # S3Installer.asset
 ed -s $S3InstallerFile <<EOF
-%s/\(accessKey:\).*$/\1 $s3InstallerAccessKey/
-%s/\(secretKey:\).*$/\1 $s3InstallerSecretKey/
+%s/\(clientID:\).*$/\1 $s3InstallerAccessKey/
+%s/\(clientSecret:\).*$/\1 $s3InstallerSecretKey/
 w
 EOF
 
