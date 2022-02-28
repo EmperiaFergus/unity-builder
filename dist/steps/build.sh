@@ -9,7 +9,6 @@ echo "Using project path \"$UNITY_PROJECT_PATH\"."
 
 echo "Scripting define symbol: $scriptingDefineSymbol"
 
-
 #
 # Display the name for the build, doubles as the output name
 #
@@ -72,7 +71,7 @@ fi
 if [[ -z $ANDROID_KEYSTORE_NAME || -z $ANDROID_KEYSTORE_BASE64 ]]; then
   echo "Not creating Android keystore."
 else
-  echo "$ANDROID_KEYSTORE_BASE64" | base64 --decode > "$UNITY_PROJECT_PATH/$ANDROID_KEYSTORE_NAME"
+  echo "$ANDROID_KEYSTORE_BASE64" | base64 --decode >"$UNITY_PROJECT_PATH/$ANDROID_KEYSTORE_NAME"
   echo "Created Android keystore."
 fi
 
@@ -132,20 +131,22 @@ w
 EOF
 
 echo "Editing $ApiInstallerFile"
-if [ -f $ApiInstallerFile ]; then
-  cp $ApiInstallerFileSample $ApiInstallerFile
-  ed -s $ApiInstallerFile <<EOF
-  %s/\(stagingServerUrl:\).*$/\1 $APIstagingServerUrl/
-  %s/\(stagingAuthServerUrl:\).*$/\1 $APIStagingAuthServerUrl/
-  %s/\(productionServerUrl:\).*$/\1 $APIProductionServerUrl/
-  %s/\(productionAuthServerUrl:\).*$/\1 $APIProductionAuthServerUrl/
-  %s/\(clientID:\).*$/\1 $APIClientID/
-  %s/\(clientSecret:\).*$/\1 $APIClientSecret/
-  w
-  EOF
+cp $ApiInstallerFileSample $ApiInstallerFile
+if [ -f "$ApiInstallerFile" ]; then
+  echo "APIInstaller found!"
 else
-  echo "file not found!"
+  echo"APIInstaller not found!"
 fi
+ed -s $ApiInstallerFile <<EOF
+%s/\(stagingServerUrl:\).*$/\1 $APIstagingServerUrl/
+%s/\(stagingAuthServerUrl:\).*$/\1 $APIStagingAuthServerUrl/
+%s/\(productionServerUrl:\).*$/\1 $APIProductionServerUrl/
+%s/\(productionAuthServerUrl:\).*$/\1 $APIProductionAuthServerUrl/
+%s/\(clientID:\).*$/\1 $APIClientID/
+%s/\(clientSecret:\).*$/\1 $APIClientSecret/
+w
+EOF
+
 
 echo "###########################"
 echo "# Scripting Define Symbols#"
@@ -154,7 +155,7 @@ PROJECT_SETTINGS_PATH="$UNITY_PROJECT_PATH/ProjectSettings/ProjectSettings.asset
 LINE_TO_CHECK="UNITY_POST_PROCESSING_STACK_V2"
 LINE_TO_CHECK_ARTEMIS="UNITY_POST_PROCESSING_STACK_V2"
 LINE_TO_WRITE=" 1: $scriptingDefineSymbol;$LINE_TO_CHECK"
-if  grep -q "ARTEMIS" "$PROJECT_SETTINGS_PATH" ; then
+if grep -q "ARTEMIS" "$PROJECT_SETTINGS_PATH"; then
   echo "Artemis Detected!"
   sed -i 's/ 1: ARTEMIS;UNITY_POST_PROCESSING_STACK_V2/'"$LINE_TO_WRITE"'/g' $PROJECT_SETTINGS_PATH
 else
@@ -195,9 +196,9 @@ BUILD_EXIT_CODE=$?
 
 # Display results
 if [ $BUILD_EXIT_CODE -eq 0 ]; then
-  echo "Build succeeded";
+  echo "Build succeeded"
 else
-  echo "Build failed, with exit code $BUILD_EXIT_CODE";
+  echo "Build failed, with exit code $BUILD_EXIT_CODE"
 fi
 
 #
