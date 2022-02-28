@@ -129,10 +129,33 @@ inputs:
     default: ''
     description: 'API Key for patchkit'
   scriptingDefineSymbol:
-    description: 'Scripting define symbol to add to projectSettings.assets'
+    description: 'Scripting define symbol to add to projectSettings.asset'
     required: true
     default: 'APOLLO'
-
+  APIstagingServerUrl:
+    description: 'APIstagingServerUrl to add to APISettings.asset'
+    required: true
+    default: ''
+  APIStagingAuthServerUrl:
+    description: 'APIStagingAuthServerUrl to add to APISettings.asset'
+    required: true
+    default: ''
+  APIProductionServerUrl:
+    description: 'APIProductionServerUrl to add to APISettings.asset'
+    required: true
+    default: ''
+  APIProductionAuthServerUrl:
+    description: 'APIProductionAuthServerUrl to add to APISettings.asset'
+    required: true
+    default: ''
+  APIClientID:
+    description: 'APIClientID to add to APISettings.asset'
+    required: true
+    default: ''
+  APIClientSecret:
+    description: 'APIClientSecret to add to APISettings.asset'
+    required: true
+    default: ''
 
   customParameters:
     required: false
