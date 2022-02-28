@@ -132,16 +132,19 @@ w
 EOF
 
 echo "Editing $ApiInstallerFile"
-cp $ApiInstallerFileSample $ApiInstallerFile
-ed -s $ApiInstallerFile <<EOF
-%s/\(stagingServerUrl:\).*$/\1 $APIstagingServerUrl/
-%s/\(stagingAuthServerUrl:\).*$/\1 $APIStagingAuthServerUrl/
-%s/\(productionServerUrl:\).*$/\1 $APIProductionServerUrl/
-%s/\(productionAuthServerUrl:\).*$/\1 $APIProductionAuthServerUrl/
-%s/\(clientID:\).*$/\1 $APIClientID/
-%s/\(clientSecret:\).*$/\1 $APIClientSecret/
-w
-EOF
+if [ -f "$ApiInstallerFile"]; then
+  cp $ApiInstallerFileSample $ApiInstallerFile
+  ed -s $ApiInstallerFile <<EOF
+  %s/\(stagingServerUrl:\).*$/\1 $APIstagingServerUrl/
+  %s/\(stagingAuthServerUrl:\).*$/\1 $APIStagingAuthServerUrl/
+  %s/\(productionServerUrl:\).*$/\1 $APIProductionServerUrl/
+  %s/\(productionAuthServerUrl:\).*$/\1 $APIProductionAuthServerUrl/
+  %s/\(clientID:\).*$/\1 $APIClientID/
+  %s/\(clientSecret:\).*$/\1 $APIClientSecret/
+  w
+  EOF
+else
+  echo "file not found!"
 
 echo "###########################"
 echo "# Scripting Define Symbols#"
