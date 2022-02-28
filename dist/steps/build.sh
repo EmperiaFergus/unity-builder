@@ -138,10 +138,6 @@ else
   echo"APIInstaller not found!"
 fi
 ed -s $ApiInstallerFile <<EOF
-%s/\(stagingServerUrl:\).*$/\1 $APIstagingServerUrl/
-%s/\(stagingAuthServerUrl:\).*$/\1 $APIStagingAuthServerUrl/
-%s/\(productionServerUrl:\).*$/\1 $APIProductionServerUrl/
-%s/\(productionAuthServerUrl:\).*$/\1 $APIProductionAuthServerUrl/
 %s/\(clientID:\).*$/\1 $APIClientID/
 %s/\(clientSecret:\).*$/\1 $APIClientSecret/
 w
