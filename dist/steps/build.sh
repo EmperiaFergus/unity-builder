@@ -132,7 +132,7 @@ w
 EOF
 
 echo "Editing $ApiInstallerFile"
-if [ -f "$ApiInstallerFile"]; then
+if [ -f $ApiInstallerFile ]; then
   cp $ApiInstallerFileSample $ApiInstallerFile
   ed -s $ApiInstallerFile <<EOF
   %s/\(stagingServerUrl:\).*$/\1 $APIstagingServerUrl/
@@ -145,6 +145,7 @@ if [ -f "$ApiInstallerFile"]; then
   EOF
 else
   echo "file not found!"
+fi
 
 echo "###########################"
 echo "# Scripting Define Symbols#"
