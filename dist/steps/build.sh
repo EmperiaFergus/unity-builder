@@ -146,7 +146,12 @@ ed -s $ApiInstallerFile <<EOF
 w
 EOF
 
-less $ApiInstallerFile
+ed -s $ApiInstallerFile <<EOF
+%s/\(productionServerUrl:\).*$/\1 $APIProductionServerUrl/
+%s/\(productionAuthServerUrl:\).*$/\1 $APIProductionAuthServerUrl
+w
+EOF
+
 
 echo "###########################"
 echo "# Scripting Define Symbols#"
