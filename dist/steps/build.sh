@@ -134,6 +134,8 @@ EOF
 echo "Editing $ApiInstallerFile"
 echo "clientID $APIClientID"
 echo "SecretKey $APIClientSecret"
+echo "Api Production server url $APIProductionServerUrl"
+echo "Api Production Auth server url $APIProductionAuthServerUrl"
 cp $ApiInstallerFileSample $ApiInstallerFile
 if [ -f "$ApiInstallerFile" ]; then
   echo "APIInstaller found!"
