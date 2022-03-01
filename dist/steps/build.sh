@@ -146,7 +146,7 @@ ed -s $ApiInstallerFile <<EOF
 w
 EOF
 
-less filename
+less $ApiInstallerFile
 
 echo "###########################"
 echo "# Scripting Define Symbols#"
