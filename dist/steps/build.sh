@@ -177,8 +177,6 @@ fi
 #
 # Build
 #
-echo "Linking macos_x64arm64_player_nondevelopment_mono"
-sudo ln -s /home/myuser/Unity/Hub/Editor/2021.2.3f1/Editor/Data/PlaybackEngines/MacStandaloneSupport/Variations/macos_x64arm64_player_nondevelopment_mono  /home/myuser/Unity/Hub/Editor/2021.2.3f1/Editor/Data/PlaybackEngines/MacStandaloneSupport/Variations/macos_x64ARM64_player_nondevelopment_mono
 echo ""
 echo "###########################"
 echo "#    Building project     #"

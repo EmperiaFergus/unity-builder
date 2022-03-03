@@ -1,5 +1,6 @@
 ARG IMAGE
 FROM $IMAGE
+RUN ln -s /opt/unity/Editor/Data/PlaybackEngines/MacStandaloneSupport/Variations/macos_x64arm64_player_nondevelopment_mono /opt/unity/Editor/Data/PlaybackEngines/MacStandaloneSupport/Variations/macos_x64ARM64_player_nondevelopment_mono
 
 LABEL "com.github.actions.name"="Unity - Builder"
 LABEL "com.github.actions.description"="Build Unity projects for different platforms."
