@@ -146,19 +146,21 @@ ed -s $ApiInstallerFile <<EOF
 %s/\(clientID:\).*$/\1 $APIClientID/
 %s/\(clientSecret:\).*$/\1 $APIClientSecret/
 w
-EOF
+EOFd
 
 ed -s $ApiInstallerFile <<EOF
 %s/\(productionServerUrl:\).*$/\1 $APIProductionServerUrl/
 %s/\(productionAuthServerUrl:\).*$/\1 $APIProductionAuthServerUrl/
 w
 EOF
+less $ApiInstallerFile
 
 APIProductionServerURLstring="productionServerUrl: $APIProductionServerUrl"
 APIProductionAuthServerURLstring="productionAuthServerUrl: $APIProductionAuthServerUrl"
 
 sed -i 's+productionServerUrl:+'"$APIProductionServerURLstring"'+g' $ApiInstallerFile
 sed -i 's+productionAuthServerUrl:+'"$APIProductionAuthServerURLstring"'+g' $ApiInstallerFile
+
 
 echo "###########################"
 echo "# Scripting Define Symbols#"
